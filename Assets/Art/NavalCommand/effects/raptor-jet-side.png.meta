@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: edd0cb20a4207104eabb5739914c2150
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -470539566199308898
+    second: raptor-jet-side_0
+  - first:
+      213: -6738279621551120685
+    second: raptor-jet-side_1
+  - first:
+      213: -3057717064374559173
+    second: raptor-jet-side_2
+  - first:
+      213: 3118478286734652071
+    second: raptor-jet-side_3
+  - first:
+      213: -4148662702493272799
+    second: raptor-jet-side_4
+  - first:
+      213: -4418743221267760494
+    second: raptor-jet-side_5
+  - first:
+      213: 6002186495493509771
+    second: raptor-jet-side_6
+  - first:
+      213: 3921098206091644531
+    second: raptor-jet-side_7
+  - first:
+      213: -1384257429384987927
+    second: raptor-jet-side_8
+  - first:
+      213: 3704025709104629066
+    second: raptor-jet-side_9
+  - first:
+      213: -3950773581135744499
+    second: raptor-jet-side_10
+  - first:
+      213: 889037009495760675
+    second: raptor-jet-side_11
+  - first:
+      213: 4382006884670368977
+    second: raptor-jet-side_12
+  - first:
+      213: -7048888430541663428
+    second: raptor-jet-side_13
+  - first:
+      213: -964903301285330479
+    second: raptor-jet-side_14
+  - first:
+      213: -6613918605904033841
+    second: raptor-jet-side_15
+  - first:
+      213: -6870244904634009650
+    second: raptor-jet-side_16
+  - first:
+      213: 534303348961529394
+    second: raptor-jet-side_17
+  - first:
+      213: -6082533819569982234
+    second: raptor-jet-side_18
+  - first:
+      213: 9131530989813714743
+    second: raptor-jet-side_19
+  - first:
+      213: -8060425475179106427
+    second: raptor-jet-side_20
+  - first:
+      213: 5554478016153573734
+    second: raptor-jet-side_21
+  - first:
+      213: -1917272050465692552
+    second: raptor-jet-side_22
+  - first:
+      213: 9084486246314174150
+    second: raptor-jet-side_23
+  - first:
+      213: 3858783830937421521
+    second: raptor-jet-side_24
+  - first:
+      213: -3044375743497831801
+    second: raptor-jet-side_25
+  - first:
+      213: 3958222452797055549
+    second: raptor-jet-side_26
+  - first:
+      213: 2362613503689216068
+    second: raptor-jet-side_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: raptor-jet-side_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 643
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d7cefe1ce4879f0800000000000000
+      internalID: -470539566199308898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_1
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 67
+        width: 1741
+        height: 718
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3de11389262dc72a0800000000000000
+      internalID: -6738279621551120685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_2
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 225
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3edd4ac78ec095d0800000000000000
+      internalID: -3057717064374559173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_3
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 225
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a27698ba7f074b20800000000000000
+      internalID: 3118478286734652071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_4
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 218
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 125f9fca04dfc66c0800000000000000
+      internalID: -4148662702493272799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_5
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 203
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a7ba6a3787da2c0800000000000000
+      internalID: -4418743221267760494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_6
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 225
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82998311dc0c4350800000000000000
+      internalID: 6002186495493509771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_7
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 208
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37e83872b0a8a6630800000000000000
+      internalID: 3921098206091644531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_8
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 225
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eaffcbb3312acce0800000000000000
+      internalID: -1384257429384987927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_9
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 201
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a458816f1c7576330800000000000000
+      internalID: 3704025709104629066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_10
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 191
+        width: 25
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d02f76c2c580c29c0800000000000000
+      internalID: -3950773581135744499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_11
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 196
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f9b27237e765c00800000000000000
+      internalID: 889037009495760675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_12
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 192
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dce7147b0400dc30800000000000000
+      internalID: 4382006884670368977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_13
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 188
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c33143ca1515d2e90800000000000000
+      internalID: -7048888430541663428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_14
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 192
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d1494c4f89fb92f0800000000000000
+      internalID: -964903301285330479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_15
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 195
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc74eb9e114a634a0800000000000000
+      internalID: -6613918605904033841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_16
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 168
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec73a5bc8acf7a0a0800000000000000
+      internalID: -6870244904634009650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_17
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 184
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e4725a01a3a6700800000000000000
+      internalID: 534303348961529394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e43b3eb7bf769ba0800000000000000
+      internalID: -6082533819569982234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_19
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 132
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73f4157ed07b9be70800000000000000
+      internalID: 9131530989813714743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_20
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 104
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58fa07d7cbd932090800000000000000
+      internalID: -8060425475179106427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_21
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 104
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 669dc89a358751d40800000000000000
+      internalID: 5554478016153573734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_22
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 110
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 874253e6a3b7465e0800000000000000
+      internalID: -1917272050465692552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_23
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 98
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c66a7efb14921e70800000000000000
+      internalID: 9084486246314174150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_24
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 103
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d6cb0413772d8530800000000000000
+      internalID: 3858783830937421521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_25
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 98
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78afefd146430c5d0800000000000000
+      internalID: -3044375743497831801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_26
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 88
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32a1f8695e6ee630800000000000000
+      internalID: 3958222452797055549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raptor-jet-side_27
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 82
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 440dfe4c670b9c020800000000000000
+      internalID: 2362613503689216068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      raptor-jet-side_0: -470539566199308898
+      raptor-jet-side_1: -6738279621551120685
+      raptor-jet-side_10: -3950773581135744499
+      raptor-jet-side_11: 889037009495760675
+      raptor-jet-side_12: 4382006884670368977
+      raptor-jet-side_13: -7048888430541663428
+      raptor-jet-side_14: -964903301285330479
+      raptor-jet-side_15: -6613918605904033841
+      raptor-jet-side_16: -6870244904634009650
+      raptor-jet-side_17: 534303348961529394
+      raptor-jet-side_18: -6082533819569982234
+      raptor-jet-side_19: 9131530989813714743
+      raptor-jet-side_2: -3057717064374559173
+      raptor-jet-side_20: -8060425475179106427
+      raptor-jet-side_21: 5554478016153573734
+      raptor-jet-side_22: -1917272050465692552
+      raptor-jet-side_23: 9084486246314174150
+      raptor-jet-side_24: 3858783830937421521
+      raptor-jet-side_25: -3044375743497831801
+      raptor-jet-side_26: 3958222452797055549
+      raptor-jet-side_27: 2362613503689216068
+      raptor-jet-side_3: 3118478286734652071
+      raptor-jet-side_4: -4148662702493272799
+      raptor-jet-side_5: -4418743221267760494
+      raptor-jet-side_6: 6002186495493509771
+      raptor-jet-side_7: 3921098206091644531
+      raptor-jet-side_8: -1384257429384987927
+      raptor-jet-side_9: 3704025709104629066
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

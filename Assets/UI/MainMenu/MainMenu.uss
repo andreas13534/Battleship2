@@ -1,0 +1,4760 @@
+.app-root {
+    flex-grow: 1;
+    background-color: rgb(1, 7, 5);
+    color: rgb(111, 255, 166);
+}
+
+/* Keep TITAN result treatment after the shared cinematic rules. */
+.commander-ability-cinematic.ability-cinematic-titan-nuclear .ability-cinematic-result {
+    background-color: rgba(28, 9, 2, 0.9);
+    border-left-color: rgba(255, 177, 61, 0.8);
+    border-right-color: rgba(255, 177, 61, 0.8);
+    border-top-color: rgba(255, 177, 61, 0.8);
+    border-bottom-color: rgba(255, 177, 61, 0.8);
+    color: rgb(255, 214, 111);
+}
+
+.screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(1, 7, 5);
+    color: rgb(111, 255, 166);
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    overflow: hidden;
+}
+
+.hidden { display: none; }
+
+/* First-launch Ausbildung // Clash-like guided actions in Naval Command's own visual language */
+.tutorial-menu-button {
+    height: 38px;
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.tutorial-replay-button {
+    position: absolute;
+    right: 4%;
+    bottom: 4%;
+    height: 38px;
+    background-color: rgba(4, 18, 23, 0.88);
+    color: rgba(210, 232, 239, 0.78);
+    border-left-color: rgba(255, 205, 84, 0.55);
+    border-right-color: rgba(255, 205, 84, 0.55);
+    border-top-color: rgba(255, 205, 84, 0.55);
+    border-bottom-color: rgba(255, 205, 84, 0.55);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.tutorial-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.tutorial-scrim {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 5, 9, 0.76);
+}
+
+.tutorial-callout {
+    position: absolute;
+    left: 2%;
+    bottom: 0;
+    width: 760px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.tutorial-callout-modal {
+    left: 5%;
+    bottom: 2%;
+}
+
+.tutorial-callout-right {
+    left: auto;
+    right: 2%;
+}
+.tutorial-callout-right .tutorial-portrait {
+    left: auto;
+    right: 0;
+}
+.tutorial-callout-right .tutorial-copy {
+    left: 20px;
+}
+.tutorial-callout-right .tutorial-bubble-tail {
+    left: auto;
+    right: -16px;
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-color: rgb(216, 224, 228);
+    border-top-color: rgb(216, 224, 228);
+    border-right-width: 2px;
+    border-top-width: 2px;
+}
+
+.tutorial-portrait {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 330px;
+    height: 365px;
+    background-image: url("project://database/Assets/Art/NavalCommand/tutorial/instructor-konrad-weiss-transparent.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.tutorial-copy {
+    position: absolute;
+    left: 255px;
+    top: 20px;
+    width: 475px;
+    min-height: 178px;
+    justify-content: center;
+    padding: 24px;
+    background-color: rgb(248, 250, 251);
+    border-radius: 24px;
+    border-left-color: rgb(216, 224, 228);
+    border-right-color: rgb(216, 224, 228);
+    border-top-color: rgb(216, 224, 228);
+    border-bottom-color: rgb(216, 224, 228);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+.tutorial-bubble-tail {
+    position: absolute;
+    left: -16px;
+    bottom: 34px;
+    width: 34px;
+    height: 34px;
+    rotate: 45deg;
+    background-color: rgb(248, 250, 251);
+    border-left-color: rgb(216, 224, 228);
+    border-bottom-color: rgb(216, 224, 228);
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+}
+.tutorial-eyebrow, .tutorial-title, .tutorial-task { display: none; }
+.tutorial-body {
+    color: rgb(24, 39, 46);
+    font-size: 34px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+.tutorial-continue {
+    height: 52px;
+    margin-top: 14px;
+    font-size: 18px;
+    background-color: rgb(20, 126, 70);
+    color: white;
+    border-left-color: rgb(12, 82, 45);
+    border-right-color: rgb(12, 82, 45);
+    border-top-color: rgb(12, 82, 45);
+    border-bottom-color: rgb(12, 82, 45);
+}
+
+.tutorial-highlight {
+    border-left-color: rgb(255, 210, 76);
+    border-right-color: rgb(255, 210, 76);
+    border-top-color: rgb(255, 210, 76);
+    border-bottom-color: rgb(255, 210, 76);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+}
+
+
+.grid-decoration {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.2;
+}
+
+.grid-line { position: absolute; background-color: rgb(19, 95, 55); }
+.grid-v { top: 0; bottom: 0; width: 1px; }
+.grid-h { left: 0; right: 0; height: 1px; }
+.v1 { left: 8%; } .v2 { left: 29%; } .v3 { left: 50%; } .v4 { left: 71%; }
+.h1 { top: 10%; } .h2 { top: 25%; } .h3 { top: 40%; } .h4 { top: 65%; } .h5 { top: 88%; }
+
+.radar {
+    position: absolute;
+    border-color: rgba(31, 235, 116, 0.25);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-radius: 50%;
+}
+.radar-menu { width: 620px; height: 620px; right: -220px; top: 19%; }
+.radar-inner { width: 360px; height: 360px; left: 128px; top: 128px; }
+.radar-cross { position: absolute; background-color: rgba(31, 235, 116, 0.16); }
+.radar-cross-h { height: 1px; left: 0; right: 0; top: 307px; }
+.radar-cross-v { width: 1px; top: 0; bottom: 0; left: 307px; }
+
+.topbar, .compact-header, .battle-header {
+    height: 112px;
+    flex-direction: row;
+    align-items: center;
+    border-bottom-color: rgba(60, 255, 135, 0.48);
+    border-bottom-width: 1px;
+}
+
+.topbar { justify-content: space-between; }
+.status {
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: rgba(117, 255, 169, 0.8);
+    -unity-font-style: bold;
+}
+
+.signal {
+    width: 58px;
+    height: 30px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.signal-bar { width: 11px; background-color: rgb(66, 255, 137); }
+.s1 { height: 9px; opacity: 0.45; } .s2 { height: 18px; opacity: 0.7; } .s3 { height: 28px; }
+
+.menu-content { flex-grow: 1; justify-content: center; }
+.title-block { margin-bottom: 145px; align-items: flex-start; }
+.title {
+    color: rgb(99, 255, 156);
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgba(51, 255, 127, 0.28);
+}
+.title-small { font-size: 58px; letter-spacing: 20px; margin-bottom: -14px; }
+.title-large { font-size: 106px; letter-spacing: 7px; }
+.title-rule { margin-top: 22px; width: 74%; height: 3px; background-color: rgba(64, 255, 135, 0.25); }
+.rule-hot { width: 28%; height: 3px; background-color: rgb(61, 255, 133); }
+
+.action-frame { height: 142px; padding: 18px; justify-content: center; }
+.primary-button, .secondary-button, .icon-button {
+    border-radius: 0;
+    -unity-font-style: bold;
+}
+.primary-button {
+    background-color: rgba(7, 29, 18, 0.96);
+    color: rgb(120, 255, 170);
+    border-left-color: rgb(63, 255, 137);
+    border-right-color: rgb(63, 255, 137);
+    border-top-color: rgb(63, 255, 137);
+    border-bottom-color: rgb(63, 255, 137);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    letter-spacing: 6px;
+}
+.primary-button:hover { background-color: rgb(26, 255, 111); color: rgb(0, 17, 8); }
+.primary-button:active { background-color: rgb(173, 255, 198); color: rgb(0, 17, 8); }
+.start-button { flex-grow: 1; font-size: 31px; }
+
+.debug-toggle {
+    width: 72%;
+    height: 58px;
+    margin-top: 22px;
+    align-self: center;
+    color: rgba(117, 255, 169, 0.72);
+    font-size: 16px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+}
+.debug-toggle .unity-toggle__input {
+    width: 48px;
+    height: 32px;
+    margin-right: 16px;
+    background-color: rgba(4, 22, 13, 0.96);
+    border-left-color: rgba(63, 255, 137, 0.55);
+    border-right-color: rgba(63, 255, 137, 0.55);
+    border-top-color: rgba(63, 255, 137, 0.55);
+    border-bottom-color: rgba(63, 255, 137, 0.55);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+.debug-toggle:checked {
+    color: rgb(255, 210, 82);
+}
+.debug-toggle:checked .unity-toggle__input {
+    background-color: rgba(255, 190, 42, 0.24);
+    border-left-color: rgb(255, 210, 82);
+    border-right-color: rgb(255, 210, 82);
+    border-top-color: rgb(255, 210, 82);
+    border-bottom-color: rgb(255, 210, 82);
+}
+
+.secondary-button {
+    background-color: rgba(4, 20, 12, 0.9);
+    color: rgba(120, 255, 170, 0.78);
+    border-left-color: rgba(63, 255, 137, 0.5);
+    border-right-color: rgba(63, 255, 137, 0.5);
+    border-top-color: rgba(63, 255, 137, 0.5);
+    border-bottom-color: rgba(63, 255, 137, 0.5);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    letter-spacing: 3px;
+}
+
+.icon-button {
+    width: 76px;
+    height: 76px;
+    margin-right: 22px;
+    background-color: rgba(6, 25, 15, 0.95);
+    color: rgb(97, 255, 156);
+    border-left-color: rgb(63, 255, 137);
+    border-right-color: rgb(63, 255, 137);
+    border-top-color: rgb(63, 255, 137);
+    border-bottom-color: rgb(63, 255, 137);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    font-size: 48px;
+}
+
+.corner { position: absolute; width: 28px; height: 28px; }
+.corner-tl { left: 0; top: 0; border-left-color: rgb(99,255,156); border-left-width: 3px; border-top-color: rgb(99,255,156); border-top-width: 3px; }
+.corner-tr { right: 0; top: 0; border-right-color: rgb(99,255,156); border-right-width: 3px; border-top-color: rgb(99,255,156); border-top-width: 3px; }
+.corner-bl { left: 0; bottom: 0; border-left-color: rgb(99,255,156); border-left-width: 3px; border-bottom-color: rgb(99,255,156); border-bottom-width: 3px; }
+.corner-br { right: 0; bottom: 0; border-right-color: rgb(99,255,156); border-right-width: 3px; border-bottom-color: rgb(99,255,156); border-bottom-width: 3px; }
+
+.bottombar { height: 86px; justify-content: flex-end; }
+.bottom-line { height: 1px; align-self: stretch; background-color: rgba(60,255,135,0.42); margin-bottom: 18px; }
+.footer-status { font-size: 15px; letter-spacing: 3px; color: rgba(111,255,166,0.55); }
+
+.header-copy { flex-grow: 1; }
+.screen-title { font-size: 31px; letter-spacing: 5px; -unity-font-style: bold; color: rgb(105,255,161); }
+.micro-label { font-size: 15px; letter-spacing: 2px; color: rgba(111,255,166,0.58); }
+
+.setup-main { flex-grow: 1; }
+.board-frame {
+    position: relative;
+    background-color: rgba(2, 13, 8, 0.96);
+    border-left-color: rgba(61,255,133,0.24);
+    border-right-color: rgba(61,255,133,0.24);
+    border-top-color: rgba(61,255,133,0.24);
+    border-bottom-color: rgba(61,255,133,0.24);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding: 28px;
+}
+.setup-board-frame { height: 895px; margin-top: 28px; margin-bottom: 28px; }
+.board-caption { height: 44px; font-size: 17px; letter-spacing: 3px; color: rgba(110,255,165,0.62); }
+
+.battle-grid {
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: rgb(1, 12, 8);
+    border-left-color: rgba(63,255,137,0.8);
+    border-right-color: rgba(63,255,137,0.8);
+    border-top-color: rgba(63,255,137,0.8);
+    border-bottom-color: rgba(63,255,137,0.8);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    overflow: hidden;
+}
+.setup-grid { flex-grow: 1; }
+
+.grid-cell {
+    width: 10%;
+    height: 10%;
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(3, 20, 12, 0.68);
+    border-left-color: rgba(56, 179, 102, 0.32);
+    border-right-color: rgba(56, 179, 102, 0.32);
+    border-top-color: rgba(56, 179, 102, 0.32);
+    border-bottom-color: rgba(56, 179, 102, 0.32);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    color: rgb(102, 255, 158);
+    font-size: 42px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+.grid-cell:hover { background-color: rgba(14, 63, 36, 0.88); }
+.cell-preview-valid { background-color: rgba(42, 255, 120, 0.34); }
+.cell-preview-invalid { background-color: rgba(255, 48, 65, 0.35); }
+.cell-ship { background-color: rgba(45, 126, 78, 0.48); }
+.cell-hit {
+    color: rgb(255, 64, 86);
+    font-size: 31px;
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgba(255, 25, 52, 0.35);
+}
+.cell-miss {
+    color: rgb(67, 255, 139);
+    font-size: 27px;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgba(31, 255, 112, 0.28);
+}
+.cell-sunk {
+    opacity: 1;
+    color: rgb(255, 105, 80);
+    font-size: 34px;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(255, 42, 35);
+}
+
+.ship-console, .command-console {
+    background-color: rgba(2, 15, 9, 0.98);
+    border-left-color: rgba(61,255,133,0.5);
+    border-right-color: rgba(61,255,133,0.5);
+    border-top-color: rgba(61,255,133,0.5);
+    border-bottom-color: rgba(61,255,133,0.5);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding: 24px;
+}
+.ship-console { flex-grow: 1; min-height: 560px; }
+.console-header { height: 50px; flex-direction: row; justify-content: space-between; align-items: center; }
+.console-title { font-size: 19px; letter-spacing: 4px; -unity-font-style: bold; color: rgb(99,255,156); }
+
+.ship-tray {
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.ship-card {
+    position: relative;
+    width: 48%;
+    height: 102px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-color: rgba(5, 25, 15, 0.9);
+    border-left-color: rgba(65,255,138,0.35);
+    border-right-color: rgba(65,255,138,0.35);
+    border-top-color: rgba(65,255,138,0.35);
+    border-bottom-color: rgba(65,255,138,0.35);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    justify-content: center;
+    align-items: center;
+}
+.ship-card-wide { width: 100%; }
+.ship-card-selected { border-left-color: rgb(72,255,143); border-right-color: rgb(72,255,143); border-top-color: rgb(72,255,143); border-bottom-color: rgb(72,255,143); background-color: rgba(15,70,39,0.8); }
+.ship-card-placed { opacity: 0.24; }
+.ship-image {
+    width: 88%;
+    height: 76%;
+    -unity-background-scale-mode: scale-to-fit;
+    background-repeat: no-repeat;
+}
+.ship-board {
+    position: absolute;
+    opacity: 0.9;
+    -unity-background-scale-mode: scale-to-fit;
+    background-repeat: no-repeat;
+}
+.ship-board-sunk {
+    opacity: 1;
+    -unity-background-image-tint-color: rgb(165, 172, 174);
+}
+.ship-board-vertical { rotate: 90deg; }
+
+.ship-2 { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/01-patrol-interceptor-2x1.png"); }
+.ship-3a { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/03-fast-destroyer-3x1.png"); }
+.ship-3b { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/04-attack-submarine-3x1.png"); }
+
+.cell-submerged {
+    background-color: rgba(12, 101, 128, 0.76);
+    border-color: #53e6ff;
+    color: #b9f7ff;
+}
+
+.cell-shot-blocked {
+    background-color: rgba(10, 65, 89, 0.92);
+    border-color: #62dcff;
+    color: #d4fbff;
+}
+.ship-4 { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/06-heavy-missile-cruiser-4x1.png"); }
+.ship-5 { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/09-aircraft-carrier-5x1.png"); }
+.ship-14 { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/13-floating-fortress-7x2.png"); }
+.ship-6 { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/12-fork-ship-3x2.png"); }
+
+.setup-actions { height: 104px; flex-direction: row; }
+.setup-actions .secondary-button { width: 30%; margin-right: 16px; font-size: 19px; }
+.battle-start-button { flex-grow: 1; font-size: 21px; }
+.battle-start-button:disabled { opacity: 0.3; }
+
+.battle-header { justify-content: space-between; }
+.points-panel { width: 130px; height: 80px; align-items: center; justify-content: center; border-left-color: rgba(61,255,133,0.45); border-right-color: rgba(61,255,133,0.45); border-top-color: rgba(61,255,133,0.45); border-bottom-color: rgba(61,255,133,0.45); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; }
+.points-value { font-size: 33px; -unity-font-style: bold; color: rgb(105,255,161); }
+.sunk-enemy-ships {
+    position: absolute;
+    left: -10px;
+    top: 82px;
+    width: 150px;
+    min-height: 28px;
+    padding: 4px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(5, 18, 23, 0.72);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.sunk-ship-marker {
+    height: 17px;
+    margin-left: 2px;
+    margin-right: 2px;
+    opacity: 0.78;
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(71, 94, 101);
+}
+.turn-panel { height: 80px; min-width: 430px; flex-direction: row; align-items: center; justify-content: center; background-color: rgba(4,22,13,0.9); border-left-color: rgba(61,255,133,0.5); border-right-color: rgba(61,255,133,0.5); border-top-color: rgba(61,255,133,0.5); border-bottom-color: rgba(61,255,133,0.5); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; }
+.turn-dot { width: 22px; height: 22px; border-radius: 50%; margin-right: 18px; }
+.turn-player { background-color: rgb(45,255,122); }
+.turn-enemy { background-color: rgb(255,42,64); }
+.turn-label { font-size: 22px; letter-spacing: 3px; -unity-font-style: bold; }
+
+.battle-main { flex-grow: 1; padding-top: 26px; }
+.main-board-frame { width: 850px; height: 900px; align-self: center; }
+.main-battle-grid { flex-grow: 1; }
+.battle-message { height: 62px; margin-top: 14px; font-size: 24px; letter-spacing: 3px; -unity-text-align: middle-center; color: rgba(111,255,166,0.8); }
+
+.command-console { height: 650px; }
+.command-header { border-bottom-color: rgba(61,255,133,0.25); border-bottom-width: 1px; }
+.command-panels { flex-grow: 1; flex-direction: row; padding-top: 18px; }
+.fleet-panel { width: 43%; margin-right: 20px; }
+.mini-panel { flex-grow: 1; }
+.panel-label { height: 42px; font-size: 20px; letter-spacing: 2px; color: rgba(111,255,166,0.78); -unity-font-style: bold; }
+.fleet-status { flex-grow: 1; justify-content: space-around; }
+.fleet-row { height: 65px; flex-direction: row; align-items: center; padding-left: 8px; padding-right: 8px; background-color: rgba(4,22,13,0.75); border-bottom-color: rgba(61,255,133,0.2); border-bottom-width: 1px; }
+.fleet-row-sunk { opacity: 0.32; background-color: rgba(80,15,22,0.65); }
+.fleet-icon { width: 54%; height: 52px; -unity-background-scale-mode: scale-to-fit; background-repeat: no-repeat; }
+.fleet-health { flex-grow: 1; flex-direction: row; justify-content: flex-end; }
+.health-pip { width: 9px; height: 24px; margin-left: 4px; background-color: rgb(64,255,136); }
+.health-pip-lost { background-color: rgba(255,48,66,0.5); }
+.mini-grid { width: 100%; flex-grow: 1; }
+.mini-grid .grid-cell { font-size: 15px; border-left-width: 0; border-right-width: 1px; border-top-width: 0; border-bottom-width: 1px; }
+
+
+/* Commander selection */
+.commander-list {
+    flex-grow: 1;
+    min-height: 0;
+    padding-top: 28px;
+    padding-bottom: 18px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.commander-list > .unity-scroll-view__content-viewport {
+    flex-grow: 1;
+}
+.commander-list .unity-scroll-view__content-container {
+    width: 100%;
+}
+.commander-card {
+    min-height: 230px;
+    flex-shrink: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 18px;
+    flex-direction: row;
+    background-color: rgba(3, 18, 11, 0.96);
+    border-left-color: rgba(65, 255, 138, 0.38);
+    border-right-color: rgba(65, 255, 138, 0.38);
+    border-top-color: rgba(65, 255, 138, 0.38);
+    border-bottom-color: rgba(65, 255, 138, 0.38);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+.commander-portrait {
+    width: 250px;
+    height: 194px;
+    margin-right: 24px;
+    background-color: rgb(5, 24, 15);
+    -unity-background-scale-mode: scale-and-crop;
+    border-left-color: rgba(74, 255, 145, 0.55);
+    border-right-color: rgba(74, 255, 145, 0.55);
+    border-top-color: rgba(74, 255, 145, 0.55);
+    border-bottom-color: rgba(74, 255, 145, 0.55);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    align-items: center;
+    justify-content: center;
+}
+.portrait-standard {
+    background-color: rgb(4, 25, 14);
+}
+.portrait-elias {
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/01-male-veteran-commander.png");
+}
+.portrait-dae {
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/02-male-tactical-analyst.png");
+}
+.portrait-ronan {
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/03-male-red-bearded-corsair.png");
+}
+.portrait-arjan {
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/04-male-sikh-strategist.png");
+}
+.portrait-mateo {
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/05-male-daring-navigator.png");
+}
+.portrait-imani {
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/09-female-braided-commander.png");
+}
+
+.raptor-jet-board {
+    opacity: 1;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/raptor-jet-top.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/* Ronan Graves // TITAN water cinematics */
+.ability-cinematic-titan-relocation .ability-ocean-grade,
+.ability-cinematic-titan-nuclear .ability-ocean-grade {
+    background-color: rgba(0, 12, 20, 0.18);
+}
+.titan-relocation-ship {
+    position: absolute;
+    left: 7%;
+    top: 55.1%;
+    width: 86%;
+    height: 25%;
+    opacity: 1;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-close-destroyer.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+}
+.titan-relocation-vanish .titan-relocation-ship { opacity: 0; }
+.titan-relocation-complete .titan-relocation-ship {
+    left: 19%;
+    top: 32.3%;
+    width: 62%;
+    height: 18%;
+}
+.titan-relocation-vanish .titan-teleport-ring { opacity: 1; scale: 1.15 1.15; }
+.titan-relocation-complete .titan-teleport-ring { top: 39%; width: 62%; left: 19%; }
+.titan-teleport-ring {
+    position: absolute;
+    left: 7%;
+    top: 63%;
+    width: 86%;
+    height: 10%;
+    opacity: 0;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgba(81, 255, 184, 0.86);
+    border-right-color: rgba(81, 255, 184, 0.86);
+    border-top-color: rgba(81, 255, 184, 0.86);
+    border-bottom-color: rgba(81, 255, 184, 0.86);
+    border-radius: 50%;
+    transition-property: opacity, scale;
+    transition-duration: 0.18s;
+}
+.titan-target-ship {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 39%;
+    height: 25%;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-frigate.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.titan-nuclear-missile {
+    position: absolute;
+    left: 50%;
+    top: -15%;
+    width: 52px;
+    height: 178px;
+    margin-left: -26px;
+    rotate: 180deg;
+    opacity: 0;
+    transition-property: opacity, top;
+    transition-duration: 0.86s;
+    transition-timing-function: ease-in;
+}
+.titan-nuclear-missile-sprite {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-missile.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.titan-nuclear-trail {
+    position: absolute;
+    left: 21px;
+    top: 142px;
+    width: 10px;
+    height: 260px;
+    background-color: rgba(255, 119, 28, 0.5);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-left-color: rgba(255, 235, 151, 0.74);
+    border-right-color: rgba(255, 56, 18, 0.62);
+}
+.titan-nuclear-flame {
+    position: absolute;
+    left: 15px;
+    top: 140px;
+    width: 22px;
+    height: 60px;
+    background-color: rgb(255, 170, 44);
+    border-radius: 50%;
+}
+.titan-nuclear-particle {
+    position: absolute;
+    top: 155px;
+    width: 11px;
+    height: 20px;
+    opacity: 0;
+    background-color: rgb(255, 175, 44);
+    border-radius: 50%;
+    transition-property: opacity, translate, scale;
+    transition-duration: 0.48s;
+}
+.titan-nuclear-particle-0 { left: 7px; }
+.titan-nuclear-particle-1 { left: 18px; transition-duration: 0.34s; }
+.titan-nuclear-particle-2 { left: 30px; transition-duration: 0.58s; }
+.titan-nuclear-particle-3 { left: 12px; top: 169px; transition-duration: 0.41s; }
+.titan-nuclear-particle-4 { left: 27px; top: 165px; transition-duration: 0.66s; }
+.titan-nuclear-incoming .titan-nuclear-particle { opacity: 0.94; translate: -17px 112px; scale: 0.3 0.3; }
+.titan-nuclear-incoming .titan-nuclear-particle-1 { translate: 12px 148px; }
+.titan-nuclear-incoming .titan-nuclear-particle-2 { translate: 24px 97px; }
+.titan-nuclear-incoming .titan-nuclear-particle-3 { translate: -8px 172px; }
+.titan-nuclear-incoming .titan-nuclear-particle-4 { translate: 18px 132px; }
+.titan-nuclear-incoming .titan-nuclear-missile {
+    opacity: 1;
+    top: 43%;
+}
+.titan-nuclear-will-miss.titan-nuclear-incoming .titan-nuclear-missile {
+    left: 53.6%;
+    top: 66%;
+}
+.titan-nuclear-hit .titan-nuclear-missile,
+.titan-nuclear-miss .titan-nuclear-missile { opacity: 0; transition-duration: 0.04s; }
+.titan-nuclear-impact {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    width: 1px;
+    height: 1px;
+}
+.titan-nuclear-will-miss .titan-nuclear-impact {
+    left: 53.6%;
+    top: 75%;
+}
+.titan-nuclear-splash {
+    position: absolute;
+    left: -150px;
+    top: -290px;
+    width: 300px;
+    height: 320px;
+    opacity: 0;
+    scale: 0.15 0.15;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-water-splash.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.28s;
+}
+.titan-nuclear-miss .titan-nuclear-splash { opacity: 1; scale: 1 1; translate: 0 -16px; }
+.titan-nuclear-flash {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: rgba(255, 244, 200, 0.96);
+    transition-property: opacity;
+    transition-duration: 0.14s;
+}
+.titan-nuclear-hit .titan-nuclear-flash { opacity: 1; }
+.titan-nuclear-aftermath .titan-nuclear-flash { opacity: 0; transition-duration: 0.35s; }
+.titan-nuclear-mushroom {
+    position: absolute;
+    left: 11%;
+    top: -20%;
+    width: 78%;
+    height: 72%;
+    opacity: 0;
+    scale: 0.08 0.08;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/titan-nuclear-mushroom.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale;
+    transition-duration: 0.72s;
+    transition-timing-function: ease-out;
+}
+.titan-nuclear-hit .titan-nuclear-mushroom { opacity: 1; scale: 1 1; }
+.titan-nuclear-hit .titan-target-ship { opacity: 0; }
+
+.titan-nuclear-firestorm {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.titan-fire-ember {
+    position: absolute;
+    top: 88%;
+    width: 10px;
+    height: 22px;
+    opacity: 0;
+    scale: 0.35 0.35;
+    background-color: rgb(255, 125, 27);
+    border-radius: 50%;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-left-color: rgb(255, 232, 127);
+    border-right-color: rgb(178, 38, 7);
+    transition-property: opacity, translate, scale;
+    transition-duration: 1.55s;
+    transition-timing-function: ease-out;
+}
+.titan-nuclear-hit .titan-fire-ember { opacity: 0.92; translate: 0 -920px; scale: 1 1; }
+.titan-fire-ember-0 { left: 3%; top: 94%; transition-duration: 1.15s; }
+.titan-fire-ember-1 { left: 9%; top: 77%; transition-duration: 1.7s; }
+.titan-fire-ember-2 { left: 15%; top: 91%; transition-duration: 1.3s; }
+.titan-fire-ember-3 { left: 21%; top: 72%; transition-duration: 1.85s; }
+.titan-fire-ember-4 { left: 27%; top: 98%; transition-duration: 1.45s; }
+.titan-fire-ember-5 { left: 34%; top: 82%; transition-duration: 1.05s; }
+.titan-fire-ember-6 { left: 40%; top: 93%; transition-duration: 1.65s; }
+.titan-fire-ember-7 { left: 46%; top: 76%; transition-duration: 1.25s; }
+.titan-fire-ember-8 { left: 52%; top: 97%; transition-duration: 1.9s; }
+.titan-fire-ember-9 { left: 58%; top: 84%; transition-duration: 1.4s; }
+.titan-fire-ember-10 { left: 64%; top: 92%; transition-duration: 1.1s; }
+.titan-fire-ember-11 { left: 70%; top: 73%; transition-duration: 1.75s; }
+.titan-fire-ember-12 { left: 76%; top: 96%; transition-duration: 1.35s; }
+.titan-fire-ember-13 { left: 82%; top: 80%; transition-duration: 1.95s; }
+.titan-fire-ember-14 { left: 88%; top: 90%; transition-duration: 1.5s; }
+.titan-fire-ember-15 { left: 94%; top: 75%; transition-duration: 1.2s; }
+.titan-fire-ember-16 { left: 31%; top: 68%; transition-duration: 1.8s; }
+.titan-fire-ember-17 { left: 67%; top: 66%; transition-duration: 1.6s; }
+.titan-nuclear-hit .titan-fire-ember-0,
+.titan-nuclear-hit .titan-fire-ember-4,
+.titan-nuclear-hit .titan-fire-ember-8,
+.titan-nuclear-hit .titan-fire-ember-12 { translate: -95px -980px; }
+.titan-nuclear-hit .titan-fire-ember-2,
+.titan-nuclear-hit .titan-fire-ember-6,
+.titan-nuclear-hit .titan-fire-ember-10,
+.titan-nuclear-hit .titan-fire-ember-14 { translate: 105px -860px; }
+.ability-cinematic-titan-nuclear .ability-cinematic-result {
+    background-color: rgba(28, 9, 2, 0.9);
+    border-left-color: rgba(255, 177, 61, 0.8);
+    border-right-color: rgba(255, 177, 61, 0.8);
+    border-top-color: rgba(255, 177, 61, 0.8);
+    border-bottom-color: rgba(255, 177, 61, 0.8);
+    color: rgb(255, 214, 111);
+}
+.portrait-monogram {
+    font-size: 86px;
+    letter-spacing: 8px;
+    -unity-font-style: bold;
+    color: rgba(81, 255, 148, 0.8);
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgba(32, 255, 120, 0.25);
+}
+.commander-card-copy {
+    flex-grow: 1;
+    justify-content: center;
+}
+.commander-card-heading {
+    min-height: 50px;
+    flex-direction: row;
+    align-items: center;
+}
+.commander-card-name {
+    flex-grow: 1;
+    font-size: 27px;
+    letter-spacing: 3px;
+    -unity-font-style: bold;
+    color: rgb(105, 255, 161);
+    white-space: normal;
+}
+.commander-info-button {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    margin-left: 14px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 2px;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    -unity-font-style: bold;
+    color: rgb(247, 210, 74);
+    background-color: rgb(4, 37, 24);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(247, 210, 74);
+    border-right-color: rgb(247, 210, 74);
+    border-top-color: rgb(247, 210, 74);
+    border-bottom-color: rgb(247, 210, 74);
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    border-bottom-left-radius: 23px;
+    border-bottom-right-radius: 23px;
+}
+.commander-info-button.info-open {
+    color: rgb(3, 28, 17);
+    background-color: rgb(247, 210, 74);
+}
+.commander-card-info {
+    margin-top: 14px;
+    padding-top: 13px;
+    padding-bottom: 4px;
+    border-top-width: 1px;
+    border-top-color: rgba(84, 255, 151, 0.26);
+}
+.commander-card-rank {
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: rgba(111, 255, 166, 0.62);
+    margin-bottom: 14px;
+}
+.commander-card-abilities {
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: rgb(101, 226, 151);
+    margin-bottom: 12px;
+}
+.commander-select-button {
+    height: 64px;
+    margin-top: 16px;
+    font-size: 18px;
+}
+
+/* Commander controls in command center */
+.ability-deck {
+    height: 118px;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom-color: rgba(61, 255, 133, 0.25);
+    border-bottom-width: 1px;
+}
+.battle-commander-portrait {
+    width: 86px;
+    height: 86px;
+    margin-right: 14px;
+    -unity-background-scale-mode: scale-and-crop;
+    border-left-color: rgba(75, 255, 145, 0.58);
+    border-right-color: rgba(75, 255, 145, 0.58);
+    border-top-color: rgba(75, 255, 145, 0.58);
+    border-bottom-color: rgba(75, 255, 145, 0.58);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    align-items: center;
+    justify-content: center;
+}
+.battle-portrait-monogram {
+    font-size: 24px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+    color: rgb(91, 255, 151);
+}
+.battle-commander-copy {
+    width: 300px;
+    justify-content: center;
+}
+.battle-commander-name {
+    font-size: 16px;
+    letter-spacing: 1px;
+    -unity-font-style: bold;
+    color: rgb(104, 255, 160);
+}
+.battle-commander-rank {
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(111, 255, 166, 0.52);
+}
+.battle-points-panel {
+    width: 290px;
+    height: 86px;
+    margin-top: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.battle-points-panel .micro-label {
+    margin-right: 20px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: rgba(111, 255, 166, 0.86);
+    -unity-font-style: bold;
+}
+.battle-points-panel .points-value { font-size: 46px; }
+.battle-points-panel .sunk-enemy-ships {
+    left: 0;
+    top: 64px;
+    width: 290px;
+    min-height: 0;
+    padding: 0;
+    background-color: transparent;
+}
+.ability-buttons {
+    flex-grow: 1;
+    height: 86px;
+    flex-direction: row;
+}
+.ability-button {
+    flex-grow: 1;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 14px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(5, 26, 15, 0.96);
+    color: rgb(104, 255, 160);
+    border-left-color: rgba(68, 255, 139, 0.52);
+    border-right-color: rgba(68, 255, 139, 0.52);
+    border-top-color: rgba(68, 255, 139, 0.52);
+    border-bottom-color: rgba(68, 255, 139, 0.52);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+    -unity-font-style: bold;
+    white-space: nowrap;
+}
+.ability-cost {
+    width: 64px;
+    min-width: 64px;
+    margin-right: 14px;
+    font-size: 38px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    color: rgb(115, 255, 170);
+}
+.ability-name {
+    flex-grow: 1;
+    font-size: 18px;
+    letter-spacing: 1px;
+    -unity-text-align: middle-left;
+    -unity-font-style: bold;
+    color: rgb(104, 255, 160);
+    white-space: nowrap;
+}
+.ability-button:hover {
+    background-color: rgba(20, 76, 42, 0.95);
+}
+.ability-button:disabled {
+    opacity: 0.34;
+}
+.ability-active {
+    background-color: rgba(41, 255, 117, 0.22);
+    border-left-color: rgb(70, 255, 140);
+    border-right-color: rgb(70, 255, 140);
+    border-top-color: rgb(70, 255, 140);
+    border-bottom-color: rgb(70, 255, 140);
+}
+.cell-ability-preview {
+    background-color: rgba(70, 255, 140, 0.12);
+    border-left-color: rgba(89, 255, 153, 0.75);
+    border-right-color: rgba(89, 255, 153, 0.75);
+    border-top-color: rgba(89, 255, 153, 0.75);
+    border-bottom-color: rgba(89, 255, 153, 0.75);
+}
+.cell-scanned {
+    color: rgba(72, 255, 151, 0.5);
+    font-size: 19px;
+}
+.cell-mine {
+    color: rgb(255, 194, 62);
+    font-size: 20px;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgba(255, 151, 30, 0.3);
+}
+.cell-revealed {
+    border-left-color: rgba(255, 193, 63, 0.72);
+    border-right-color: rgba(255, 193, 63, 0.72);
+    border-top-color: rgba(255, 193, 63, 0.72);
+    border-bottom-color: rgba(255, 193, 63, 0.72);
+}
+.cell-rangefinder-area {
+    background-color: rgba(36, 128, 255, 0.16);
+}
+.cell-rangefinder-edge {
+    border-left-color: rgba(71, 179, 255, 0.95);
+    border-right-color: rgba(71, 179, 255, 0.95);
+    border-top-color: rgba(71, 179, 255, 0.95);
+    border-bottom-color: rgba(71, 179, 255, 0.95);
+}
+
+/* Arjan Dhillon // Vector */
+.ability-cinematic-vector-rangefinder .ability-ocean-grade,
+.ability-cinematic-vector-barrage .ability-ocean-grade {
+    background-color: rgba(0, 28, 46, 0.28);
+}
+.ability-cinematic-vector-rangefinder .ability-cinematic-panel,
+.ability-cinematic-vector-barrage .ability-cinematic-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+.vector-target-ship {
+    position: absolute;
+    left: 16%;
+    right: 16%;
+    top: 38%;
+    height: 25%;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-close-destroyer.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.vector-missile {
+    position: absolute;
+    left: 50%;
+    top: -140px;
+    width: 34px;
+    height: 118px;
+    margin-left: -17px;
+    opacity: 0;
+    rotate: 180deg;
+    transition-property: opacity, translate;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in;
+}
+.vector-missile-sprite,
+.vector-barrage-missile {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-missile.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.vector-missile-trail {
+    position: absolute;
+    left: 13px;
+    top: 100px;
+    width: 8px;
+    height: 180px;
+    background-color: rgba(67, 177, 255, 0.54);
+}
+.vector-missile-flame {
+    position: absolute;
+    left: 8px;
+    top: 98px;
+    width: 18px;
+    height: 45px;
+    background-color: rgb(255, 174, 52);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.vector-shot-incoming .vector-missile { opacity: 1; translate: 0 930px; }
+.vector-impact-hit .vector-missile,
+.vector-impact-miss .vector-missile { opacity: 0; transition-duration: 0.04s; }
+.vector-impact {
+    position: absolute;
+    left: 50%;
+    top: 67%;
+    width: 1px;
+    height: 1px;
+}
+.vector-hit-explosion,
+.vector-miss-splash {
+    position: absolute;
+    opacity: 0;
+    scale: 0.12 0.12;
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.24s;
+}
+.vector-hit-explosion {
+    left: -165px;
+    top: -170px;
+    width: 330px;
+    height: 250px;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-hit-explosion.png");
+}
+.vector-miss-splash {
+    left: -115px;
+    top: -225px;
+    width: 230px;
+    height: 250px;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-water-splash.png");
+}
+.vector-impact-hit .vector-hit-explosion,
+.vector-impact-miss .vector-miss-splash { opacity: 1; scale: 1 1; translate: 0 -12px; }
+.vector-scan-ring {
+    position: absolute;
+    left: -38px;
+    top: -38px;
+    width: 76px;
+    height: 76px;
+    opacity: 0;
+    scale: 0.15 0.15;
+    border-left-width: 7px;
+    border-right-width: 7px;
+    border-top-width: 7px;
+    border-bottom-width: 7px;
+    border-left-color: rgb(57, 168, 255);
+    border-right-color: rgb(57, 168, 255);
+    border-top-color: rgb(57, 168, 255);
+    border-bottom-color: rgb(57, 168, 255);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    transition-property: opacity, scale;
+    transition-duration: 0.72s;
+}
+.vector-impact-miss .vector-scan-ring { opacity: 0.82; scale: 7 7; }
+.vector-impact-miss .vector-scan-ring-two { transition-duration: 1.05s; scale: 10 10; opacity: 0.36; }
+.vector-distance-result {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 18%;
+    height: 120px;
+    opacity: 0;
+    scale: 0.72 0.72;
+    -unity-text-align: middle-center;
+    font-size: 58px;
+    letter-spacing: 6px;
+    -unity-font-style: bold;
+    color: rgb(112, 205, 255);
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgba(0, 23, 42, 0.9);
+    transition-property: opacity, scale;
+    transition-duration: 0.24s;
+}
+.vector-scan-complete .vector-distance-result { opacity: 1; scale: 1 1; }
+.ability-cinematic-vector-rangefinder .ability-cinematic-result,
+.ability-cinematic-vector-barrage .ability-cinematic-result {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+}
+.vector-barrage-shot {
+    position: absolute;
+    top: 63%;
+    width: 1px;
+    height: 1px;
+}
+.vector-barrage-shot-0 { left: 25%; }
+.vector-barrage-shot-1 { left: 36%; top: 69%; }
+.vector-barrage-shot-2 { left: 47%; top: 61%; }
+.vector-barrage-shot-3 { left: 58%; top: 67%; }
+.vector-barrage-shot-4 { left: 69%; top: 60%; }
+.vector-barrage-shot-5 { left: 78%; top: 68%; }
+.vector-barrage-shot.vector-barrage-will-hit { top: 55%; }
+.vector-barrage-shot.vector-barrage-will-miss { top: 70%; }
+.standard-line-horizontal .vector-barrage-shot-0 { left: 34%; top: 64%; }
+.standard-line-horizontal .vector-barrage-shot-1 { left: 50%; top: 64%; }
+.standard-line-horizontal .vector-barrage-shot-2 { left: 66%; top: 64%; }
+.standard-line-vertical .vector-barrage-shot-0 { left: 50%; top: 52%; }
+.standard-line-vertical .vector-barrage-shot-1 { left: 50%; top: 63%; }
+.standard-line-vertical .vector-barrage-shot-2 { left: 50%; top: 74%; }
+.vector-barrage-missile {
+    left: -16px;
+    top: -720px;
+    width: 32px;
+    height: 112px;
+    opacity: 0;
+    rotate: 180deg;
+    transition-property: opacity, translate;
+    transition-duration: 0.36s;
+    transition-timing-function: ease-in;
+}
+.vector-barrage-explosion,
+.vector-barrage-splash {
+    position: absolute;
+    opacity: 0;
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale;
+    transition-duration: 0.2s;
+}
+.vector-barrage-explosion {
+    left: -110px;
+    top: -115px;
+    width: 220px;
+    height: 165px;
+    scale: 0.15 0.15;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-hit-explosion.png");
+}
+.vector-barrage-splash {
+    left: -72px;
+    top: -145px;
+    width: 144px;
+    height: 158px;
+    scale: 0.18 0.18;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-water-splash.png");
+}
+.vector-barrage-fire-0 .vector-barrage-shot-0 .vector-barrage-missile,
+.vector-barrage-fire-1 .vector-barrage-shot-1 .vector-barrage-missile,
+.vector-barrage-fire-2 .vector-barrage-shot-2 .vector-barrage-missile,
+.vector-barrage-fire-3 .vector-barrage-shot-3 .vector-barrage-missile,
+.vector-barrage-fire-4 .vector-barrage-shot-4 .vector-barrage-missile,
+.vector-barrage-fire-5 .vector-barrage-shot-5 .vector-barrage-missile { opacity: 1; translate: 0 690px; }
+.vector-barrage-impact-0 .vector-barrage-shot-0 .vector-barrage-missile,
+.vector-barrage-impact-1 .vector-barrage-shot-1 .vector-barrage-missile,
+.vector-barrage-impact-2 .vector-barrage-shot-2 .vector-barrage-missile,
+.vector-barrage-impact-3 .vector-barrage-shot-3 .vector-barrage-missile,
+.vector-barrage-impact-4 .vector-barrage-shot-4 .vector-barrage-missile,
+.vector-barrage-impact-5 .vector-barrage-shot-5 .vector-barrage-missile { opacity: 0; }
+.vector-barrage-impact-0 .vector-barrage-shot-0.vector-barrage-will-hit .vector-barrage-explosion,
+.vector-barrage-impact-1 .vector-barrage-shot-1.vector-barrage-will-hit .vector-barrage-explosion,
+.vector-barrage-impact-2 .vector-barrage-shot-2.vector-barrage-will-hit .vector-barrage-explosion,
+.vector-barrage-impact-3 .vector-barrage-shot-3.vector-barrage-will-hit .vector-barrage-explosion,
+.vector-barrage-impact-4 .vector-barrage-shot-4.vector-barrage-will-hit .vector-barrage-explosion,
+.vector-barrage-impact-5 .vector-barrage-shot-5.vector-barrage-will-hit .vector-barrage-explosion,
+.vector-barrage-impact-0 .vector-barrage-shot-0.vector-barrage-will-miss .vector-barrage-splash,
+.vector-barrage-impact-1 .vector-barrage-shot-1.vector-barrage-will-miss .vector-barrage-splash,
+.vector-barrage-impact-2 .vector-barrage-shot-2.vector-barrage-will-miss .vector-barrage-splash,
+.vector-barrage-impact-3 .vector-barrage-shot-3.vector-barrage-will-miss .vector-barrage-splash,
+.vector-barrage-impact-4 .vector-barrage-shot-4.vector-barrage-will-miss .vector-barrage-splash,
+.vector-barrage-impact-5 .vector-barrage-shot-5.vector-barrage-will-miss .vector-barrage-splash { opacity: 1; scale: 1 1; }
+.ship-2b { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/02-stealth-corvette-2x1.png"); }
+.ship-4b { background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/07-modern-battleship-4x1.png"); }
+
+/* Lightweight ability FX registry */
+.ability-fx {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 24%;
+    height: 150px;
+    opacity: 0;
+    translate: -120px 0;
+    background-color: rgba(3, 24, 14, 0.96);
+    border-left-width: 4px;
+    border-left-color: rgb(68, 255, 139);
+    align-items: center;
+    justify-content: center;
+    transition-property: opacity, translate;
+    transition-duration: 0.18s;
+}
+.ability-fx-active {
+    opacity: 1;
+    translate: 0 0;
+}
+.ability-fx-label {
+    font-size: 23px;
+    letter-spacing: 4px;
+    -unity-font-style: bold;
+}
+.fx-barrage { border-left-color: rgb(255, 94, 64); color: rgb(255, 151, 92); }
+.fx-line { border-left-color: rgb(88, 205, 255); color: rgb(111, 224, 255); }
+.fx-scan { border-left-color: rgb(53, 255, 151); color: rgb(90, 255, 174); }
+.fx-repair { border-left-color: rgb(255, 210, 82); color: rgb(255, 225, 126); }
+.fx-chemical { border-left-color: rgb(163, 255, 63); color: rgb(190, 255, 100); }
+.fx-mine { border-left-color: rgb(255, 151, 45); color: rgb(255, 188, 88); }
+
+/* Online platform */
+.topbar-button {
+    min-width: 116px;
+    height: 46px;
+    margin-left: auto;
+    margin-right: 18px;
+    color: rgb(101, 255, 168);
+    background-color: rgba(3, 27, 18, 0.9);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(84, 255, 166, 0.46);
+    border-right-color: rgba(84, 255, 166, 0.46);
+    border-top-color: rgba(84, 255, 166, 0.46);
+    border-bottom-color: rgba(84, 255, 166, 0.46);
+    font-size: 14px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+}
+.online-start-button {
+    height: 78px;
+    margin-top: 14px;
+    font-size: 22px;
+    letter-spacing: 4px;
+}
+.online-screen {
+    background-color: rgb(1, 11, 9);
+    color: rgb(102, 255, 176);
+}
+.online-center {
+    flex-grow: 1;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 46px;
+    padding-bottom: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.online-scroll {
+    flex-grow: 1;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 34px;
+    padding-bottom: 50px;
+}
+.online-panel,
+.online-profile-card,
+.online-mode-card {
+    width: 100%;
+    max-width: 760px;
+    padding: 30px;
+    margin-bottom: 22px;
+    background-color: rgba(2, 24, 17, 0.94);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(75, 255, 157, 0.34);
+    border-right-color: rgba(75, 255, 157, 0.34);
+    border-top-color: rgba(75, 255, 157, 0.34);
+    border-bottom-color: rgba(75, 255, 157, 0.34);
+}
+.auth-panel,
+.profile-edit-panel {
+    max-width: 690px;
+}
+.online-consent {
+    width: 100%;
+    height: 52px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+.online-kicker {
+    margin-bottom: 8px;
+    color: rgba(101, 255, 176, 0.58);
+    font-size: 14px;
+    letter-spacing: 4px;
+    -unity-font-style: bold;
+}
+.online-title {
+    margin-bottom: 12px;
+    color: rgb(117, 255, 177);
+    font-size: 34px;
+    letter-spacing: 5px;
+    -unity-font-style: bold;
+}
+.online-title-small { font-size: 24px; }
+.online-copy {
+    margin-bottom: 26px;
+    color: rgba(202, 238, 219, 0.76);
+    font-size: 17px;
+    white-space: normal;
+}
+.online-wide-button {
+    width: 100%;
+    min-height: 66px;
+    margin-top: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+.online-message {
+    min-height: 36px;
+    margin-top: 20px;
+    color: rgb(112, 225, 185);
+    font-size: 15px;
+    letter-spacing: 1px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+.online-age { margin-top: 16px; -unity-text-align: middle-center; }
+.online-profile-card {
+    flex-direction: row;
+    align-items: center;
+}
+.online-avatar {
+    width: 102px;
+    height: 102px;
+    margin-right: 22px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(1, 42, 27);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(70, 255, 153);
+    border-right-color: rgb(70, 255, 153);
+    border-top-color: rgb(70, 255, 153);
+    border-bottom-color: rgb(70, 255, 153);
+    border-top-left-radius: 51px;
+    border-top-right-radius: 51px;
+    border-bottom-left-radius: 51px;
+    border-bottom-right-radius: 51px;
+}
+.online-avatar-text {
+    font-size: 31px;
+    color: rgb(104, 255, 176);
+    -unity-font-style: bold;
+}
+.online-profile-copy { flex-grow: 1; }
+.online-profile-name {
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: rgb(122, 255, 180);
+    -unity-font-style: bold;
+}
+.online-rank {
+    margin-top: 10px;
+    color: rgb(255, 211, 86);
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+.compact-online-button { min-width: 130px; height: 56px; }
+
+.store-intro-panel {
+    margin-bottom: 10px;
+}
+
+.store-product-card {
+    min-height: 118px;
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.store-product-copy {
+    flex-grow: 1;
+    margin-right: 14px;
+}
+
+.store-buy-button {
+    min-width: 150px;
+    height: 58px;
+    font-size: 13px;
+}
+.ranked-card {
+    border-left-color: rgba(255, 207, 80, 0.55);
+    border-right-color: rgba(255, 207, 80, 0.55);
+    border-top-color: rgba(255, 207, 80, 0.55);
+    border-bottom-color: rgba(255, 207, 80, 0.55);
+}
+.online-row,
+.friend-add-row {
+    flex-direction: row;
+    align-items: center;
+}
+.online-row-copy { flex-grow: 1; }
+.small-icon-button { width: 52px; height: 52px; font-size: 22px; }
+.online-input {
+    flex-grow: 1;
+    min-height: 58px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    color: rgb(3, 35, 24);
+    background-color: rgb(240, 250, 244);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(75, 255, 157, 0.42);
+    border-right-color: rgba(75, 255, 157, 0.42);
+    border-top-color: rgba(75, 255, 157, 0.42);
+    border-bottom-color: rgba(75, 255, 157, 0.42);
+    font-size: 18px;
+}
+.online-input .unity-base-text-field__input,
+.online-input .unity-text-field__input,
+.online-input .unity-text-input {
+    color: rgb(3, 35, 24);
+    background-color: rgb(240, 250, 244);
+    -unity-cursor-color: rgb(3, 52, 35);
+}
+.online-input:focus,
+.online-input .unity-base-text-field__input:focus,
+.online-input .unity-text-field__input:focus {
+    color: rgb(0, 24, 16);
+}
+.profile-input { width: 100%; }
+
+.account-danger-zone {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top-width: 1px;
+    border-top-color: rgba(255, 74, 74, 0.35);
+}
+
+.danger-button {
+    margin-top: 10px;
+    color: rgb(255, 115, 115);
+    border-color: rgba(255, 74, 74, 0.72);
+    background-color: rgba(48, 8, 12, 0.78);
+}
+.friend-add-button { width: 160px; height: 58px; margin-left: 12px; }
+.friends-list { margin-top: 18px; }
+.friend-row {
+    min-height: 74px;
+    margin-top: 8px;
+    padding-left: 16px;
+    padding-right: 10px;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(0, 14, 11, 0.82);
+    border-left-width: 3px;
+    border-left-color: rgba(75, 255, 157, 0.42);
+}
+.friend-row-offline { opacity: 0.58; }
+.friend-row-request { border-left-color: rgb(255, 197, 69); }
+.friend-name { flex-grow: 1; font-size: 18px; color: rgb(184, 239, 210); }
+.friend-state { width: 120px; font-size: 12px; color: rgba(117, 255, 177, 0.62); }
+.friend-action { min-width: 116px; height: 48px; margin-left: 8px; }
+.hub-message { max-width: 760px; align-self: center; }
+.matchmaking-radar {
+    width: 360px;
+    height: 360px;
+    margin-bottom: 48px;
+    overflow: hidden;
+    background-color: rgba(3, 42, 28, 0.72);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-color: rgba(79, 255, 166, 0.66);
+    border-right-color: rgba(79, 255, 166, 0.66);
+    border-top-color: rgba(79, 255, 166, 0.66);
+    border-bottom-color: rgba(79, 255, 166, 0.66);
+    border-top-left-radius: 180px;
+    border-top-right-radius: 180px;
+    border-bottom-left-radius: 180px;
+    border-bottom-right-radius: 180px;
+}
+.matchmaking-radar-inner {
+    position: absolute;
+    left: 24%;
+    right: 24%;
+    top: 24%;
+    bottom: 24%;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(75, 255, 157, 0.3);
+    border-right-color: rgba(75, 255, 157, 0.3);
+    border-top-color: rgba(75, 255, 157, 0.3);
+    border-bottom-color: rgba(75, 255, 157, 0.3);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.matchmaking-sweep {
+    position: absolute;
+    left: 49%;
+    top: 8%;
+    width: 2%;
+    height: 43%;
+    transform-origin: 50% 100%;
+    rotate: 28deg;
+    background-color: rgb(105, 255, 177);
+}
+.matchmaking-title { -unity-text-align: middle-center; }
+.matchmaking-cancel { width: 420px; margin-top: 32px; }
+
+.ranked-match-found-screen {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    background-color: rgb(1, 13, 15);
+    transition-property: opacity;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out;
+}
+
+.ranked-match-found-grid {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.24;
+}
+
+.ranked-match-found-grid-line { position: absolute; background-color: rgba(62, 255, 173, 0.32); }
+.ranked-match-found-grid-v { top: 0; bottom: 0; width: 1px; }
+.ranked-match-found-grid-h { left: 0; right: 0; height: 1px; }
+.ranked-match-found-grid .grid-v-one { left: 27%; }
+.ranked-match-found-grid .grid-v-two { right: 27%; }
+.ranked-match-found-grid .grid-h-one { top: 29%; }
+.ranked-match-found-grid .grid-h-two { bottom: 24%; }
+
+.ranked-match-found-kicker {
+    margin-bottom: 30px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: rgba(126, 255, 191, 0.7);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.ranked-match-found-arena {
+    width: 92%;
+    max-width: 920px;
+    min-height: 390px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.ranked-match-player-card {
+    width: 40%;
+    min-width: 0;
+    min-height: 350px;
+    padding: 22px 16px;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    background-color: rgba(5, 39, 32, 0.94);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    transition-property: opacity, translate, scale;
+    transition-duration: 0.42s;
+    transition-timing-function: ease-out;
+}
+
+.ranked-match-player-own {
+    translate: -150px 0;
+    scale: 0.92 0.92;
+    border-left-color: rgb(76, 255, 164);
+    border-right-color: rgba(76, 255, 164, 0.38);
+    border-top-color: rgba(76, 255, 164, 0.38);
+    border-bottom-color: rgba(76, 255, 164, 0.38);
+}
+
+.ranked-match-player-opponent {
+    translate: 150px 0;
+    scale: 0.92 0.92;
+    border-left-color: rgba(255, 111, 88, 0.42);
+    border-right-color: rgb(255, 111, 88);
+    border-top-color: rgba(255, 111, 88, 0.42);
+    border-bottom-color: rgba(255, 111, 88, 0.42);
+}
+
+.ranked-match-found-cards-in .ranked-match-player-card {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1 1;
+}
+
+.ranked-match-player-side {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(167, 239, 202, 0.58);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.ranked-match-avatar {
+    width: 184px;
+    height: 184px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(3, 23, 23);
+    -unity-background-scale-mode: scale-and-crop;
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-top-left-radius: 92px;
+    border-top-right-radius: 92px;
+    border-bottom-left-radius: 92px;
+    border-bottom-right-radius: 92px;
+}
+
+.ranked-match-own-avatar {
+    border-left-color: rgb(80, 255, 169);
+    border-right-color: rgb(80, 255, 169);
+    border-top-color: rgb(80, 255, 169);
+    border-bottom-color: rgb(80, 255, 169);
+}
+
+.ranked-match-opponent-avatar {
+    border-left-color: rgb(255, 112, 89);
+    border-right-color: rgb(255, 112, 89);
+    border-top-color: rgb(255, 112, 89);
+    border-bottom-color: rgb(255, 112, 89);
+}
+
+.ranked-match-avatar-initials {
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: rgb(220, 255, 237);
+    -unity-font-style: bold;
+}
+
+.ranked-match-player-name {
+    width: 100%;
+    margin-top: 18px;
+    font-size: 21px;
+    letter-spacing: 2px;
+    white-space: normal;
+    color: rgb(229, 255, 240);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.ranked-match-versus {
+    width: 16%;
+    min-width: 82px;
+    align-items: center;
+    justify-content: center;
+}
+
+.ranked-match-versus-ring {
+    width: 78px;
+    height: 78px;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    scale: 2.2 2.2;
+    rotate: -14deg;
+    background-color: rgb(244, 193, 48);
+    border-top-left-radius: 39px;
+    border-top-right-radius: 39px;
+    border-bottom-left-radius: 39px;
+    border-bottom-right-radius: 39px;
+    transition-property: opacity, scale, rotate;
+    transition-duration: 0.28s;
+    transition-timing-function: ease-out;
+}
+
+.ranked-match-found-vs-impact .ranked-match-versus-ring {
+    opacity: 1;
+    scale: 1 1;
+    rotate: 0deg;
+}
+
+.ranked-match-versus-label {
+    font-size: 27px;
+    color: rgb(24, 20, 3);
+    -unity-font-style: bold;
+}
+
+.ranked-match-found-status {
+    margin-top: 34px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    color: rgb(247, 208, 80);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.ranked-match-found-visible { opacity: 1; }
+.ranked-match-found-out { opacity: 0; transition-duration: 0.28s; }
+
+/* Elias Voss ability cinematics */
+.commander-ability-cinematic {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: rgba(0, 8, 10, 0.97);
+    align-items: center;
+    justify-content: center;
+    transition-property: opacity;
+    transition-duration: 0.16s;
+}
+.ability-cinematic-show { opacity: 1; }
+.ability-cinematic-finish { opacity: 0; transition-duration: 0.22s; }
+.ability-cinematic-panel {
+    width: 88%;
+    height: 76%;
+    padding: 48px;
+    background-color: rgba(2, 19, 17, 0.96);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(67, 255, 168, 0.46);
+    border-right-color: rgba(67, 255, 168, 0.46);
+    border-top-color: rgba(67, 255, 168, 0.46);
+    border-bottom-color: rgba(67, 255, 168, 0.46);
+}
+.ability-cinematic-kicker {
+    height: 48px;
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: rgba(112, 255, 190, 0.58);
+}
+.ability-cinematic-title {
+    height: 82px;
+    font-size: 42px;
+    letter-spacing: 7px;
+    -unity-font-style: bold;
+    color: rgb(103, 255, 178);
+}
+.ability-cinematic-result {
+    height: 86px;
+    opacity: 0;
+    translate: 0 24px;
+    align-self: stretch;
+    -unity-text-align: middle-center;
+    font-size: 23px;
+    letter-spacing: 4px;
+    -unity-font-style: bold;
+    color: rgb(102, 255, 177);
+    transition-property: opacity, translate, color;
+    transition-duration: 0.2s;
+}
+.ability-cinematic-result-visible .ability-cinematic-result {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.oracle-scan-stage {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+.oracle-scan-grid {
+    position: relative;
+    width: 610px;
+    height: 610px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow: hidden;
+    background-color: rgba(1, 12, 14, 0.96);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(63, 255, 179, 0.66);
+    border-right-color: rgba(63, 255, 179, 0.66);
+    border-top-color: rgba(63, 255, 179, 0.66);
+    border-bottom-color: rgba(63, 255, 179, 0.66);
+}
+.oracle-scan-cell {
+    width: 33.333%;
+    height: 33.333%;
+    opacity: 0.42;
+    background-color: rgba(5, 31, 28, 0.78);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(77, 255, 185, 0.32);
+    border-right-color: rgba(77, 255, 185, 0.32);
+    border-top-color: rgba(77, 255, 185, 0.32);
+    border-bottom-color: rgba(77, 255, 185, 0.32);
+    transition-property: opacity, background-color;
+    transition-duration: 0.12s;
+}
+.oracle-cell-lit {
+    opacity: 1;
+    background-color: rgba(47, 255, 163, 0.18);
+}
+.oracle-sweep {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 110px;
+    opacity: 0;
+    translate: 0 -120px;
+    background-color: rgba(66, 255, 176, 0.22);
+    border-bottom-width: 5px;
+    border-bottom-color: rgba(133, 255, 211, 0.9);
+    transition-property: opacity, translate;
+    transition-duration: 0.95s;
+    transition-timing-function: ease-in-out;
+}
+.oracle-scan-active .oracle-sweep {
+    opacity: 1;
+    translate: 0 620px;
+}
+.oracle-contact .oracle-scan-cell {
+    background-color: rgba(255, 93, 69, 0.16);
+    border-left-color: rgba(255, 119, 92, 0.54);
+    border-right-color: rgba(255, 119, 92, 0.54);
+    border-top-color: rgba(255, 119, 92, 0.54);
+    border-bottom-color: rgba(255, 119, 92, 0.54);
+}
+.oracle-contact .ability-cinematic-result { color: rgb(255, 114, 85); }
+
+.ares-repair-stage {
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+    background-color: rgba(1, 13, 15, 0.94);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(255, 203, 82, 0.36);
+    border-right-color: rgba(255, 203, 82, 0.36);
+    border-top-color: rgba(255, 203, 82, 0.36);
+    border-bottom-color: rgba(255, 203, 82, 0.36);
+}
+.ares-repair-ship {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 31%;
+    height: 250px;
+    opacity: 0.58;
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(255, 120, 92);
+    transition-property: opacity, scale, -unity-background-image-tint-color;
+    transition-duration: 0.78s;
+}
+.ares-repair-active .ares-repair-ship {
+    opacity: 1;
+    scale: 1.035 1.035;
+    -unity-background-image-tint-color: rgb(255, 220, 123);
+}
+.ares-repair-complete .ares-repair-ship {
+    scale: 1 1;
+    -unity-background-image-tint-color: rgb(111, 255, 178);
+}
+.ares-repair-beam {
+    position: absolute;
+    top: -290px;
+    width: 10px;
+    height: 360px;
+    opacity: 0;
+    translate: 0 0;
+    background-color: rgba(255, 220, 114, 0.82);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-left-color: rgba(91, 255, 184, 0.65);
+    border-right-color: rgba(91, 255, 184, 0.65);
+    transition-property: opacity, translate;
+    transition-duration: 0.68s;
+    transition-timing-function: ease-out;
+}
+.ares-repair-beam-1 { left: 28%; }
+.ares-repair-beam-2 { left: 50%; }
+.ares-repair-beam-3 { left: 72%; }
+.ares-repair-active .ares-repair-beam {
+    opacity: 0.92;
+    translate: 0 600px;
+}
+.ares-repair-plate {
+    position: absolute;
+    width: 74px;
+    height: 30px;
+    opacity: 0;
+    scale: 1.8 1.8;
+    background-color: rgba(255, 222, 123, 0.82);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(99, 255, 179);
+    border-right-color: rgb(99, 255, 179);
+    border-top-color: rgb(99, 255, 179);
+    border-bottom-color: rgb(99, 255, 179);
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.55s;
+}
+.ares-repair-plate-1 { left: 27%; top: 43%; translate: -90px -80px; }
+.ares-repair-plate-2 { left: 41%; top: 47%; translate: -30px 90px; }
+.ares-repair-plate-3 { left: 56%; top: 42%; translate: 50px -85px; }
+.ares-repair-plate-4 { left: 68%; top: 48%; translate: 90px 75px; }
+.ares-repair-active .ares-repair-plate {
+    opacity: 1;
+    scale: 1 1;
+    translate: 0 0;
+}
+.ares-repair-complete .ares-repair-plate {
+    opacity: 0.15;
+    scale: 0.7 0.7;
+}
+.ares-progress {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 11%;
+    height: 30px;
+    padding: 4px;
+    background-color: rgba(0, 8, 9, 0.92);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(255, 219, 111, 0.62);
+    border-right-color: rgba(255, 219, 111, 0.62);
+    border-top-color: rgba(255, 219, 111, 0.62);
+    border-bottom-color: rgba(255, 219, 111, 0.62);
+}
+.ares-progress-fill {
+    width: 0;
+    height: 100%;
+    background-color: rgb(255, 211, 91);
+    transition-property: width, background-color;
+    transition-duration: 0.9s;
+}
+.ares-repair-active .ares-progress-fill { width: 100%; }
+.ares-repair-complete .ares-progress-fill { background-color: rgb(91, 255, 168); }
+.ability-cinematic-ares .ability-cinematic-kicker { color: rgba(255, 221, 126, 0.68); }
+.ability-cinematic-ares .ability-cinematic-title { color: rgb(255, 218, 111); }
+.ability-cinematic-ares .ability-cinematic-result { color: rgb(101, 255, 174); }
+
+/* Water-scene presentation shared by normal shots and Elias Voss */
+.ability-ocean-backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-ocean-bg.png");
+    -unity-background-scale-mode: scale-and-crop;
+}
+.ability-ocean-grade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 18, 24, 0.2);
+}
+.commander-ability-cinematic .ability-cinematic-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+.commander-ability-cinematic .ability-cinematic-result {
+    position: absolute;
+    left: 9%;
+    right: 9%;
+    bottom: 7%;
+    height: 116px;
+    padding-left: 22px;
+    padding-right: 22px;
+    background-color: rgba(1, 13, 16, 0.88);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(75, 223, 255, 0.54);
+    border-right-color: rgba(75, 223, 255, 0.54);
+    border-top-color: rgba(75, 223, 255, 0.54);
+    border-bottom-color: rgba(75, 223, 255, 0.54);
+}
+
+.oracle-distant-ship {
+    position: absolute;
+    left: 36%;
+    width: 28%;
+    height: 11%;
+    top: 42%;
+    opacity: 0.82;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-frigate.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(188, 215, 221);
+}
+.oracle-sky-beam {
+    position: absolute;
+    left: 42%;
+    top: -58%;
+    width: 16%;
+    height: 172%;
+    opacity: 0;
+    rotate: -16deg;
+    transform-origin: 50% 0;
+    background-color: rgba(83, 224, 255, 0.13);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-left-color: rgba(122, 241, 255, 0.44);
+    border-right-color: rgba(122, 241, 255, 0.44);
+    transition-property: opacity, rotate;
+    transition-duration: 0.92s;
+    transition-timing-function: ease-in-out;
+}
+.oracle-sky-beam-core {
+    position: absolute;
+    left: 44%;
+    top: 0;
+    bottom: 0;
+    width: 12%;
+    background-color: rgba(176, 252, 255, 0.78);
+}
+.oracle-scan-active .oracle-sky-beam {
+    opacity: 0.88;
+}
+.oracle-pendulum-right .oracle-sky-beam {
+    rotate: 16deg;
+}
+.oracle-contact .oracle-distant-ship {
+    -unity-background-image-tint-color: rgb(255, 118, 92);
+}
+.oracle-contact .ability-cinematic-result {
+    color: rgb(255, 125, 97);
+    border-left-color: rgba(255, 100, 76, 0.7);
+    border-right-color: rgba(255, 100, 76, 0.7);
+    border-top-color: rgba(255, 100, 76, 0.7);
+    border-bottom-color: rgba(255, 100, 76, 0.7);
+}
+
+.ares-ocean-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.ares-ship-shadow {
+    position: absolute;
+    left: -3%;
+    right: -3%;
+    bottom: 1%;
+    height: 42%;
+    opacity: 0.42;
+    background-color: rgba(0, 5, 10, 0.74);
+}
+.ares-blue-glow {
+    position: absolute;
+    left: -4%;
+    right: -4%;
+    bottom: 0;
+    height: 49%;
+    opacity: 0;
+    scale: 0.92 0.92;
+    background-color: rgba(45, 181, 255, 0.42);
+    border-left-width: 12px;
+    border-right-width: 12px;
+    border-top-width: 12px;
+    border-bottom-width: 12px;
+    border-left-color: rgba(119, 225, 255, 0.65);
+    border-right-color: rgba(119, 225, 255, 0.65);
+    border-top-color: rgba(119, 225, 255, 0.65);
+    border-bottom-color: rgba(119, 225, 255, 0.65);
+    transition-property: opacity, scale;
+    transition-duration: 0.2s;
+}
+.ares-repair-ship {
+    left: -5%;
+    right: auto;
+    top: 43%;
+    bottom: auto;
+    width: 110%;
+    height: 53%;
+    opacity: 1;
+    scale: 1 1;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/ares-foreground-warship.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(226, 239, 242);
+    transition-property: scale, -unity-background-image-tint-color;
+    transition-duration: 0.2s;
+}
+.ares-repair-active .ares-blue-glow {
+    opacity: 1;
+    scale: 1.04 1.04;
+}
+.ares-repair-active .ares-repair-ship {
+    scale: 1.035 1.035;
+    -unity-background-image-tint-color: rgb(80, 207, 255);
+}
+.ares-repair-complete .ares-blue-glow {
+    opacity: 0.08;
+    scale: 1.08 1.08;
+}
+.ares-repair-complete .ares-repair-ship {
+    scale: 1 1;
+    -unity-background-image-tint-color: rgb(205, 239, 242);
+}
+.ability-cinematic-ares .ability-cinematic-result {
+    color: rgb(108, 224, 255);
+    border-left-color: rgba(86, 211, 255, 0.72);
+    border-right-color: rgba(86, 211, 255, 0.72);
+    border-top-color: rgba(86, 211, 255, 0.72);
+    border-bottom-color: rgba(86, 211, 255, 0.72);
+}
+
+/* Dae-Hyun Kwon // VIPER ability cinematics */
+.viper-toxic-grade,
+.viper-mine-grade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.viper-toxic-grade {
+    background-color: rgba(18, 55, 4, 0.18);
+}
+.viper-mine-grade {
+    background-color: rgba(0, 15, 18, 0.32);
+}
+.viper-chemical-target-ship {
+    position: absolute;
+    left: 32%;
+    top: 41%;
+    width: 36%;
+    height: 14%;
+    opacity: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-frigate.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(116, 138, 126);
+    transition-property: opacity, -unity-background-image-tint-color;
+    transition-duration: 0.2s;
+}
+.viper-chemical-hit .viper-chemical-target-ship {
+    opacity: 0.88;
+}
+.viper-chemical-bomb {
+    position: absolute;
+    left: 42%;
+    top: -25%;
+    width: 16%;
+    height: 25%;
+    opacity: 1;
+    rotate: 7deg;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/viper-chemical-bomb.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: top, rotate, opacity, scale;
+    transition-duration: 0.76s;
+    transition-timing-function: ease-in;
+}
+.viper-bomb-dropping .viper-chemical-bomb {
+    top: 46%;
+    rotate: -4deg;
+    scale: 0.72 0.72;
+}
+.viper-chemical-hit.viper-bomb-dropping .viper-chemical-bomb {
+    top: 32%;
+}
+.viper-chemical-impact-active .viper-chemical-bomb {
+    opacity: 0;
+    scale: 0.45 0.45;
+}
+.viper-chemical-impact {
+    position: absolute;
+    left: 38%;
+    top: 51%;
+    width: 24%;
+    height: 10%;
+    opacity: 0;
+    scale: 0.25 0.25;
+    background-color: rgba(157, 255, 62, 0.55);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgba(207, 255, 114, 0.8);
+    border-right-color: rgba(207, 255, 114, 0.8);
+    border-top-color: rgba(207, 255, 114, 0.8);
+    border-bottom-color: rgba(207, 255, 114, 0.8);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    transition-property: opacity, scale;
+    transition-duration: 0.32s;
+}
+.viper-chemical-hit .viper-chemical-impact { top: 44%; }
+.viper-chemical-impact-active .viper-chemical-impact {
+    opacity: 0.86;
+    scale: 1.35 1.35;
+}
+.viper-particle-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    -unity-background-scale-mode: scale-and-crop;
+    transition-property: opacity;
+    transition-duration: 0.16s;
+}
+.viper-bomb-dropping .viper-particle-layer { opacity: 0.58; }
+.viper-chemical-impact-active .viper-particle-layer { opacity: 1; }
+.viper-gas-bloom {
+    position: absolute;
+    left: 22%;
+    top: 37%;
+    width: 56%;
+    height: 33%;
+    opacity: 0;
+    scale: 0.35 0.35;
+    background-color: rgba(88, 255, 44, 0.18);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    transition-property: opacity, scale;
+    transition-duration: 1.25s;
+}
+.viper-chemical-impact-active .viper-gas-bloom {
+    opacity: 0.54;
+    scale: 1.25 1.25;
+}
+.ability-cinematic-viper-chemical .ability-cinematic-result {
+    color: rgb(174, 255, 80);
+    border-left-color: rgba(143, 255, 63, 0.75);
+    border-right-color: rgba(143, 255, 63, 0.75);
+    border-top-color: rgba(143, 255, 63, 0.75);
+    border-bottom-color: rgba(143, 255, 63, 0.75);
+}
+
+.viper-mine-silhouette {
+    position: absolute;
+    left: 35%;
+    top: 49%;
+    width: 30%;
+    height: 22%;
+    opacity: 0;
+    scale: 0.68 0.68;
+    translate: 0 34px;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.38s;
+    transition-timing-function: ease-out;
+}
+.viper-mine-core {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 21%;
+    bottom: 21%;
+    background-color: rgba(0, 8, 9, 0.92);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-color: rgba(22, 47, 45, 0.9);
+    border-right-color: rgba(22, 47, 45, 0.9);
+    border-top-color: rgba(22, 47, 45, 0.9);
+    border-bottom-color: rgba(22, 47, 45, 0.9);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.viper-mine-spike {
+    position: absolute;
+    left: 47%;
+    top: 3%;
+    width: 6%;
+    height: 40%;
+    transform-origin: 50% 117%;
+    background-color: rgba(0, 8, 9, 0.94);
+}
+.viper-mine-spike-1 { rotate: 0deg; }
+.viper-mine-spike-2 { rotate: 45deg; }
+.viper-mine-spike-3 { rotate: 90deg; }
+.viper-mine-spike-4 { rotate: 135deg; }
+.viper-mine-spike-5 { rotate: 180deg; }
+.viper-mine-spike-6 { rotate: 225deg; }
+.viper-mine-spike-7 { rotate: 270deg; }
+.viper-mine-spike-8 { rotate: 315deg; }
+.viper-mine-visible .viper-mine-silhouette {
+    opacity: 0.78;
+    scale: 1 1;
+    translate: 0 0;
+}
+.viper-mine-submerged .viper-mine-silhouette {
+    opacity: 0;
+    scale: 0.82 0.82;
+    translate: 0 48px;
+}
+.ability-cinematic-viper-mine .ability-cinematic-result {
+    color: rgb(135, 235, 208);
+    border-left-color: rgba(94, 222, 193, 0.66);
+    border-right-color: rgba(94, 222, 193, 0.66);
+    border-top-color: rgba(94, 222, 193, 0.66);
+    border-bottom-color: rgba(94, 222, 193, 0.66);
+}
+
+/* Imani Cross // RAPTOR cockpit fly-by */
+.ability-cinematic-raptor-jet-start {
+    background-color: rgb(0, 5, 7);
+}
+.raptor-command-deck-backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/raptor-command-deck.png");
+    -unity-background-scale-mode: scale-and-crop;
+}
+.raptor-command-deck-grade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 25, 31, 0.08);
+}
+.ability-cinematic-raptor-jet-start .ability-cinematic-panel {
+    overflow: hidden;
+}
+.raptor-jet-telemetry {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 5%;
+    height: 54px;
+    -unity-text-align: middle-center;
+    color: rgb(104, 255, 177);
+    font-size: 18px;
+    letter-spacing: 5px;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgba(0, 8, 10, 0.8);
+}
+.raptor-command-deck-interior {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/raptor-command-deck-interior.png");
+    -unity-background-scale-mode: scale-and-crop;
+}
+.raptor-window-jet {
+    position: absolute;
+    left: -48%;
+    top: 34%;
+    width: 46%;
+    height: 18%;
+    opacity: 1;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/raptor-jet-side.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: left;
+    transition-duration: 0.575s;
+    transition-timing-function: linear;
+}
+.raptor-pass-active .raptor-window-jet { left: 108%; }
+.ability-cinematic-raptor-jet-start .ability-cinematic-result {
+    bottom: 5%;
+    color: rgb(103, 255, 177);
+    border-left-color: rgba(72, 255, 153, 0.58);
+    border-right-color: rgba(72, 255, 153, 0.58);
+    border-top-color: rgba(72, 255, 153, 0.58);
+    border-bottom-color: rgba(72, 255, 153, 0.58);
+}
+
+/* Normal-shot cinematic */
+.shot-cinematic {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    opacity: 1;
+    background-color: rgb(1, 7, 9);
+    color: rgb(111, 255, 166);
+}
+.shot-visible { opacity: 1; }
+.shot-finish { opacity: 0; }
+
+.shot-backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    scale: 1 1;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-ocean-bg.png");
+    -unity-background-scale-mode: scale-and-crop;
+}
+.shot-visible .shot-backdrop { opacity: 1; }
+
+.shot-color-grade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 24, 19, 0.16);
+}
+.shot-vignette {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 12%;
+    background-color: rgba(0, 4, 6, 0.27);
+}
+.shot-vignette-left { left: 0; }
+.shot-vignette-right { right: 0; }
+
+.shot-enemy-ship {
+    position: absolute;
+    left: 36%;
+    width: 28%;
+    height: 10%;
+    top: 42%;
+    opacity: 1;
+    translate: 0 0;
+    scale: 1 1;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-frigate.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(205, 229, 231);
+    transition-property: translate, rotate, -unity-background-image-tint-color;
+    transition-duration: 0.07s;
+}
+.shot-impact-hit .shot-enemy-ship {
+    translate: 4px 3px;
+    rotate: 0.45deg;
+    -unity-background-image-tint-color: rgb(255, 157, 141);
+    transition-duration: 0.07s;
+}
+.shot-enemy-attacker {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 34%;
+    height: 24%;
+    opacity: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-close-destroyer.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.shot-incoming .shot-enemy-ship { opacity: 0; }
+.shot-incoming .shot-enemy-attacker { opacity: 1; }
+
+.shot-raptor-jet {
+    position: absolute;
+    left: -34%;
+    top: 23%;
+    width: 32%;
+    height: 14%;
+    opacity: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/raptor-jet-side.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: left, top, opacity, rotate, scale;
+    transition-duration: 0.525s, 0.525s, 0.1s, 0.12s, 0.12s;
+    transition-timing-function: linear;
+}
+.shot-jet-active.shot-cut .shot-raptor-jet {
+    left: 112%;
+    opacity: 1;
+}
+.shot-jet-struck .shot-raptor-jet {
+    opacity: 1;
+    rotate: 0deg;
+    scale: 1 1;
+    transition-duration: 0.42s, 0.42s, 0.3s, 0.42s, 0.42s;
+}
+.shot-jet-struck.shot-impact-hit .shot-raptor-jet {
+    opacity: 0.08;
+    rotate: 22deg;
+    scale: 0.68 0.68;
+}
+
+.shot-water-haze {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 29%;
+    background-color: rgba(0, 19, 22, 0.18);
+}
+
+.shot-missile {
+    position: absolute;
+    width: 30px;
+    height: 104px;
+    margin-left: -15px;
+    opacity: 0;
+}
+.shot-missile-sprite {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-missile.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.shot-missile-trail {
+    position: absolute;
+    left: 13px;
+    top: 86px;
+    width: 4px;
+    height: 150px;
+    background-color: rgba(182, 255, 226, 0.44);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-left-color: rgba(77, 255, 164, 0.36);
+    border-right-color: rgba(77, 255, 164, 0.36);
+}
+.shot-missile-flame {
+    position: absolute;
+    left: 11px;
+    top: 86px;
+    width: 8px;
+    height: 24px;
+    background-color: rgba(255, 202, 91, 0.92);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-left-color: rgba(67, 255, 151, 0.54);
+    border-right-color: rgba(67, 255, 151, 0.54);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.shot-fire-particle {
+    position: absolute;
+    top: 94px;
+    width: 7px;
+    height: 16px;
+    opacity: 0;
+    background-color: rgb(255, 188, 67);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    transition-property: opacity, translate, scale;
+    transition-duration: 0.48s;
+}
+.shot-fire-particle-1 { left: 4px; }
+.shot-fire-particle-2 { left: 10px; transition-duration: 0.32s; }
+.shot-fire-particle-3 { left: 17px; transition-duration: 0.56s; }
+.shot-fire-particle-4 { left: 7px; top: 102px; transition-duration: 0.4s; }
+.shot-fire-particle-5 { left: 15px; top: 100px; transition-duration: 0.64s; }
+.shot-incoming.shot-terminal .shot-fire-particle { opacity: 0.92; translate: -18px 94px; scale: 0.35 0.35; }
+.shot-incoming.shot-terminal .shot-fire-particle-2 { translate: 11px 128px; }
+.shot-incoming.shot-terminal .shot-fire-particle-3 { translate: 23px 82px; }
+.shot-incoming.shot-terminal .shot-fire-particle-4 { translate: -9px 148px; }
+.shot-incoming.shot-terminal .shot-fire-particle-5 { translate: 17px 116px; }
+.shot-terminal-missile {
+    left: 50%;
+    top: -140px;
+    rotate: 180deg;
+    translate: 0 0;
+    transition-property: opacity, translate;
+    transition-duration: 0.86s;
+    transition-timing-function: ease-in;
+}
+.shot-terminal .shot-terminal-missile {
+    opacity: 1;
+    translate: 0 1070px;
+}
+.shot-jet-targeted .shot-terminal-missile {
+    top: -12%;
+    translate: 0 0;
+    transition-property: opacity, top;
+    transition-duration: 0.86s, 0.86s;
+    transition-timing-function: ease-in;
+}
+.shot-jet-targeted.shot-terminal .shot-terminal-missile {
+    opacity: 1;
+    top: 24%;
+    translate: 0 0;
+}
+.shot-impact-hit .shot-terminal-missile,
+.shot-impact-miss .shot-terminal-missile {
+    opacity: 0;
+    transition-duration: 0.05s;
+}
+.shot-jet-targeted.shot-impact-hit .shot-terminal-missile {
+    opacity: 0;
+    transition-duration: 0s, 0s;
+}
+.shot-terminal-trail { height: 150px; }
+.shot-incoming .shot-terminal-trail {
+    width: 7px;
+    left: 11px;
+    height: 220px;
+    background-color: rgba(255, 154, 55, 0.52);
+    border-left-color: rgba(255, 220, 111, 0.74);
+    border-right-color: rgba(255, 74, 24, 0.52);
+}
+.shot-incoming .shot-terminal-missile .shot-missile-flame {
+    left: 7px;
+    width: 16px;
+    height: 46px;
+    background-color: rgb(255, 178, 61);
+    border-left-color: rgb(255, 238, 159);
+    border-right-color: rgb(255, 71, 22);
+}
+
+.shot-impact-anchor {
+    position: absolute;
+    left: 50%;
+    top: 59%;
+    width: 1px;
+    height: 1px;
+    overflow: visible;
+    transition-property: left, top;
+    transition-duration: 0s, 0s;
+    transition-timing-function: linear;
+}
+.shot-jet-struck .shot-impact-anchor {
+    transition-duration: 0.42s, 0.42s;
+}
+.shot-hit-explosion {
+    position: absolute;
+    left: -150px;
+    top: -145px;
+    width: 300px;
+    height: 220px;
+    opacity: 0;
+    scale: 0.14 0.14;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-hit-explosion.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.22s;
+}
+.shot-impact-hit .shot-hit-explosion {
+    opacity: 1;
+    scale: 1 1;
+    translate: 0 -12px;
+}
+.shot-miss-splash {
+    position: absolute;
+    left: -105px;
+    top: -215px;
+    width: 210px;
+    height: 230px;
+    opacity: 0;
+    scale: 0.18 0.18;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-water-splash.png");
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.28s;
+}
+.shot-impact-miss .shot-miss-splash {
+    opacity: 1;
+    scale: 1 1;
+    translate: 0 -10px;
+}
+.shot-impact-flash {
+    display: none;
+    position: absolute;
+    left: -430px;
+    top: -430px;
+    width: 860px;
+    height: 860px;
+    border-radius: 50%;
+    opacity: 0;
+    scale: 0.08 0.08;
+    background-color: rgba(255, 132, 62, 0.52);
+    transition-property: opacity, scale;
+    transition-duration: 0.16s;
+}
+.shot-impact-hit .shot-impact-flash {
+    opacity: 1;
+    scale: 1 1;
+}
+.shot-impact-core {
+    display: none;
+    position: absolute;
+    left: -55px;
+    top: -55px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    opacity: 0;
+    scale: 0.1 0.1;
+    background-color: rgb(255, 239, 185);
+    border-left-width: 18px;
+    border-right-width: 18px;
+    border-top-width: 18px;
+    border-bottom-width: 18px;
+    border-left-color: rgb(255, 73, 46);
+    border-right-color: rgb(255, 73, 46);
+    border-top-color: rgb(255, 73, 46);
+    border-bottom-color: rgb(255, 73, 46);
+    transition-property: opacity, scale;
+    transition-duration: 0.18s;
+}
+.shot-impact-hit .shot-impact-core {
+    opacity: 1;
+    scale: 1.8 1.8;
+}
+.shot-explosion-smoke {
+    display: none;
+    position: absolute;
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    opacity: 0;
+    scale: 0.2 0.2;
+    background-color: rgba(34, 38, 37, 0.92);
+    border-left-width: 7px;
+    border-right-width: 7px;
+    border-top-width: 7px;
+    border-bottom-width: 7px;
+    border-left-color: rgba(255, 99, 46, 0.5);
+    border-right-color: rgba(255, 99, 46, 0.5);
+    border-top-color: rgba(255, 99, 46, 0.5);
+    border-bottom-color: rgba(255, 99, 46, 0.5);
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.5s;
+}
+.shot-explosion-smoke-1 { left: -112px; top: -165px; }
+.shot-explosion-smoke-2 { left: 6px; top: -192px; }
+.shot-explosion-smoke-3 { left: -55px; top: -252px; }
+.shot-explosion-smoke-4 { left: -22px; top: -105px; }
+.shot-impact-hit .shot-explosion-smoke { opacity: 0.92; scale: 1.35 1.35; translate: 0 -48px; }
+.shot-impact-hit .shot-explosion-smoke-2 { scale: 1.7 1.7; translate: 36px -72px; }
+.shot-impact-hit .shot-explosion-smoke-3 { scale: 1.45 1.45; translate: -28px -98px; }
+
+.shot-debris {
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 92px;
+    opacity: 0;
+    background-color: rgb(255, 174, 69);
+    transition-property: opacity, translate, rotate;
+    transition-duration: 0.45s;
+}
+.shot-debris-1 { left: -22px; top: -40px; rotate: -28deg; }
+.shot-debris-2 { left: 16px; top: -38px; rotate: 32deg; }
+.shot-debris-3 { left: 42px; top: -22px; rotate: 61deg; }
+.shot-impact-hit .shot-debris { opacity: 1; translate: -90px -170px; }
+.shot-impact-hit .shot-debris-2 { translate: 85px -210px; }
+.shot-impact-hit .shot-debris-3 { translate: 165px -120px; }
+
+.shot-splash-column {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    background-color: rgba(191, 248, 246, 0.86);
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-left-color: rgba(67, 210, 204, 0.54);
+    border-right-color: rgba(67, 210, 204, 0.54);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    scale: 0.18 0.18;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.32s;
+}
+.shot-splash-column-main { left: -34px; top: -250px; width: 68px; height: 250px; }
+.shot-splash-column-left { left: -88px; top: -155px; width: 40px; height: 160px; rotate: -16deg; }
+.shot-splash-column-right { left: 48px; top: -180px; width: 44px; height: 184px; rotate: 17deg; }
+.shot-impact-miss .shot-splash-column { opacity: 0.9; scale: 1 1; translate: 0 -22px; }
+.shot-impact-miss .shot-splash-column-left { scale: 0.82 0.82; }
+.shot-impact-miss .shot-splash-column-right { scale: 0.9 0.9; }
+.shot-result-panel {
+    position: absolute;
+    left: 9%;
+    right: 9%;
+    bottom: 7%;
+    height: 158px;
+    opacity: 0;
+    translate: 0 48px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(1, 12, 10, 0.88);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(76, 255, 149, 0.45);
+    border-right-color: rgba(76, 255, 149, 0.45);
+    border-top-color: rgba(76, 255, 149, 0.45);
+    border-bottom-color: rgba(76, 255, 149, 0.45);
+    transition-property: opacity, translate;
+    transition-duration: 0.24s;
+}
+.shot-impact-hit .shot-result-panel,
+.shot-impact-miss .shot-result-panel {
+    opacity: 1;
+    translate: 0 0;
+}
+.shot-result-label {
+    font-size: 29px;
+    letter-spacing: 6px;
+    -unity-font-style: bold;
+    color: rgb(106, 255, 164);
+}
+.shot-impact-hit .shot-result-label {
+    color: rgb(255, 88, 65);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgba(255, 50, 32, 0.25);
+}
+.shot-coordinate-label {
+    margin-top: 9px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: rgba(118, 228, 170, 0.58);
+}
+.shot-shake-a { translate: -4px 2px; }
+.shot-shake-b { translate: 5px -3px; }
+.shot-shake-c { translate: -3px -2px; }
+
+/* Mobile online app shell */
+.online-hub-screen {
+    padding: 0;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgb(1, 8, 7);
+}
+.online-hub-glow {
+    position: absolute;
+    left: -20%;
+    right: -20%;
+    top: -170px;
+    height: 390px;
+    opacity: 0.55;
+    background-color: rgba(20, 122, 72, 0.22);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.online-app-header {
+    height: 112px;
+    padding-left: 24px;
+    padding-right: 24px;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(2, 15, 12, 0.96);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(78, 255, 158, 0.22);
+}
+.online-header-back {
+    width: 58px;
+    height: 58px;
+    margin-right: 17px;
+    padding: 0;
+    font-size: 36px;
+    color: rgb(116, 255, 181);
+    background-color: rgba(7, 35, 25, 0.9);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(86, 255, 165, 0.28);
+    border-right-color: rgba(86, 255, 165, 0.28);
+    border-top-color: rgba(86, 255, 165, 0.28);
+    border-bottom-color: rgba(86, 255, 165, 0.28);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.online-header-copy { flex-grow: 1; }
+.online-app-title {
+    font-size: 23px;
+    letter-spacing: 4px;
+    color: rgb(135, 255, 191);
+    -unity-font-style: bold;
+}
+.online-app-status {
+    margin-top: 4px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(126, 227, 173, 0.54);
+}
+.online-header-signal {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 13px;
+    padding-right: 13px;
+    height: 36px;
+    background-color: rgba(7, 40, 27, 0.8);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.online-signal-dot {
+    width: 8px;
+    height: 8px;
+    margin-right: 7px;
+    background-color: rgb(80, 255, 152);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.online-live-label { font-size: 10px; letter-spacing: 2px; color: rgb(115, 255, 177); -unity-font-style: bold; }
+.online-tab-viewport { flex-grow: 1; position: relative; overflow: hidden; }
+.online-tab-page {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    translate: 0 0;
+    transition-property: opacity, translate;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out;
+}
+.online-tab-enter-right { opacity: 0; translate: 60px 0; }
+.online-tab-enter-left { opacity: 0; translate: -60px 0; }
+.online-tab-exit-left { opacity: 0; translate: -60px 0; }
+.online-tab-exit-right { opacity: 0; translate: 60px 0; }
+.online-tab-scroll {
+    flex-grow: 1;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 24px;
+    padding-bottom: 28px;
+}
+.online-tab-scroll .unity-scroller--horizontal { display: none; }
+.online-tab-scroll .unity-scroll-view__content-container { width: 100%; }
+.tab-hero {
+    min-height: 190px;
+    margin-bottom: 28px;
+    padding: 25px;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: rgb(4, 31, 22);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(76, 255, 153, 0.3);
+    border-right-color: rgba(76, 255, 153, 0.3);
+    border-top-color: rgba(76, 255, 153, 0.3);
+    border-bottom-color: rgba(76, 255, 153, 0.3);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+.store-hero { border-left-width: 5px; border-left-color: rgb(61, 235, 139); }
+.shop-banner {
+    position: relative;
+    min-height: 132px;
+    margin-bottom: 18px;
+    padding: 22px;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgb(13, 82, 51);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(83, 255, 156);
+    border-right-color: rgb(83, 255, 156);
+    border-top-color: rgb(83, 255, 156);
+    border-bottom-color: rgb(83, 255, 156);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.shop-banner-title { font-size: 27px; letter-spacing: 4px; color: rgb(229, 255, 239); -unity-font-style: bold; }
+.shop-banner-copy { margin-top: 7px; font-size: 10px; letter-spacing: 2px; color: rgba(200, 255, 225, 0.66); }
+.shop-banner-emblem {
+    position: absolute;
+    right: 24px;
+    top: 20px;
+    width: 88px;
+    height: 88px;
+    align-items: center;
+    justify-content: center;
+    rotate: 7deg;
+    background-color: rgba(0, 27, 18, 0.58);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-color: rgb(247, 204, 75);
+    border-right-color: rgb(247, 204, 75);
+    border-top-color: rgb(247, 204, 75);
+    border-bottom-color: rgb(247, 204, 75);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.shop-banner-emblem-text { font-size: 25px; color: rgb(255, 219, 94); -unity-font-style: bold; }
+.featured-offer {
+    position: relative;
+    min-height: 500px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    background-color: rgb(29, 112, 62);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-color: rgb(105, 255, 154);
+    border-right-color: rgb(105, 255, 154);
+    border-top-color: rgb(105, 255, 154);
+    border-bottom-color: rgb(105, 255, 154);
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+.featured-offer-ribbon {
+    height: 62px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(5, 52, 34);
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(247, 203, 66);
+}
+.featured-offer-ribbon-text { font-size: 22px; letter-spacing: 4px; color: rgb(255, 221, 91); -unity-font-style: bold; }
+.featured-offer-stage { flex-grow: 1; min-height: 350px; flex-direction: row; padding: 20px 22px 14px 22px; }
+.featured-offer-portrait {
+    width: 35%;
+    min-width: 0;
+    margin-right: 14px;
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/04-male-sikh-strategist.png");
+    -unity-background-scale-mode: scale-and-crop;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(199, 255, 218, 0.82);
+    border-right-color: rgba(199, 255, 218, 0.82);
+    border-top-color: rgba(199, 255, 218, 0.82);
+    border-bottom-color: rgba(199, 255, 218, 0.82);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.featured-offer-copy { flex-grow: 1; justify-content: center; }
+.featured-offer-title { font-size: 27px; letter-spacing: 3px; white-space: normal; color: rgb(244, 255, 248); -unity-font-style: bold; }
+.featured-offer-subtitle { margin-top: 7px; font-size: 11px; letter-spacing: 2px; color: rgba(211, 255, 226, 0.72); }
+.featured-content-row { height: 135px; margin-top: 22px; flex-direction: row; }
+.featured-content-tile {
+    flex-grow: 1;
+    min-width: 0;
+    margin-right: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(1, 36, 23, 0.72);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(140, 255, 183, 0.45);
+    border-right-color: rgba(140, 255, 183, 0.45);
+    border-top-color: rgba(140, 255, 183, 0.45);
+    border-bottom-color: rgba(140, 255, 183, 0.45);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.featured-content-icon { font-size: 36px; color: rgb(255, 218, 75); -unity-font-style: bold; }
+.featured-fleet-icon { font-size: 23px; }
+.featured-content-name { margin-top: 8px; font-size: 9px; letter-spacing: 1px; color: rgb(207, 255, 226); -unity-font-style: bold; }
+.featured-price-bar {
+    min-height: 76px;
+    padding-left: 24px;
+    padding-right: 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(4, 35, 24);
+    border-top-width: 2px;
+    border-top-color: rgba(116, 255, 169, 0.6);
+}
+.featured-price-note { flex-grow: 1; font-size: 11px; letter-spacing: 2px; white-space: normal; color: rgba(200, 255, 223, 0.7); }
+.featured-buy-button {
+    width: 160px;
+    min-width: 140px;
+    height: 58px;
+    color: rgb(34, 25, 2);
+    background-color: rgb(255, 202, 53);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    font-size: 18px;
+    -unity-font-style: bold;
+}
+.rewarded-section-label { margin-top: 3px; }
+.rewarded-commander-offer {
+    min-height: 290px;
+    margin-bottom: 22px;
+    padding: 14px;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: rgb(5, 52, 34);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-color: rgb(105, 255, 154);
+    border-right-color: rgb(105, 255, 154);
+    border-top-color: rgb(105, 255, 154);
+    border-bottom-color: rgb(105, 255, 154);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.rewarded-commander-portrait {
+    width: 42%;
+    min-width: 0;
+    margin-right: 16px;
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/09-female-braided-commander.png");
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgb(3, 25, 22);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(199, 255, 218, 0.82);
+    border-right-color: rgba(199, 255, 218, 0.82);
+    border-top-color: rgba(199, 255, 218, 0.82);
+    border-bottom-color: rgba(199, 255, 218, 0.82);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.rewarded-commander-copy {
+    flex-grow: 1;
+    min-width: 0;
+    justify-content: center;
+}
+.rewarded-commander-title {
+    margin-bottom: 18px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    white-space: normal;
+    color: rgb(244, 255, 248);
+    -unity-font-style: bold;
+}
+.rewarded-ad-button {
+    width: 100%;
+    min-width: 0;
+    height: 62px;
+    margin: 0;
+    color: rgb(34, 25, 2);
+    background-color: rgb(255, 202, 53);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    font-size: 14px;
+    white-space: normal;
+    -unity-font-style: bold;
+}
+.shop-secondary-label { margin-top: 4px; }
+.shop-shelf-row { flex-direction: row; justify-content: space-between; }
+.tab-hero-title { font-size: 31px; letter-spacing: 5px; color: rgb(147, 255, 198); -unity-font-style: bold; }
+.tab-hero-copy { margin-top: 7px; font-size: 11px; letter-spacing: 2px; color: rgba(185, 238, 209, 0.64); }
+.store-crate-mark {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    width: 74px;
+    height: 74px;
+    align-items: center;
+    justify-content: center;
+    rotate: 7deg;
+    background-color: rgba(37, 114, 76, 0.45);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(121, 255, 183, 0.45);
+    border-right-color: rgba(121, 255, 183, 0.45);
+    border-top-color: rgba(121, 255, 183, 0.45);
+    border-bottom-color: rgba(121, 255, 183, 0.45);
+}
+.store-crate-text { font-size: 22px; letter-spacing: 2px; color: rgb(141, 255, 193); -unity-font-style: bold; }
+.section-label { margin-bottom: 11px; font-size: 11px; letter-spacing: 3px; color: rgba(121, 240, 176, 0.58); -unity-font-style: bold; }
+.shop-card {
+    min-height: 154px;
+    margin-bottom: 14px;
+    padding: 18px;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(4, 25, 19, 0.94);
+    border-left-width: 4px;
+    border-left-color: rgb(68, 229, 140);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.shop-card-viper { border-left-color: rgb(198, 232, 79); }
+.shop-card-badge {
+    width: 80px;
+    height: 80px;
+    margin-right: 17px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(7, 49, 33);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+.shop-card-monogram { font-size: 23px; color: rgb(125, 255, 184); -unity-font-style: bold; }
+.shop-card-compact {
+    width: 49%;
+    min-height: 320px;
+    padding: 14px;
+    flex-direction: column;
+    align-items: stretch;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.shop-card-compact .shop-card-badge {
+    width: 100%;
+    height: 145px;
+    margin-right: 0;
+    margin-bottom: 14px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    -unity-background-scale-mode: scale-and-crop;
+}
+.shop-badge-elias { background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/01-male-veteran-commander.png"); }
+.shop-badge-dae { background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/02-male-tactical-analyst.png"); }
+.shop-card-compact .store-product-copy { flex-grow: 1; margin-right: 0; }
+.shop-card-compact .shop-card-title { white-space: normal; }
+.shop-card-compact .shop-buy-button { width: 100%; min-width: 0; margin-left: 0; margin-top: 14px; }
+.shop-card-title { font-size: 20px; letter-spacing: 2px; color: rgb(203, 247, 222); -unity-font-style: bold; }
+.shop-card-subtitle { margin-top: 6px; font-size: 11px; letter-spacing: 1px; color: rgba(130, 234, 178, 0.64); }
+.shop-card-feature { margin-top: 9px; font-size: 11px; letter-spacing: 2px; color: rgb(226, 220, 105); }
+.shop-buy-button { min-width: 126px; height: 56px; margin-left: 10px; font-size: 12px; }
+.reward-code-section-label { margin-top: 20px; }
+.reward-code-card {
+    margin-bottom: 6px;
+    padding: 18px;
+    background-color: rgba(5, 52, 34, 0.94);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(105, 255, 154, 0.55);
+    border-right-color: rgba(105, 255, 154, 0.55);
+    border-top-color: rgba(105, 255, 154, 0.55);
+    border-bottom-color: rgba(105, 255, 154, 0.55);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.reward-code-copy {
+    margin-bottom: 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(203, 247, 222, 0.75);
+}
+.reward-code-row { flex-direction: row; align-items: center; }
+.reward-code-input { flex-grow: 1; min-width: 0; margin: 0 10px 0 0; }
+.reward-code-button {
+    width: 150px;
+    min-width: 150px;
+    height: 54px;
+    margin: 0;
+    color: rgb(34, 25, 2);
+    background-color: rgb(255, 202, 53);
+    border-width: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    -unity-font-style: bold;
+}
+.restore-button { margin-top: 18px; }
+.tab-heading-row { min-height: 80px; margin-bottom: 18px; flex-direction: row; align-items: center; justify-content: space-between; }
+.tab-heading { font-size: 28px; letter-spacing: 4px; color: rgb(143, 255, 195); -unity-font-style: bold; }
+.tab-subheading { margin-top: 5px; font-size: 11px; letter-spacing: 2px; color: rgba(126, 230, 174, 0.58); }
+.refresh-chip { width: 54px; height: 54px; font-size: 25px; color: rgb(117, 255, 177); background-color: rgba(7, 40, 28, 0.9); border-width: 0; border-top-left-radius: 27px; border-top-right-radius: 27px; border-bottom-left-radius: 27px; border-bottom-right-radius: 27px; }
+.friend-code-card { padding: 18px; flex-direction: row; align-items: center; background-color: rgba(5, 28, 21, 0.94); border-top-left-radius: 18px; border-top-right-radius: 18px; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; }
+.friend-code-input { margin: 0; }
+.field-hint { margin-top: 8px; margin-bottom: 18px; font-size: 10px; letter-spacing: 2px; color: rgba(127, 210, 165, 0.46); }
+.invite-card { padding: 18px; margin-top: 8px; background-color: rgba(40, 33, 7, 0.42); border-left-width: 3px; border-left-color: rgb(241, 204, 75); }
+.modern-friends-list .friend-row { border-top-right-radius: 14px; border-bottom-right-radius: 14px; }
+.play-tab-scroll { padding-top: 18px; }
+.online-profile-strip {
+    min-height: 104px;
+    margin-bottom: 18px;
+    padding: 15px;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(4, 25, 18, 0.9);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(78, 255, 158, 0.22);
+}
+.profile-rank-emblem { width: 68px; height: 68px; margin-right: 15px; align-items: center; justify-content: center; background-color: rgb(13, 65, 43); border-top-left-radius: 18px; border-top-right-radius: 18px; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; rotate: -3deg; }
+.profile-rank-emblem-text { font-size: 19px; color: rgb(136, 255, 190); -unity-font-style: bold; }
+.profile-code-chip { padding: 9px 12px; font-size: 10px; letter-spacing: 1px; color: rgba(163, 239, 198, 0.7); background-color: rgba(0, 12, 9, 0.8); border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+.battle-card {
+    min-height: 485px;
+    padding: 28px;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: rgb(4, 33, 22);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(90, 255, 163, 0.48);
+    border-right-color: rgba(90, 255, 163, 0.48);
+    border-top-color: rgba(90, 255, 163, 0.48);
+    border-bottom-color: rgba(90, 255, 163, 0.48);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+}
+.battle-card-radar { position: absolute; right: -35px; top: -44px; width: 330px; height: 330px; opacity: 0.55; background-color: rgba(18, 89, 55, 0.28); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgba(91, 255, 163, 0.32); border-right-color: rgba(91, 255, 163, 0.32); border-top-color: rgba(91, 255, 163, 0.32); border-bottom-color: rgba(91, 255, 163, 0.32); border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
+.battle-radar-ring { position: absolute; left: 20%; right: 20%; top: 20%; bottom: 20%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(102, 255, 169, 0.32); border-right-color: rgba(102, 255, 169, 0.32); border-top-color: rgba(102, 255, 169, 0.32); border-bottom-color: rgba(102, 255, 169, 0.32); border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
+.battle-radar-ring-inner { left: 34%; right: 34%; top: 34%; bottom: 34%; }
+.battle-radar-line { position: absolute; left: 50%; top: 8%; width: 2px; height: 42%; background-color: rgba(112, 255, 175, 0.54); rotate: 37deg; transform-origin: 50% 100%; }
+.battle-season { font-size: 11px; letter-spacing: 3px; color: rgb(240, 212, 80); -unity-font-style: bold; }
+.battle-title { margin-top: 12px; font-size: 42px; letter-spacing: 5px; line-height: 49px; color: rgb(211, 255, 229); -unity-font-style: bold; }
+.battle-meta { margin-top: 13px; font-size: 10px; letter-spacing: 1px; color: rgba(176, 231, 201, 0.6); }
+.battle-start-button { height: 78px; margin-top: 27px; font-size: 20px; letter-spacing: 3px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+.solo-battle-button { height: 58px; margin-top: 10px; font-size: 13px; letter-spacing: 2px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+.play-launch-center { flex-grow: 1; align-items: center; justify-content: center; }
+.play-launch-button {
+    width: 190px;
+    height: 190px;
+    padding-left: 15px;
+    font-size: 68px;
+    color: rgb(1, 28, 17);
+    background-color: rgb(81, 255, 153);
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-color: rgba(174, 255, 208, 0.22);
+    border-right-color: rgba(174, 255, 208, 0.22);
+    border-top-color: rgba(174, 255, 208, 0.22);
+    border-bottom-color: rgba(174, 255, 208, 0.22);
+    border-top-left-radius: 95px;
+    border-top-right-radius: 95px;
+    border-bottom-left-radius: 95px;
+    border-bottom-right-radius: 95px;
+    transition-property: scale, background-color;
+    transition-duration: 0.12s;
+}
+.play-launch-button:hover { scale: 1.05 1.05; background-color: rgb(115, 255, 175); }
+.play-launch-caption { margin-top: 18px; font-size: 13px; letter-spacing: 4px; color: rgb(178, 246, 207); -unity-font-style: bold; }
+.mode-selector-button {
+    height: 72px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: rgb(136, 255, 190);
+    background-color: rgba(0, 17, 12, 0.88);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(86, 255, 163, 0.42);
+    border-right-color: rgba(86, 255, 163, 0.42);
+    border-top-color: rgba(86, 255, 163, 0.42);
+    border-bottom-color: rgba(86, 255, 163, 0.42);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+.mode-selector-hint { margin-top: 9px; -unity-text-align: middle-center; font-size: 9px; letter-spacing: 3px; color: rgba(136, 224, 176, 0.48); }
+.game-mode-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 224px;
+    padding-left: 28px;
+    padding-right: 28px;
+    justify-content: center;
+    background-color: rgba(0, 7, 6, 0.9);
+}
+.game-mode-sheet {
+    padding: 25px;
+    background-color: rgb(3, 25, 18);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(88, 255, 164, 0.46);
+    border-right-color: rgba(88, 255, 164, 0.46);
+    border-top-color: rgba(88, 255, 164, 0.46);
+    border-bottom-color: rgba(88, 255, 164, 0.46);
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
+}
+.game-mode-sheet-header { margin-bottom: 22px; flex-direction: row; align-items: center; justify-content: space-between; }
+.game-mode-title { font-size: 27px; letter-spacing: 4px; color: rgb(146, 255, 196); -unity-font-style: bold; }
+.game-mode-subtitle { margin-top: 6px; font-size: 10px; letter-spacing: 2px; color: rgba(139, 224, 178, 0.54); }
+.game-mode-close { width: 54px; height: 54px; padding: 0; font-size: 28px; color: rgb(133, 255, 188); background-color: rgba(10, 48, 33, 0.9); border-width: 0; border-top-left-radius: 27px; border-top-right-radius: 27px; border-bottom-left-radius: 27px; border-bottom-right-radius: 27px; }
+.game-mode-option {
+    min-height: 112px;
+    margin-bottom: 14px;
+    padding-left: 24px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+    font-size: 17px;
+    letter-spacing: 2px;
+    color: rgb(193, 242, 214);
+    background-color: rgba(3, 39, 26, 0.88);
+    border-left-width: 5px;
+    border-left-color: rgb(72, 255, 151);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.game-mode-option-ranked { border-left-color: rgb(241, 207, 72); background-color: rgba(40, 37, 9, 0.56); }
+.game-mode-option-active { background-color: rgba(15, 76, 47, 0.9); }
+.game-mode-message { margin-top: 8px; }
+.play-info-row { margin-top: 16px; flex-direction: row; }
+.play-info-card { width: 32%; min-height: 86px; margin-right: 1%; align-items: center; justify-content: center; background-color: rgba(4, 25, 19, 0.84); border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; }
+.play-info-value { font-size: 16px; letter-spacing: 2px; color: rgb(126, 255, 184); -unity-font-style: bold; }
+.play-info-label { margin-top: 5px; font-size: 9px; letter-spacing: 1px; color: rgba(143, 220, 178, 0.52); }
+.text-link-button { height: 48px; margin-top: 12px; font-size: 11px; letter-spacing: 2px; color: rgba(127, 245, 180, 0.72); background-color: transparent; border-width: 0; }
+.leaderboard-hero { min-height: 176px; margin-bottom: 18px; padding: 24px; justify-content: flex-end; background-color: rgba(32, 40, 12, 0.72); border-left-width: 4px; border-left-color: rgb(239, 208, 72); border-top-right-radius: 22px; border-bottom-right-radius: 22px; }
+.leaderboard-column-labels { height: 36px; padding-left: 16px; padding-right: 16px; flex-direction: row; justify-content: space-between; font-size: 10px; letter-spacing: 2px; color: rgba(143, 221, 178, 0.5); }
+.leaderboard-list-modern .friend-row { min-height: 72px; border-left-color: rgb(225, 199, 71); }
+.profile-identity-card { min-height: 235px; margin-bottom: 18px; align-items: center; justify-content: center; background-color: rgba(5, 31, 22, 0.88); border-top-left-radius: 24px; border-top-right-radius: 24px; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; }
+.profile-large-avatar { width: 110px; height: 110px; margin-bottom: 16px; align-items: center; justify-content: center; background-color: rgb(11, 65, 42); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(87, 255, 162); border-right-color: rgb(87, 255, 162); border-top-color: rgb(87, 255, 162); border-bottom-color: rgb(87, 255, 162); border-top-left-radius: 55px; border-top-right-radius: 55px; border-bottom-left-radius: 55px; border-bottom-right-radius: 55px; }
+.profile-large-avatar-text { font-size: 30px; color: rgb(145, 255, 196); -unity-font-style: bold; }
+.profile-tagline { font-size: 13px; letter-spacing: 2px; color: rgb(197, 243, 217); }
+.profile-form-card { padding: 22px; background-color: rgba(4, 25, 19, 0.9); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+.field-label { font-size: 11px; letter-spacing: 3px; color: rgba(136, 236, 181, 0.66); -unity-font-style: bold; }
+.profile-signout-button { margin-top: 20px; }
+
+/* Profil // minimalistische Kontoübersicht */
+.profile-minimal-scroll {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 24px;
+    padding-bottom: 38px;
+}
+.profile-minimal-scroll .unity-scroll-view__horizontal-scroller { display: none; }
+.profile-minimal-scroll .unity-scroll-view__content-container { min-height: 100%; }
+.profile-minimal-hero {
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 24px;
+}
+.profile-avatar-image {
+    width: 152px;
+    height: 152px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(7, 42, 32);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-color: rgb(92, 255, 172);
+    border-right-color: rgb(92, 255, 172);
+    border-top-color: rgb(92, 255, 172);
+    border-bottom-color: rgb(92, 255, 172);
+    border-top-left-radius: 76px;
+    border-top-right-radius: 76px;
+    border-bottom-left-radius: 76px;
+    border-bottom-right-radius: 76px;
+    -unity-background-scale-mode: scale-and-crop;
+}
+.profile-avatar-initials { font-size: 38px; color: rgb(138, 255, 195); -unity-font-style: bold; }
+.profile-avatar-button {
+    height: 38px;
+    margin-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: rgb(132, 244, 185);
+    background-color: transparent;
+    border-width: 0;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+.profile-display-name { margin-top: 5px; font-size: 30px; color: rgb(239, 255, 246); -unity-font-style: bold; }
+.profile-identity-code { margin-top: 4px; font-size: 10px; letter-spacing: 2px; color: rgba(157, 222, 190, 0.55); }
+.profile-stats-grid { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+.profile-stat-card {
+    width: 49%;
+    min-height: 112px;
+    margin-bottom: 12px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(4, 27, 23, 0.88);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(93, 255, 171, 0.2);
+    border-right-color: rgba(93, 255, 171, 0.2);
+    border-top-color: rgba(93, 255, 171, 0.2);
+    border-bottom-color: rgba(93, 255, 171, 0.2);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+.profile-stat-value { font-size: 27px; color: rgb(248, 255, 250); -unity-font-style: bold; }
+.profile-rank-value { font-size: 17px; color: rgb(255, 215, 87); }
+.profile-joined-value { font-size: 18px; }
+.profile-stat-label { margin-top: 7px; font-size: 9px; letter-spacing: 2px; color: rgba(145, 226, 184, 0.58); }
+.profile-name-editor { margin-top: 16px; padding-top: 18px; border-top-width: 1px; border-top-color: rgba(93, 255, 171, 0.16); }
+.profile-minimal-label { margin-bottom: 7px; font-size: 9px; letter-spacing: 2px; color: rgba(145, 226, 184, 0.58); }
+.profile-save-button {
+    height: 48px;
+    margin-top: 9px;
+    color: rgb(3, 31, 19);
+    background-color: rgb(97, 255, 169);
+    border-width: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+.profile-minimal-message { min-height: 24px; margin-top: 7px; }
+.profile-account-spacer { min-height: 24px; flex-grow: 1; }
+.profile-account-button {
+    height: 52px;
+    margin-top: 12px;
+    color: rgba(178, 232, 204, 0.7);
+    background-color: transparent;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(111, 213, 164, 0.25);
+    border-right-color: rgba(111, 213, 164, 0.25);
+    border-top-color: rgba(111, 213, 164, 0.25);
+    border-bottom-color: rgba(111, 213, 164, 0.25);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+.profile-account-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 7, 7, 0.88);
+}
+.profile-account-sheet {
+    width: 78%;
+    padding: 25px;
+    background-color: rgb(5, 29, 24);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(106, 255, 176, 0.4);
+    border-right-color: rgba(106, 255, 176, 0.4);
+    border-top-color: rgba(106, 255, 176, 0.4);
+    border-bottom-color: rgba(106, 255, 176, 0.4);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.profile-account-title { font-size: 26px; color: rgb(235, 255, 244); -unity-font-style: bold; }
+.profile-account-subtitle { margin-top: 5px; margin-bottom: 18px; font-size: 9px; letter-spacing: 2px; color: rgba(155, 225, 188, 0.55); }
+.profile-account-action { height: 56px; margin-top: 8px; color: rgb(210, 255, 229); background-color: rgba(13, 55, 42, 0.9); border-width: 0; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
+.profile-delete-action { color: rgb(255, 145, 126); background-color: rgba(72, 24, 20, 0.85); }
+.profile-account-cancel { height: 44px; margin-top: 14px; color: rgba(177, 231, 202, 0.7); background-color: transparent; border-width: 0; }
+.profile-name-row {
+    margin-top: 5px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.profile-name-row .profile-display-name { margin-top: 0; }
+.profile-edit-button {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    margin-left: 12px;
+    padding: 0;
+    color: rgb(126, 255, 184);
+    background-color: rgba(10, 55, 39, 0.92);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(112, 255, 178, 0.55);
+    border-right-color: rgba(112, 255, 178, 0.55);
+    border-top-color: rgba(112, 255, 178, 0.55);
+    border-bottom-color: rgba(112, 255, 178, 0.55);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+}
+.profile-pencil-stroke {
+    position: absolute;
+    left: 13px;
+    top: 24px;
+    width: 31px;
+    height: 8px;
+    rotate: -42deg;
+    background-color: rgb(153, 255, 199);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.profile-pencil-tip {
+    position: absolute;
+    left: 9px;
+    top: 34px;
+    width: 8px;
+    height: 8px;
+    rotate: -42deg;
+    background-color: rgb(255, 215, 91);
+}
+.profile-pencil-eraser {
+    position: absolute;
+    left: 38px;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    rotate: -42deg;
+    background-color: rgb(242, 255, 247);
+}
+.profile-edit-sheet { width: 84%; padding: 28px; }
+.profile-edit-header {
+    margin-bottom: 22px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.profile-edit-close {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 30px;
+    color: rgb(136, 255, 191);
+    background-color: rgba(11, 57, 42, 0.92);
+    border-width: 0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.profile-edit-avatar-button {
+    height: 58px;
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 18px;
+    color: rgb(204, 255, 226);
+    background-color: rgba(13, 58, 43, 0.92);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(112, 255, 178, 0.42);
+    border-right-color: rgba(112, 255, 178, 0.42);
+    border-top-color: rgba(112, 255, 178, 0.42);
+    border-bottom-color: rgba(112, 255, 178, 0.42);
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+}
+.profile-edit-label { margin-bottom: 10px; font-size: 16px; }
+.profile-edit-input { min-height: 58px; font-size: 18px; }
+.profile-edit-save { height: 58px; margin-top: 12px; font-size: 18px; }
+.profile-edit-message { min-height: 32px; margin-top: 10px; font-size: 15px; }
+.profile-edit-divider { height: 1px; margin-top: 8px; margin-bottom: 14px; background-color: rgba(112, 255, 178, 0.2); }
+.profile-edit-sheet .profile-delete-action { height: 60px; font-size: 18px; }
+.online-bottom-nav {
+    height: 190px;
+    min-height: 190px;
+    flex-shrink: 0;
+    padding-top: 4px;
+    padding-bottom: 0;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    background-color: rgb(2, 17, 13);
+    border-top-width: 1px;
+    border-top-color: rgba(76, 255, 153, 0.24);
+}
+.online-tab-indicator {
+    position: absolute;
+    left: 40%;
+    top: 0;
+    width: 20%;
+    height: 4px;
+    background-color: rgb(78, 255, 153);
+    transition-property: left;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+.online-tab-button {
+    width: auto;
+    min-width: 0;
+    flex-basis: 20%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100%;
+    margin: 0;
+    padding: 8px 0 12px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 1px;
+    white-space: normal;
+    color: rgba(137, 213, 171, 0.48);
+    background-color: transparent;
+    border-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: hidden;
+    transition-property: color, background-color;
+    transition-duration: 0.14s;
+}
+.online-tab-icon {
+    width: 122px;
+    height: 122px;
+    flex-shrink: 0;
+    opacity: 0.78;
+    -unity-background-scale-mode: scale-to-fit;
+    transition-property: opacity, scale;
+    transition-duration: 0.16s;
+}
+.tab-icon-shop { background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/tab-icon-shop.png"); }
+.tab-icon-friends { background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/tab-icon-friends.png"); }
+.tab-icon-play { background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/tab-icon-play.png"); }
+.tab-icon-leaderboard {
+    width: 108px;
+    height: 116px;
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/tab-icon-leaderboard.png");
+}
+.tab-icon-account { background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/tab-icon-account.png"); }
+.online-tab-label { margin-top: -2px; font-size: 14px; letter-spacing: 1px; color: rgba(143, 220, 178, 0.76); -unity-font-style: bold; }
+.online-tab-active .online-tab-icon { opacity: 1; scale: 1.1 1.1; }
+.online-tab-active .tab-icon-leaderboard { scale: 1 1; }
+.online-tab-active .online-tab-label { color: rgb(122, 255, 182); }
+.online-tab-button-main { color: rgba(136, 247, 185, 0.72); background-color: rgba(8, 43, 29, 0.7); }
+.online-tab-button-main .online-tab-icon { width: 138px; height: 138px; }
+.online-tab-active { color: rgb(113, 255, 177); background-color: rgba(15, 62, 39, 0.72); }
+
+/* Spielen // Einsatzdeck im Stil eines mobilen Battle-Hubs */
+.play-screen {
+    background-color: rgba(1, 10, 13, 0.76);
+}
+.play-backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.42;
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/main-menu-command-deck.png");
+    -unity-background-scale-mode: scale-and-crop;
+    -unity-background-image-tint-color: rgb(47, 150, 127);
+}
+.play-tab-scroll {
+    position: relative;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 18px;
+    padding-bottom: 30px;
+}
+.play-profile-strip {
+    min-height: 118px;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    background-color: rgba(4, 25, 31, 0.95);
+    border-left-width: 3px;
+    border-left-color: rgb(84, 255, 177);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(113, 220, 206, 0.28);
+    border-right-color: rgba(113, 220, 206, 0.18);
+    border-bottom-color: rgba(113, 220, 206, 0.18);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.play-rank-emblem {
+    width: 78px;
+    height: 78px;
+    margin-right: 14px;
+    background-color: rgb(6, 45, 42);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(255, 208, 77, 0.78);
+    border-right-color: rgba(255, 208, 77, 0.78);
+    border-top-color: rgba(255, 208, 77, 0.78);
+    border-bottom-color: rgba(255, 208, 77, 0.78);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    rotate: -4deg;
+    overflow: hidden;
+}
+.play-rank-emblem-art {
+    width: 74px;
+    height: 74px;
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/naval-command-emblem.png");
+    -unity-background-scale-mode: scale-to-fit;
+    rotate: 4deg;
+}
+.play-profile-copy { justify-content: center; }
+.play-kicker {
+    margin-bottom: 3px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(126, 238, 194, 0.58);
+    -unity-font-style: bold;
+}
+.play-profile-strip .online-profile-name {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: rgb(228, 255, 237);
+}
+.play-profile-strip .online-rank { margin-top: 4px; color: rgb(255, 212, 93); }
+.play-profile-strip .micro-label { margin-top: 5px; font-size: 10px; }
+.play-profile-strip .profile-code-chip {
+    align-self: flex-start;
+    margin-left: 8px;
+    padding: 7px 9px;
+    color: rgba(154, 230, 209, 0.7);
+    background-color: rgba(0, 11, 14, 0.78);
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+.play-season-card {
+    min-height: 135px;
+    margin-bottom: 14px;
+    padding: 18px 18px 16px 20px;
+    flex-direction: row;
+    background-color: rgba(8, 43, 46, 0.93);
+    border-left-width: 4px;
+    border-left-color: rgb(255, 207, 69);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(255, 221, 112, 0.48);
+    border-right-color: rgba(255, 221, 112, 0.2);
+    border-bottom-color: rgba(255, 221, 112, 0.2);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.play-season-copy { flex-grow: 1; justify-content: center; }
+.play-season-card .battle-season { font-size: 10px; letter-spacing: 2px; color: rgb(255, 217, 99); }
+.play-season-title {
+    margin-top: 5px;
+    font-size: 23px;
+    letter-spacing: 2px;
+    color: rgb(231, 255, 244);
+    -unity-font-style: bold;
+}
+.play-season-subtitle {
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(185, 235, 216, 0.62);
+    white-space: normal;
+}
+.play-season-badge {
+    width: 94px;
+    height: 94px;
+    margin-left: 16px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(4, 24, 27, 0.46);
+    border-top-left-radius: 47px;
+    border-top-right-radius: 47px;
+    border-bottom-left-radius: 47px;
+    border-bottom-right-radius: 47px;
+}
+.play-season-badge-art {
+    width: 82px;
+    height: 82px;
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/naval-command-emblem.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.play-arena-card {
+    position: relative;
+    min-height: 486px;
+    padding: 22px;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: rgb(3, 38, 47);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(72, 255, 194, 0.72);
+    border-right-color: rgba(72, 255, 194, 0.32);
+    border-top-color: rgba(72, 255, 194, 0.72);
+    border-bottom-color: rgba(72, 255, 194, 0.32);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+.play-arena-ocean {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.88;
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/tactical-ocean-surface.png");
+    -unity-background-scale-mode: scale-and-crop;
+}
+.play-arena-vignette {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 18, 24, 0.4);
+}
+.play-arena-grid {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 15%;
+    height: 48%;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(157, 255, 224, 0.24);
+    border-right-color: rgba(157, 255, 224, 0.24);
+    border-top-color: rgba(157, 255, 224, 0.24);
+    border-bottom-color: rgba(157, 255, 224, 0.24);
+}
+.play-arena-grid-line { position: absolute; background-color: rgba(157, 255, 224, 0.22); }
+.play-arena-grid-line-v { left: 50%; top: 0; bottom: 0; width: 1px; }
+.play-arena-grid-line-h { left: 0; right: 0; top: 50%; height: 1px; }
+.play-commander-portrait {
+    position: absolute;
+    right: -16px;
+    top: 17px;
+    width: 174px;
+    height: 198px;
+    opacity: 0.86;
+    background-image: url("project://database/Assets/Art/NavalCommand/captain-portraits/01-male-veteran-commander.png");
+    -unity-background-scale-mode: scale-and-crop;
+    border-bottom-left-radius: 70px;
+}
+.play-hero-ship {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 35%;
+    height: 86px;
+    opacity: 0.85;
+    background-image: url("project://database/Assets/Art/NavalCommand/individual-ships/grid-ready-128/09-aircraft-carrier-5x1.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.play-arena-copy { position: absolute; left: 22px; top: 24px; }
+.play-arena-kicker { font-size: 10px; letter-spacing: 3px; color: rgba(217, 255, 239, 0.68); -unity-font-style: bold; }
+.play-arena-title { margin-top: 5px; font-size: 28px; letter-spacing: 3px; color: rgb(237, 255, 244); -unity-font-style: bold; }
+.play-arena-caption { margin-top: 4px; font-size: 10px; letter-spacing: 1px; color: rgba(223, 255, 239, 0.72); }
+.play-arena-card .play-launch-center { position: relative; }
+.play-launch-button {
+    width: 148px;
+    height: 148px;
+    padding-left: 12px;
+    font-size: 57px;
+    color: rgb(2, 33, 34);
+    background-color: rgb(255, 203, 61);
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    border-left-color: rgba(255, 245, 182, 0.48);
+    border-right-color: rgba(197, 135, 26, 0.66);
+    border-top-color: rgba(255, 245, 182, 0.48);
+    border-bottom-color: rgba(197, 135, 26, 0.66);
+    border-top-left-radius: 74px;
+    border-top-right-radius: 74px;
+    border-bottom-left-radius: 74px;
+    border-bottom-right-radius: 74px;
+    -unity-font-style: bold;
+    transition-property: scale, background-color;
+    transition-duration: 0.12s;
+}
+.play-launch-button:hover { scale: 1.06 1.06; background-color: rgb(255, 225, 107); }
+.play-launch-caption { margin-top: 12px; font-size: 13px; letter-spacing: 3px; color: rgb(240, 255, 246); -unity-font-style: bold; }
+.play-arena-card .mode-selector-button {
+    height: 58px;
+    margin-top: 18px;
+    font-size: 13px;
+    color: rgb(227, 255, 240);
+    background-color: rgba(1, 25, 31, 0.9);
+    border-left-color: rgba(133, 255, 211, 0.6);
+    border-right-color: rgba(133, 255, 211, 0.6);
+    border-top-color: rgba(133, 255, 211, 0.6);
+    border-bottom-color: rgba(133, 255, 211, 0.6);
+}
+.play-arena-card .mode-selector-hint { margin-top: 7px; color: rgba(206, 255, 231, 0.52); }
+.play-info-row { margin-top: 14px; }
+.play-info-card {
+    min-height: 78px;
+    background-color: rgba(3, 28, 34, 0.92);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(104, 255, 193, 0.24);
+    border-right-color: rgba(104, 255, 193, 0.12);
+    border-top-color: rgba(104, 255, 193, 0.24);
+    border-bottom-color: rgba(104, 255, 193, 0.12);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.play-info-value { font-size: 14px; color: rgb(255, 215, 91); }
+.play-info-label { color: rgba(174, 237, 215, 0.6); }
+.play-quick-actions { flex-direction: row; margin-top: 8px; }
+.play-quick-action { width: 50%; margin-right: 7px; color: rgba(156, 247, 207, 0.8); background-color: rgba(2, 22, 28, 0.7); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(101, 255, 192, 0.22); border-right-color: rgba(101, 255, 192, 0.12); border-top-color: rgba(101, 255, 192, 0.22); border-bottom-color: rgba(101, 255, 192, 0.12); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
+
+/* Spielen // freie Elemente auf dem Hintergrund */
+.play-screen {
+    position: absolute;
+    overflow: hidden;
+    background-color: rgb(1, 10, 12);
+}
+.play-screen .play-backdrop {
+    opacity: 0.58;
+    -unity-background-image-tint-color: rgb(74, 151, 135);
+}
+.play-profile-free {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 3%;
+    height: 102px;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+    border-width: 0;
+}
+.play-profile-free .play-rank-emblem-art {
+    width: 88px;
+    height: 88px;
+    margin-right: 16px;
+    rotate: 0deg;
+    opacity: 0.96;
+}
+.play-profile-free .play-profile-copy {
+    flex-grow: 1;
+    justify-content: center;
+}
+.play-profile-free .online-profile-name {
+    font-size: 25px;
+    letter-spacing: 2px;
+    color: rgb(236, 255, 244);
+    -unity-font-style: bold;
+}
+.play-profile-free .online-rank {
+    margin-top: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgb(255, 211, 82);
+    -unity-font-style: bold;
+}
+.play-profile-free .micro-label {
+    margin-top: 6px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(156, 239, 199, 0.72);
+}
+.profile-code-free {
+    align-self: flex-start;
+    margin-top: 10px;
+    margin-left: 14px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(166, 235, 208, 0.62);
+}
+.play-season-free {
+    position: absolute;
+    left: 6%;
+    top: 14%;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgb(255, 214, 89);
+    -unity-font-style: bold;
+}
+.play-fleet-arena-art {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 18%;
+    height: 35%;
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/play-hub-fleet-arena.png");
+    -unity-background-scale-mode: scale-to-fit;
+}
+.play-mode-button {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 55%;
+    height: 62px;
+    margin: 0;
+    color: rgb(227, 255, 240);
+    background-color: rgba(2, 29, 34, 0.88);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(94, 255, 187, 0.72);
+    border-right-color: rgba(94, 255, 187, 0.72);
+    border-top-color: rgba(94, 255, 187, 0.72);
+    border-bottom-color: rgba(94, 255, 187, 0.72);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+}
+.play-mode-hint {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 62%;
+    margin: 0;
+    -unity-text-align: middle-center;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(167, 230, 204, 0.56);
+}
+.play-login-suppressed { display: none; }
+.play-battle-button {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    top: 66%;
+    width: auto;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    font-size: 31px;
+    letter-spacing: 4px;
+    color: rgb(255, 255, 239);
+    background-color: transparent;
+    /* Cropped from JellyCat's "Gold GUI" (CC0): https://opengameart.org/content/gold-gui */
+    background-image: url("project://database/Assets/Art/NavalCommand/generated-asset-pack/play-primary-button-frame.png");
+    -unity-background-scale-mode: scale-to-fit;
+    border-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(34, 20, 4);
+    transition-property: scale, opacity;
+    transition-duration: 0.12s;
+}
+.play-battle-button:hover {
+    scale: 1.04 1.04;
+    opacity: 1;
+    background-color: transparent;
+}
+.play-battle-button:active {
+    scale: 0.98 0.98;
+    opacity: 0.9;
+    background-color: transparent;
+}
+
+.developer-admin-panel {
+    position: absolute;
+    right: 4%;
+    top: 15%;
+    width: 330px;
+    padding: 15px;
+    background-color: rgba(3, 24, 29, 0.96);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(255, 199, 62);
+    border-right-color: rgb(255, 199, 62);
+    border-top-color: rgb(255, 199, 62);
+    border-bottom-color: rgb(255, 199, 62);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+.developer-admin-header {
+    margin-bottom: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.developer-admin-title {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: rgb(255, 215, 92);
+    -unity-font-style: bold;
+}
+.developer-admin-account {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: rgba(171, 255, 213, 0.72);
+}
+.developer-admin-toggle {
+    height: 46px;
+    margin-top: 5px;
+    padding-left: 9px;
+    padding-right: 9px;
+    color: rgb(201, 255, 225);
+    background-color: rgba(0, 12, 16, 0.76);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(90, 255, 176, 0.3);
+    border-right-color: rgba(90, 255, 176, 0.3);
+    border-top-color: rgba(90, 255, 176, 0.3);
+    border-bottom-color: rgba(90, 255, 176, 0.3);
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    -unity-font-style: bold;
+}
+.developer-admin-toggle .unity-toggle__input {
+    width: 38px;
+    height: 26px;
+    margin-right: 10px;
+    background-color: rgb(3, 30, 27);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(95, 255, 179, 0.5);
+    border-right-color: rgba(95, 255, 179, 0.5);
+    border-top-color: rgba(95, 255, 179, 0.5);
+    border-bottom-color: rgba(95, 255, 179, 0.5);
+}
+.developer-admin-toggle:checked {
+    color: rgb(255, 222, 112);
+    background-color: rgba(80, 54, 5, 0.7);
+}
+.developer-admin-toggle:checked .unity-toggle__input {
+    background-color: rgb(255, 190, 50);
+    border-left-color: rgb(255, 226, 128);
+    border-right-color: rgb(255, 226, 128);
+    border-top-color: rgb(255, 226, 128);
+    border-bottom-color: rgb(255, 226, 128);
+}
+
+/* Clash-inspirierte Display-Schrift: Lilita One (SIL OFL 1.1) */
+.online-hub-screen {
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/LilitaOne-Regular.ttf");
+}
+.online-app-title,
+.play-profile-free .online-profile-name,
+.play-profile-free .online-rank,
+.play-season-free,
+.play-mode-button,
+.play-battle-button,
+.online-tab-label,
+.game-mode-title,
+.game-mode-option {
+    -unity-font-style: normal;
+}
+.online-app-title { letter-spacing: 1px; }
+.play-profile-free .online-profile-name { letter-spacing: 1px; }
+.play-profile-free .online-rank { letter-spacing: 0; }
+.play-season-free { letter-spacing: 1px; }
+.play-mode-button { letter-spacing: 1px; }
+.play-battle-button {
+    font-size: 36px;
+    letter-spacing: 1px;
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgb(65, 40, 6);
+}
+.online-tab-label { letter-spacing: 0; }
+.game-mode-title,
+.game-mode-option { letter-spacing: 1px; }
+
+/* ABYSS commander cinematics */
+.ability-cinematic-abyss-torpedo .ability-ocean-grade,
+.ability-cinematic-abyss-submerge .ability-ocean-grade {
+    background-color: rgba(0, 35, 58, 0.46);
+}
+
+/* Lesbarkeit // klare Mindestgroessen fuer die mobile Oberflaeche */
+.tutorial-replay-button {
+    height: 44px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.online-app-title { font-size: 28px; }
+.online-live-label { font-size: 17px; letter-spacing: 1px; }
+.friend-state { font-size: 16px; color: rgba(117, 255, 177, 0.72); }
+.featured-offer-subtitle,
+.featured-content-name,
+.featured-price-note,
+.tab-hero-copy,
+.shop-card-subtitle,
+.shop-card-feature,
+.tab-subheading,
+.field-hint,
+.profile-avatar-button,
+.profile-identity-code,
+.profile-stat-label,
+.profile-minimal-label {
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+.section-label,
+.shop-buy-button,
+.online-tab-button,
+.developer-admin-toggle {
+    font-size: 16px;
+}
+.section-label { letter-spacing: 2px; }
+.online-tab-label { font-size: 23px; }
+.play-profile-free .online-profile-name { font-size: 30px; }
+.play-profile-free .online-rank { font-size: 20px; }
+.play-profile-free .micro-label { font-size: 20px; }
+.play-mode-button { font-size: 20px; }
+.developer-admin-title { font-size: 23px; }
+.developer-admin-toggle { font-size: 18px; }
+.shop-banner-copy,
+.battle-meta,
+.play-info-label,
+.profile-code-chip { font-size: 15px; }
+.field-label,
+.leaderboard-column-labels,
+.profile-account-button,
+.profile-account-action,
+.profile-account-cancel,
+.online-message { font-size: 16px; }
+
+.ability-cinematic-abyss-torpedo .ability-cinematic-panel,
+.ability-cinematic-abyss-submerge .ability-cinematic-panel {
+    overflow: hidden;
+    border-color: rgba(88, 227, 255, 0.55);
+    background-color: rgba(0, 18, 28, 0.18);
+}
+
+.abyss-submerge-ship {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 34%;
+    height: 24%;
+    opacity: 0.96;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-enemy-close-destroyer.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(230, 239, 241);
+    transition-property: -unity-background-image-tint-color, opacity;
+    transition-duration: 0.09s;
+}
+
+.abyss-submerge-active .abyss-submerge-ship {
+    opacity: 1;
+    -unity-background-image-tint-color: rgb(34, 145, 255);
+}
+
+.abyss-torpedo {
+    position: absolute;
+    left: -34%;
+    top: 53%;
+    width: 34%;
+    height: 13%;
+    background-image: url("project://database/Assets/Art/NavalCommand/effects/abyss-torpedo-side.png");
+    -unity-background-scale-mode: scale-to-fit;
+    opacity: 0;
+    translate: 0 0;
+    transition-property: opacity, translate;
+    transition-duration: 0.1s, 1s;
+    transition-timing-function: linear;
+}
+
+.abyss-torpedo-armed .abyss-torpedo { opacity: 1; }
+.abyss-torpedo-running .abyss-torpedo { opacity: 1; translate: 920px 0; }
+.abyss-torpedo-impact .abyss-torpedo { opacity: 0; }
+
+.abyss-row-impact {
+    position: absolute;
+    top: 39%;
+    width: 16%;
+    height: 24%;
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-water-splash.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(136, 235, 255);
+    opacity: 0;
+    scale: 0.25 0.25;
+    transition-property: opacity, scale, translate;
+    transition-duration: 0.24s, 0.4s, 0.52s;
+}
+
+.abyss-impact-hit {
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-hit-explosion.png");
+    -unity-background-image-tint-color: rgb(255, 188, 96);
+}
+
+.abyss-impact-splash {
+    background-image: url("project://database/Assets/Art/NavalCommand/shot-animation/shot-water-splash.png");
+    -unity-background-image-tint-color: rgb(136, 235, 255);
+}
+
+.abyss-row-impact-0 { left: -3%; }
+.abyss-row-impact-1 { left: 7%; transition-delay: 0.12s; }
+.abyss-row-impact-2 { left: 17%; transition-delay: 0.24s; }
+.abyss-row-impact-3 { left: 27%; transition-delay: 0.36s; }
+.abyss-row-impact-4 { left: 37%; transition-delay: 0.48s; }
+.abyss-row-impact-5 { left: 47%; transition-delay: 0.6s; }
+.abyss-row-impact-6 { left: 57%; transition-delay: 0.72s; }
+.abyss-row-impact-7 { left: 67%; transition-delay: 0.84s; }
+.abyss-row-impact-8 { left: 77%; transition-delay: 0.96s; }
+.abyss-row-impact-9 { left: 87%; transition-delay: 1.08s; }
+.abyss-torpedo-impact .abyss-row-impact { opacity: 0.92; scale: 1 1; translate: 0 -26px; }
+
+.ability-cinematic-abyss-torpedo .ability-cinematic-result,
+.ability-cinematic-abyss-submerge .ability-cinematic-result {
+    top: 79%;
+}
+.startup-splash {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.34s;
+    transition-timing-function: ease-out;
+}
+
+.startup-splash-logo {
+    width: 72%;
+    height: 64%;
+    background-image: url("project://database/Assets/Art/NavalCommand/Splash/battleship-2-splash-logo.png");
+    -unity-background-scale-mode: scale-to-fit;
+    background-repeat: no-repeat;
+    opacity: 0;
+    scale: 0.86 0.86;
+    transition-property: opacity, scale;
+    transition-duration: 0.22s;
+    transition-timing-function: ease-out;
+}
+
+.startup-splash-logo-visible {
+    opacity: 1;
+    scale: 1 1;
+}
+
+.startup-splash-out {
+    opacity: 0;
+}

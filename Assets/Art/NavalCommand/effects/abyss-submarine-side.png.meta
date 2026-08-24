@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: b3a32526cb4739248b5e2857c44982b6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 856123625414624797
+    second: abyss-submarine-side_0
+  - first:
+      213: 4209277584878134906
+    second: abyss-submarine-side_1
+  - first:
+      213: -6032539348607420270
+    second: abyss-submarine-side_2
+  - first:
+      213: 2792326182281785060
+    second: abyss-submarine-side_3
+  - first:
+      213: -6846122859828794475
+    second: abyss-submarine-side_4
+  - first:
+      213: -6384996896430801430
+    second: abyss-submarine-side_5
+  - first:
+      213: -355453218383065437
+    second: abyss-submarine-side_6
+  - first:
+      213: 7909902294601283265
+    second: abyss-submarine-side_7
+  - first:
+      213: -168227981488608956
+    second: abyss-submarine-side_8
+  - first:
+      213: 5689236296703442782
+    second: abyss-submarine-side_9
+  - first:
+      213: -6404444440041358227
+    second: abyss-submarine-side_10
+  - first:
+      213: -7319672829130106902
+    second: abyss-submarine-side_11
+  - first:
+      213: -169756679733864689
+    second: abyss-submarine-side_12
+  - first:
+      213: -5117320371734381333
+    second: abyss-submarine-side_13
+  - first:
+      213: -3929313410200479092
+    second: abyss-submarine-side_14
+  - first:
+      213: -5025936359217694945
+    second: abyss-submarine-side_15
+  - first:
+      213: -2856159037251418406
+    second: abyss-submarine-side_16
+  - first:
+      213: 5521530818177190754
+    second: abyss-submarine-side_17
+  - first:
+      213: -2838744398526752339
+    second: abyss-submarine-side_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: abyss-submarine-side_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 2172
+        height: 711
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1688a0c6ef81eb00800000000000000
+      internalID: 856123625414624797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 39
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76eca769ab5a6a30800000000000000
+      internalID: 4209277584878134906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_2
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 95
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29830b89c6d184ca0800000000000000
+      internalID: -6032539348607420270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_3
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eeadef4ed550c620800000000000000
+      internalID: 2792326182281785060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_4
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 31
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59b2933088fadf0a0800000000000000
+      internalID: -6846122859828794475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_5
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 31
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aed3540e62fe367a0800000000000000
+      internalID: -6384996896430801430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_6
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 17
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ae02006e2d211bf0800000000000000
+      internalID: -355453218383065437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_7
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 33
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c6b1cd7a3e95cd60800000000000000
+      internalID: 7909902294601283265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_8
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 82
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449271aca855aadf0800000000000000
+      internalID: -168227981488608956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_9
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 85
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f744cd44a34fe40800000000000000
+      internalID: 5689236296703442782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_10
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 17
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6cfb97c6b7de17a0800000000000000
+      internalID: -6404444440041358227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_11
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 32
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae71f9bd75c4b6a90800000000000000
+      internalID: -7319672829130106902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_12
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 37
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f07963ef237e4adf0800000000000000
+      internalID: -169756679733864689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_13
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 47
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: becf6e01c30abf8b0800000000000000
+      internalID: -5117320371734381333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_14
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 87
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a52d595464879c0800000000000000
+      internalID: -3929313410200479092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_15
+      rect:
+        serializedVersion: 2
+        x: 1719
+        y: 15
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17fb158289404ab0800000000000000
+      internalID: -5025936359217694945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_16
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 30
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad68b9afc72ec58d0800000000000000
+      internalID: -2856159037251418406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_17
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 15
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26bc2d9560b60ac40800000000000000
+      internalID: 5521530818177190754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: abyss-submarine-side_18
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 47
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9dea58201ca98d0800000000000000
+      internalID: -2838744398526752339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      abyss-submarine-side_0: 856123625414624797
+      abyss-submarine-side_1: 4209277584878134906
+      abyss-submarine-side_10: -6404444440041358227
+      abyss-submarine-side_11: -7319672829130106902
+      abyss-submarine-side_12: -169756679733864689
+      abyss-submarine-side_13: -5117320371734381333
+      abyss-submarine-side_14: -3929313410200479092
+      abyss-submarine-side_15: -5025936359217694945
+      abyss-submarine-side_16: -2856159037251418406
+      abyss-submarine-side_17: 5521530818177190754
+      abyss-submarine-side_18: -2838744398526752339
+      abyss-submarine-side_2: -6032539348607420270
+      abyss-submarine-side_3: 2792326182281785060
+      abyss-submarine-side_4: -6846122859828794475
+      abyss-submarine-side_5: -6384996896430801430
+      abyss-submarine-side_6: -355453218383065437
+      abyss-submarine-side_7: 7909902294601283265
+      abyss-submarine-side_8: -168227981488608956
+      abyss-submarine-side_9: 5689236296703442782
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,639 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/UI/MainMenu/MainMenu.uss" />
+    <ui:VisualElement name="AppRoot" class="app-root">
+
+        <ui:VisualElement name="MenuScreen" class="screen menu-screen">
+            <ui:VisualElement class="grid-decoration">
+                <ui:VisualElement class="grid-line grid-v v1" />
+                <ui:VisualElement class="grid-line grid-v v2" />
+                <ui:VisualElement class="grid-line grid-v v3" />
+                <ui:VisualElement class="grid-line grid-v v4" />
+                <ui:VisualElement class="grid-line grid-h h1" />
+                <ui:VisualElement class="grid-line grid-h h2" />
+                <ui:VisualElement class="grid-line grid-h h3" />
+                <ui:VisualElement class="grid-line grid-h h4" />
+                <ui:VisualElement class="grid-line grid-h h5" />
+            </ui:VisualElement>
+            <ui:VisualElement class="radar radar-menu">
+                <ui:VisualElement class="radar radar-inner" />
+                <ui:VisualElement class="radar-cross radar-cross-h" />
+                <ui:VisualElement class="radar-cross radar-cross-v" />
+            </ui:VisualElement>
+            <ui:VisualElement class="topbar">
+                <ui:Label name="OnlineStatusLabel" text="NC // OFFLINE BEREIT" class="status" />
+                <ui:Button name="AccountButton" text="KONTO" class="topbar-button" />
+                <ui:VisualElement class="signal">
+                    <ui:VisualElement class="signal-bar s1" />
+                    <ui:VisualElement class="signal-bar s2" />
+                    <ui:VisualElement class="signal-bar s3" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="menu-content">
+                <ui:VisualElement class="title-block">
+                    <ui:Label text="NAVAL" class="title title-small" />
+                    <ui:Label text="COMMAND" class="title title-large" />
+                    <ui:VisualElement class="title-rule"><ui:VisualElement class="rule-hot" /></ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="action-frame">
+                    <ui:VisualElement class="corner corner-tl" />
+                    <ui:VisualElement class="corner corner-tr" />
+                    <ui:VisualElement class="corner corner-bl" />
+                    <ui:VisualElement class="corner corner-br" />
+                    <ui:Button name="StartGameButton" text="SOLO GEGEN BOT" class="primary-button start-button" />
+                    <ui:Button name="OnlineButton" text="ONLINE SPIELEN" class="secondary-button online-start-button" />
+                    <ui:Button name="TutorialButton" text="AUSBILDUNG WIEDERHOLEN" class="secondary-button tutorial-menu-button" />
+                </ui:VisualElement>
+                <ui:Toggle name="DebugModeToggle" text="DEBUG-MODUS // FÄHIGKEITEN GRATIS" class="debug-toggle hidden" />
+            </ui:VisualElement>
+            <ui:VisualElement class="bottombar">
+                <ui:VisualElement class="bottom-line" />
+                <ui:Label text="SECURE CHANNEL // 01" class="footer-status" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="OnlineLoginScreen" class="screen online-screen hidden">
+            <ui:VisualElement class="compact-header">
+                <ui:Button name="OnlineLoginBackButton" text="‹" class="icon-button" />
+                <ui:VisualElement class="header-copy">
+                    <ui:Label text="SICHERER ZUGANG" class="screen-title" />
+                    <ui:Label text="ONLINE-KONTO ERFORDERLICH" class="micro-label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="online-center">
+                <ui:VisualElement class="online-panel auth-panel">
+                    <ui:Label text="NAVAL ID" class="online-kicker" />
+                    <ui:Label text="ANMELDEN" class="online-title" />
+                    <ui:Label text="Dein Rang, deine Freunde und Käufe werden sicher mit diesem Konto verbunden." class="online-copy" />
+                    <ui:Toggle name="AgeConsentToggle" text="ICH BIN MINDESTENS 16 JAHRE ALT" class="debug-toggle online-consent" />
+                    <ui:Button name="PlayerAccountLoginButton" text="E-MAIL / UNITY-KONTO" class="primary-button online-wide-button" />
+                    <ui:Button name="AppleLoginButton" text="MIT APPLE ANMELDEN" class="secondary-button online-wide-button" />
+                    <ui:Button name="GoogleLoginButton" text="MIT GOOGLE ANMELDEN" class="secondary-button online-wide-button" />
+                    <ui:Label name="LoginStatusLabel" text="DIENSTE WERDEN INITIALISIERT..." class="online-message" />
+                    <ui:Label text="Nur für Spieler ab 16 Jahren." class="micro-label online-age" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="OnlineHubScreen" class="screen online-screen online-hub-screen hidden">
+            <ui:VisualElement class="online-hub-glow" />
+            <ui:VisualElement class="online-app-header">
+                <ui:Button name="OnlineHubBackButton" text="‹" class="online-header-back hidden" />
+                <ui:VisualElement class="online-header-copy">
+                    <ui:Label name="OnlineTabTitle" text="SPIELEN" class="online-app-title" />
+                    <ui:Label name="OnlineHubStatusLabel" text="SICHERE VERBINDUNG" class="online-app-status hidden" />
+                </ui:VisualElement>
+                <ui:VisualElement class="online-header-signal">
+                    <ui:VisualElement class="online-signal-dot" />
+                    <ui:Label text="LIVE" class="online-live-label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="OnlineTabViewport" class="online-tab-viewport">
+                <ui:VisualElement name="StoreScreen" class="online-tab-page hidden">
+                    <ui:ScrollView mode="Vertical" horizontal-scroller-visibility="Hidden" class="online-tab-scroll">
+                        <ui:Label text="AKTUELLES ANGEBOT" class="section-label" />
+                        <ui:VisualElement class="featured-offer">
+                            <ui:VisualElement class="featured-offer-ribbon"><ui:Label text="VECTOR-ANGEBOT" class="featured-offer-ribbon-text" /></ui:VisualElement>
+                            <ui:VisualElement class="featured-offer-stage">
+                                <ui:VisualElement class="featured-offer-portrait" />
+                                <ui:VisualElement class="featured-offer-copy">
+                                    <ui:Label text="KAPITÄN ARJAN DHILLON" class="featured-offer-title" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="featured-price-bar">
+                                <ui:Label text="DAUERHAFT FREISCHALTEN" class="featured-price-note" />
+                                <ui:Button name="BuyArjanButton" text="2,99 €" class="store-buy-button featured-buy-button" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label text="WERBE-FREISCHALTUNG" class="section-label rewarded-section-label" />
+                        <ui:VisualElement class="rewarded-commander-offer">
+                            <ui:VisualElement class="rewarded-commander-portrait" />
+                            <ui:VisualElement class="rewarded-commander-copy">
+                                <ui:Label text="KAPITÄN IMANI CROSS" class="rewarded-commander-title" />
+                                <ui:Button name="WatchImaniAdButton" text="WERBUNG WIRD GELADEN..." class="store-buy-button rewarded-ad-button" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label text="WEITERE KOMMANDANTEN" class="section-label shop-secondary-label hidden" />
+                        <ui:VisualElement class="shop-shelf-row hidden">
+                            <ui:VisualElement class="shop-card shop-card-oracle shop-card-compact">
+                                <ui:VisualElement class="shop-card-badge shop-badge-elias" />
+                                <ui:VisualElement class="store-product-copy">
+                                    <ui:Label text="ELIAS VOSS" class="shop-card-title" />
+                                    <ui:Label text="ORACLE // BERGUNG" class="shop-card-subtitle" />
+                                    <ui:Label text="SCAN · REPARATUR" class="shop-card-feature" />
+                                </ui:VisualElement>
+                                <ui:Button name="BuyEliasButton" text="LADEN..." class="store-buy-button shop-buy-button" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card shop-card-viper shop-card-compact">
+                                <ui:VisualElement class="shop-card-badge shop-badge-dae" />
+                                <ui:VisualElement class="store-product-copy">
+                                    <ui:Label text="DAE-HYUN KWON" class="shop-card-title" />
+                                    <ui:Label text="VIPER // SPEZIALWAFFEN" class="shop-card-subtitle" />
+                                    <ui:Label text="CHEMIE · MINEN" class="shop-card-feature" />
+                                </ui:VisualElement>
+                                <ui:Button name="BuyDaeButton" text="LADEN..." class="store-buy-button shop-buy-button" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label text="BELOHNUNGSCODES" class="section-label reward-code-section-label" />
+                        <ui:VisualElement class="reward-code-card">
+                            <ui:Label text="CODE EINGEBEN UND BELOHNUNG SICHERN" class="reward-code-copy" />
+                            <ui:VisualElement class="reward-code-row">
+                                <ui:TextField name="RewardCodeField" label="" value="" max-length="64" class="online-input reward-code-input" />
+                                <ui:Button name="RedeemRewardCodeButton" text="EINLÖSEN" class="store-buy-button reward-code-button" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Button name="RestorePurchasesButton" text="KÄUFE WIEDERHERSTELLEN" class="secondary-button online-wide-button restore-button" />
+                        <ui:Label name="StoreMessageLabel" text="STORE WIRD VERBUNDEN..." class="online-message hub-message" />
+                    </ui:ScrollView>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="FriendsScreen" class="online-tab-page hidden">
+                    <ui:ScrollView mode="Vertical" class="online-tab-scroll">
+                        <ui:VisualElement class="tab-heading-row">
+                            <ui:VisualElement>
+                                <ui:Label text="DEINE CREW" class="tab-heading" />
+                                <ui:Label name="FriendCountLabel" text="0 VERBUNDEN" class="tab-subheading" />
+                            </ui:VisualElement>
+                            <ui:Button name="RefreshFriendsButton" text="↻" class="refresh-chip" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="friend-code-card">
+                            <ui:TextField name="FriendNameField" label="" value="" class="online-input friend-code-input" />
+                            <ui:Button name="AddFriendButton" text="HINZUFÜGEN" class="primary-button friend-add-button" />
+                        </ui:VisualElement>
+                        <ui:Label text="NAME ODER FREUNDESCODE" class="field-hint" />
+                        <ui:VisualElement name="InvitesPanel" class="online-panel invite-card hidden">
+                            <ui:Label text="DUELL-ANFRAGEN" class="section-label" />
+                            <ui:VisualElement name="InvitesList" class="friends-list" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="FriendsList" class="friends-list modern-friends-list" />
+                        <ui:Label name="OnlineHubMessageLabel" text="" class="online-message hub-message" />
+                    </ui:ScrollView>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="PlayScreen" class="online-tab-page play-screen">
+                    <ui:VisualElement class="play-backdrop" />
+
+                    <ui:VisualElement class="play-profile-free">
+                        <ui:VisualElement class="play-rank-emblem-art" />
+                        <ui:VisualElement class="play-profile-copy">
+                            <ui:Label name="ProfileNameLabel" text="COMMANDER" class="online-profile-name" />
+                            <ui:Label name="ProfileRankLabel" text="PLATZIERUNG // 1000 RP" class="online-rank" />
+                            <ui:Label name="ProfileStatsLabel" text="0 SIEGE // 0 NIEDERLAGEN" class="micro-label hidden" />
+                        </ui:VisualElement>
+                        <ui:Label name="ProfileCodeLabel" text="CODE --------" class="profile-code-free hidden" />
+                    </ui:VisualElement>
+
+                    <ui:Label name="SeasonLabel" text="RANKED // SAISON 01" class="play-season-free hidden" />
+                    <ui:VisualElement class="play-fleet-arena-art hidden" />
+
+                    <ui:Button name="ModeSelectorButton" text="SOLO // GEGEN BOT  ›" class="mode-selector-button play-mode-button" />
+                    <ui:Button name="PlayLoginButton" text="ONLINE ANMELDEN" class="play-login-suppressed hidden" />
+
+                    <ui:Button name="PlayLaunchButton" text="KÄMPFEN" class="play-launch-button play-battle-button" />
+                    <ui:Button name="TutorialReplayButton" text="AUSBILDUNG WIEDERHOLEN" class="tutorial-replay-button" />
+
+                    <ui:VisualElement name="DeveloperAdminPanel" class="developer-admin-panel hidden">
+                        <ui:VisualElement class="developer-admin-header">
+                            <ui:Label text="ADMIN" class="developer-admin-title" />
+                        </ui:VisualElement>
+                        <ui:Toggle name="DeveloperFreeAbilitiesToggle" text="FÄHIGKEITEN // 0 PUNKTE" class="developer-admin-toggle" />
+                        <ui:Toggle name="DeveloperForceJetHitToggle" text="BOT TRIFFT JET // IMMER" class="developer-admin-toggle" />
+                    </ui:VisualElement>
+
+                    <ui:Button name="StoreButton" text="" class="hidden" />
+                    <ui:Button name="LeaderboardButton" text="" class="hidden" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="LeaderboardScreen" class="online-tab-page hidden">
+                    <ui:ScrollView mode="Vertical" class="online-tab-scroll">
+                        <ui:VisualElement class="leaderboard-hero">
+                            <ui:Label text="SAISON 01" class="battle-season" />
+                            <ui:Label text="GLOBAL COMMAND" class="tab-hero-title" />
+                            <ui:Label text="DIE BESTEN KOMMANDANTEN" class="tab-hero-copy" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="leaderboard-column-labels">
+                            <ui:Label text="RANG" /><ui:Label text="KOMMANDANT" /><ui:Label text="RP" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="LeaderboardList" class="friends-list leaderboard-list-modern" />
+                        <ui:Label name="LeaderboardMessageLabel" text="RANGLISTE WIRD GELADEN..." class="online-message" />
+                    </ui:ScrollView>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="ProfileScreen" class="online-tab-page hidden">
+                    <ui:ScrollView mode="Vertical" class="online-tab-scroll profile-minimal-scroll">
+                        <ui:VisualElement class="profile-minimal-hero">
+                            <ui:VisualElement name="ProfileAvatarImage" class="profile-avatar-image">
+                                <ui:Label name="ProfileAvatarInitials" text="NC" class="profile-avatar-initials" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="profile-name-row">
+                                <ui:Label name="ProfileDisplayNameLabel" text="COMMANDER" class="profile-display-name" />
+                                <ui:Button name="ProfileAccountButton" text="" tooltip="PROFIL BEARBEITEN" class="profile-edit-button">
+                                    <ui:VisualElement class="profile-pencil-stroke" />
+                                    <ui:VisualElement class="profile-pencil-tip" />
+                                    <ui:VisualElement class="profile-pencil-eraser" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:Label name="ProfileIdentityCodeLabel" text="CODE --------" class="profile-identity-code" />
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="profile-stats-grid">
+                            <ui:VisualElement class="profile-stat-card">
+                                <ui:Label name="ProfileWinsValue" text="0" class="profile-stat-value" />
+                                <ui:Label text="SIEGE" class="profile-stat-label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="profile-stat-card">
+                                <ui:Label name="ProfileLossesValue" text="0" class="profile-stat-value" />
+                                <ui:Label text="NIEDERLAGEN" class="profile-stat-label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="profile-stat-card">
+                                <ui:Label name="ProfileRankValue" text="PLATZIERUNG" class="profile-stat-value profile-rank-value" />
+                                <ui:Label text="RANG" class="profile-stat-label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="profile-stat-card">
+                                <ui:Label name="ProfileJoinedValue" text="--.--.----" class="profile-stat-value profile-joined-value" />
+                                <ui:Label text="BEIGETRETEN" class="profile-stat-label" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                    </ui:ScrollView>
+
+                    <ui:VisualElement name="ProfileAccountMenu" class="profile-account-menu profile-edit-menu hidden">
+                        <ui:VisualElement class="profile-account-sheet profile-edit-sheet">
+                            <ui:VisualElement class="profile-edit-header">
+                                <ui:Label text="PROFIL BEARBEITEN" class="profile-account-title" />
+                                <ui:Button name="ProfileAccountCancelButton" text="×" class="profile-edit-close" />
+                            </ui:VisualElement>
+                            <ui:Button name="ProfileAvatarButton" text="PROFILBILD ÄNDERN" class="profile-avatar-button profile-edit-avatar-button" />
+                            <ui:Label text="ANZEIGENAME" class="profile-minimal-label profile-edit-label" />
+                            <ui:TextField name="ProfileNameField" label="" value="" max-length="20" class="online-input profile-input profile-edit-input" />
+                            <ui:Button name="SaveProfileButton" text="ÄNDERUNGEN SPEICHERN" class="profile-save-button profile-edit-save" />
+                            <ui:Label name="ProfileMessageLabel" text="" class="online-message profile-minimal-message profile-edit-message" />
+                            <ui:VisualElement class="profile-edit-divider" />
+                            <ui:Button name="DeleteAccountButton" text="KONTO LÖSCHEN" class="profile-account-action profile-delete-action" />
+                            <ui:Button name="SignOutButton" text="ABMELDEN" class="profile-account-action hidden" />
+                            <ui:Button name="ProfileLoginButton" text="ONLINE ANMELDEN" class="secondary-button online-wide-button hidden" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="GameModeOverlay" class="game-mode-overlay hidden">
+                <ui:VisualElement class="game-mode-sheet">
+                    <ui:VisualElement class="game-mode-sheet-header">
+                        <ui:VisualElement>
+                            <ui:Label text="SPIELMODUS" class="game-mode-title" />
+                        </ui:VisualElement>
+                        <ui:Button name="CloseGameModeButton" text="×" class="game-mode-close" />
+                    </ui:VisualElement>
+                    <ui:Button name="SoloBattleButton" text="SOLO-GEFECHT&#10;GEGEN ZUFÄLLIGEN BOT" class="game-mode-option game-mode-option-active" />
+                    <ui:Button name="RankedBattleButton" text="RANGLISTEN-GEFECHT&#10;GEGEN ECHTE KOMMANDANTEN" class="game-mode-option game-mode-option-ranked" />
+                    <ui:Label name="GameModeMessageLabel" text="SOLO IST AUSGEWÄHLT" class="online-message game-mode-message" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="online-bottom-nav">
+                <ui:VisualElement name="OnlineTabIndicator" class="online-tab-indicator" />
+                <ui:Button name="StoreTabButton" class="online-tab-button">
+                    <ui:VisualElement class="online-tab-icon tab-icon-shop" /><ui:Label text="SHOP" class="online-tab-label" />
+                </ui:Button>
+                <ui:Button name="FriendsTabButton" class="online-tab-button">
+                    <ui:VisualElement class="online-tab-icon tab-icon-friends" /><ui:Label text="FREUNDE" class="online-tab-label" />
+                </ui:Button>
+                <ui:Button name="PlayTabButton" class="online-tab-button online-tab-button-main online-tab-active">
+                    <ui:VisualElement class="online-tab-icon tab-icon-play" /><ui:Label text="SPIELEN" class="online-tab-label" />
+                </ui:Button>
+                <ui:Button name="LeaderboardTabButton" class="online-tab-button">
+                    <ui:VisualElement class="online-tab-icon tab-icon-leaderboard" /><ui:Label text="RANG" class="online-tab-label" />
+                </ui:Button>
+                <ui:Button name="ProfileTabButton" class="online-tab-button">
+                    <ui:VisualElement class="online-tab-icon tab-icon-account" /><ui:Label text="PROFIL" class="online-tab-label" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="MatchmakingScreen" class="screen online-screen hidden">
+            <ui:VisualElement class="online-center">
+                <ui:VisualElement class="matchmaking-radar">
+                    <ui:VisualElement class="matchmaking-radar-inner" />
+                    <ui:VisualElement class="matchmaking-sweep" />
+                </ui:VisualElement>
+                <ui:Label text="GEGNER WIRD GESUCHT" class="online-title matchmaking-title" />
+                <ui:Label name="MatchmakingStatusLabel" text="MMR-FENSTER ±100" class="online-message" />
+                <ui:Button name="CancelMatchmakingButton" text="SUCHE ABBRECHEN" class="secondary-button online-wide-button matchmaking-cancel" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="RankedMatchFoundScreen" class="screen online-screen ranked-match-found-screen hidden">
+            <ui:VisualElement class="ranked-match-found-grid">
+                <ui:VisualElement class="ranked-match-found-grid-line ranked-match-found-grid-v grid-v-one" />
+                <ui:VisualElement class="ranked-match-found-grid-line ranked-match-found-grid-v grid-v-two" />
+                <ui:VisualElement class="ranked-match-found-grid-line ranked-match-found-grid-h grid-h-one" />
+                <ui:VisualElement class="ranked-match-found-grid-line ranked-match-found-grid-h grid-h-two" />
+            </ui:VisualElement>
+            <ui:Label text="RANKED-VERBINDUNG HERGESTELLT" class="ranked-match-found-kicker" />
+            <ui:VisualElement class="ranked-match-found-arena">
+                <ui:VisualElement class="ranked-match-player-card ranked-match-player-own">
+                    <ui:Label text="DEINE FLOTTE" class="ranked-match-player-side" />
+                    <ui:VisualElement name="RankedMatchOwnAvatar" class="ranked-match-avatar ranked-match-own-avatar">
+                        <ui:Label name="RankedMatchOwnInitials" text="NC" class="ranked-match-avatar-initials" />
+                    </ui:VisualElement>
+                    <ui:Label name="RankedMatchOwnName" text="COMMANDER" class="ranked-match-player-name" />
+                </ui:VisualElement>
+                <ui:VisualElement class="ranked-match-versus">
+                    <ui:VisualElement class="ranked-match-versus-ring">
+                        <ui:Label text="VS" class="ranked-match-versus-label" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="ranked-match-player-card ranked-match-player-opponent">
+                    <ui:Label text="GEGNERISCHE FLOTTE" class="ranked-match-player-side" />
+                    <ui:VisualElement name="RankedMatchOpponentAvatar" class="ranked-match-avatar ranked-match-opponent-avatar">
+                        <ui:Label name="RankedMatchOpponentInitials" text="??" class="ranked-match-avatar-initials" />
+                    </ui:VisualElement>
+                    <ui:Label name="RankedMatchOpponentName" text="GEGNER" class="ranked-match-player-name" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="RankedMatchFoundStatus" text="GEGNER GEFUNDEN" class="ranked-match-found-status" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="CommanderScreen" class="screen commander-screen hidden">
+            <ui:VisualElement class="compact-header">
+                <ui:Button name="CommanderBackButton" text="‹" class="icon-button" />
+                <ui:VisualElement class="header-copy">
+                    <ui:Label text="KOMMANDANT WÄHLEN" class="screen-title" />
+                    <ui:Label text="FLOTTE UND FÄHIGKEITEN FESTLEGEN" class="micro-label" />
+                </ui:VisualElement>
+                <ui:VisualElement class="signal">
+                    <ui:VisualElement class="signal-bar s1" />
+                    <ui:VisualElement class="signal-bar s2" />
+                    <ui:VisualElement class="signal-bar s3" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:ScrollView mode="Vertical" horizontal-scroller-visibility="Hidden" class="commander-list">
+                <ui:VisualElement name="CommanderCard0" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-standard"><ui:Label text="FC" class="portrait-monogram" /></ui:VisualElement>
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="STANDARD-KOMMANDANT" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton0" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo0" class="commander-card-info hidden">
+                            <ui:Label text="FLOTTENKOMMANDO" class="commander-card-rank" />
+                            <ui:Label text="FLOTTE  5 · 4 · 3 · 3 · 2" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander0" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="CommanderCard1" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-elias" />
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="KAPITÄN ELIAS VOSS" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton1" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo1" class="commander-card-info hidden">
+                            <ui:Label text="BERGUNGSKOMMANDO // ORACLE" class="commander-card-rank" />
+                            <ui:Label text="SEKTORSCAN 8P  //  REPARATUR 3P" class="commander-card-abilities" />
+                            <ui:Label text="FLOTTE  2 · 3 · 5" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander1" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="CommanderCard2" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-dae" />
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="KAPITÄN DAE-HYUN KWON" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton2" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo2" class="commander-card-info hidden">
+                            <ui:Label text="SPEZIALWAFFEN // VIPER" class="commander-card-rank" />
+                            <ui:Label text="CHEMIEBOMBE 4P  //  MINENLEGER 7P" class="commander-card-abilities" />
+                            <ui:Label text="FLOTTE  4 · 4 · 2 · 2" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander2" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="CommanderCard3" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-ronan" />
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="KAPITÄN RONAN GRAVES" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton3" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo3" class="commander-card-info hidden">
+                            <ui:Label text="BELAGERUNGSKOMMANDO // TITAN" class="commander-card-rank" />
+                            <ui:Label text="VERSCHIEBUNG 5P  //  ATOMBOMBE 7P" class="commander-card-abilities" />
+                            <ui:Label text="FLOTTE  FESTUNG 7×2 · PATROUILLE 2" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander3" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="CommanderCard4" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-arjan" />
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="KAPITÄN ARJAN DHILLON" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton4" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo4" class="commander-card-info hidden">
+                            <ui:Label text="FEUERLEITKOMMANDO // VECTOR" class="commander-card-rank" />
+                            <ui:Label text="ENTFERNUNG 5P  //  AMOKLAUF ×6 8P" class="commander-card-abilities" />
+                            <ui:Label text="FLOTTE  GABEL 3×2 · RAKETENKREUZER 4 · ZERSTÖRER 3" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander4" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="CommanderCard5" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-mateo" />
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="KAPITÄN MATEO SERRANO" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton5" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo5" class="commander-card-info hidden">
+                            <ui:Label text="UNTERWASSERKOMMANDO // ABYSS" class="commander-card-rank" />
+                            <ui:Label text="TORPEDO 14P  //  UNTERTAUCHEN 5P" class="commander-card-abilities" />
+                            <ui:Label text="FLOTTE  FLUGZEUGTRÄGER 5 · U-BOOT 3 · KREUZER 3" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander5" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="CommanderCard6" class="commander-card">
+                    <ui:VisualElement class="commander-portrait portrait-imani" />
+                    <ui:VisualElement class="commander-card-copy">
+                        <ui:VisualElement class="commander-card-heading">
+                            <ui:Label text="KAPITÄN IMANI CROSS" class="commander-card-name" />
+                            <ui:Button name="CommanderInfoButton6" text="i" tooltip="INFOS ANZEIGEN" class="commander-info-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="CommanderInfo6" class="commander-card-info hidden">
+                            <ui:Label text="TRÄGERLUFTGRUPPE &amp; ELEKTRONISCHE KAMPFFÜHRUNG // RAPTOR" class="commander-card-rank" />
+                            <ui:Label text="JET START 8P  //  STÖRSENDER 3P" class="commander-card-abilities" />
+                            <ui:Label text="FLOTTE  FLUGZEUGTRÄGER 5 · GABEL 3×2 · PATROUILLE 2" class="micro-label" />
+                        </ui:VisualElement>
+                        <ui:Button name="SelectCommander6" text="AUSWÄHLEN" class="primary-button commander-select-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:ScrollView>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="SetupScreen" class="screen setup-screen hidden">
+            <ui:VisualElement class="compact-header">
+                <ui:Button name="SetupBackButton" text="‹" class="icon-button" />
+                <ui:VisualElement class="header-copy hidden">
+                    <ui:Label text="FLOTTE AUFSTELLEN" class="screen-title" />
+                    <ui:Label name="SetupProgressLabel" text="0 / 5 BEREIT" class="micro-label" />
+                </ui:VisualElement>
+                <ui:VisualElement class="signal">
+                    <ui:VisualElement class="signal-bar s1" />
+                    <ui:VisualElement class="signal-bar s2" />
+                    <ui:VisualElement class="signal-bar s3" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="setup-main">
+                <ui:VisualElement class="board-frame setup-board-frame">
+                    <ui:Label text="EIGENES RASTER // 10×10" class="board-caption console-title" />
+                    <ui:VisualElement name="SetupGrid" class="battle-grid setup-grid" />
+                    <ui:VisualElement class="corner corner-tl" />
+                    <ui:VisualElement class="corner corner-tr" />
+                    <ui:VisualElement class="corner corner-bl" />
+                    <ui:VisualElement class="corner corner-br" />
+                </ui:VisualElement>
+
+                <ui:VisualElement class="ship-console">
+                    <ui:VisualElement class="console-header">
+                        <ui:Label text="SCHIFFE" class="console-title" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ShipTray" class="ship-tray" />
+                    <ui:VisualElement class="setup-actions">
+                        <ui:Button name="RandomizeFleetButton" text="ZUFALL" class="secondary-button" />
+                        <ui:Button name="BeginBattleButton" text="GEFECHT STARTEN" class="primary-button battle-start-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="BattleScreen" class="screen battle-screen hidden">
+            <ui:VisualElement class="battle-header">
+                <ui:Button name="BattleBackButton" text="‹" class="icon-button" />
+                <ui:VisualElement name="TurnPanel" class="turn-panel">
+                    <ui:VisualElement name="TurnDot" class="turn-dot turn-player" />
+                    <ui:Label name="TurnLabel" text="DU BIST AM ZUG" class="turn-label" />
+                </ui:VisualElement>
+                <ui:Button name="SurrenderButton" text="AUFGEBEN" class="topbar-button hidden" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="battle-main">
+                <ui:VisualElement class="board-frame main-board-frame">
+                    <ui:Label name="MainBoardCaption" text="ZIELRASTER // GEGNER" class="board-caption" />
+                    <ui:VisualElement name="MainBattleGrid" class="battle-grid main-battle-grid" />
+                    <ui:VisualElement class="corner corner-tl" />
+                    <ui:VisualElement class="corner corner-tr" />
+                    <ui:VisualElement class="corner corner-bl" />
+                    <ui:VisualElement class="corner corner-br" />
+                </ui:VisualElement>
+                <ui:Label name="BattleMessage" text="ZIEL WÄHLEN" class="battle-message" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="command-console">
+                <ui:VisualElement class="console-header command-header">
+                    <ui:Label text="KOMMANDOZENTRALE" class="console-title" />
+                </ui:VisualElement>
+                <ui:VisualElement class="ability-deck">
+                    <ui:VisualElement name="BattleCommanderPortrait" class="battle-commander-portrait portrait-standard hidden">
+                        <ui:Label name="BattleCommanderMonogram" text="FC" class="battle-portrait-monogram" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="battle-commander-copy">
+                        <ui:Label name="BattleCommanderName" text="STANDARD-KOMMANDANT" class="battle-commander-name hidden" />
+                        <ui:VisualElement class="points-panel battle-points-panel">
+                            <ui:Label text="PUNKTE" class="micro-label" />
+                            <ui:Label name="PointsLabel" text="00" class="points-value" />
+                            <ui:VisualElement name="SunkEnemyShips" class="sunk-enemy-ships" />
+                        </ui:VisualElement>
+                        <ui:Label name="BattleCommanderRank" text="FLOTTENKOMMANDO" class="battle-commander-rank hidden" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ability-buttons">
+                        <ui:Button name="AbilityOneButton" text="" class="ability-button">
+                            <ui:Label name="AbilityOneCostLabel" text="6" class="ability-cost" />
+                            <ui:Label name="AbilityOneNameLabel" text="SPERRFEUER" class="ability-name" />
+                        </ui:Button>
+                        <ui:Button name="AbilityTwoButton" text="" class="ability-button">
+                            <ui:Label name="AbilityTwoCostLabel" text="4" class="ability-cost" />
+                            <ui:Label name="AbilityTwoNameLabel" text="LINIENFEUER" class="ability-name" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="command-panels">
+                    <ui:VisualElement class="fleet-panel">
+                        <ui:Label text="FLOTTENSTATUS" class="panel-label" />
+                        <ui:VisualElement name="FleetStatus" class="fleet-status" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MiniBoardPanel" class="mini-panel">
+                        <ui:Label text="DEIN RASTER // ANTIPPEN" class="panel-label" />
+                        <ui:VisualElement name="PlayerMiniGrid" class="battle-grid mini-grid" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="ShotCinematic" class="shot-cinematic hidden">
+            <ui:VisualElement name="ShotBackdrop" class="shot-backdrop" />
+            <ui:VisualElement class="shot-color-grade" />
+            <ui:VisualElement class="shot-vignette shot-vignette-left" />
+            <ui:VisualElement class="shot-vignette shot-vignette-right" />
+
+            <ui:VisualElement name="ShotEnemyShip" class="shot-enemy-ship" />
+            <ui:VisualElement name="ShotEnemyAttacker" class="shot-enemy-attacker" />
+            <ui:VisualElement name="ShotRaptorJet" class="shot-raptor-jet" />
+            <ui:VisualElement class="shot-water-haze" />
+
+            <ui:VisualElement name="ShotTerminalMissile" class="shot-missile shot-terminal-missile">
+                <ui:VisualElement class="shot-missile-trail shot-terminal-trail" />
+                <ui:VisualElement class="shot-missile-flame" />
+                <ui:VisualElement class="shot-fire-particle shot-fire-particle-1" />
+                <ui:VisualElement class="shot-fire-particle shot-fire-particle-2" />
+                <ui:VisualElement class="shot-fire-particle shot-fire-particle-3" />
+                <ui:VisualElement class="shot-fire-particle shot-fire-particle-4" />
+                <ui:VisualElement class="shot-fire-particle shot-fire-particle-5" />
+                <ui:VisualElement class="shot-missile-sprite" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="ShotImpactAnchor" class="shot-impact-anchor">
+                <ui:VisualElement class="shot-hit-explosion" />
+                <ui:VisualElement class="shot-miss-splash" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="shot-result-panel">
+                <ui:Label name="ShotResultLabel" text="TREFFER BESTÄTIGT" class="shot-result-label" />
+                <ui:Label name="ShotCoordinateLabel" text="RASTER 00 // EINSCHLAG" class="shot-coordinate-label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="TutorialOverlay" class="tutorial-overlay hidden">
+            <ui:VisualElement name="TutorialScrim" class="tutorial-scrim" />
+            <ui:VisualElement name="TutorialCallout" class="tutorial-callout">
+                <ui:VisualElement name="TutorialPortrait" class="tutorial-portrait" />
+                <ui:VisualElement class="tutorial-copy">
+                    <ui:VisualElement class="tutorial-bubble-tail" />
+                    <ui:Label name="TutorialEyebrow" text="AUSBILDER // KONRAD WEISS" class="tutorial-eyebrow" />
+                    <ui:Label name="TutorialTitle" text="WILLKOMMEN AN BORD" class="tutorial-title" />
+                    <ui:Label name="TutorialBody" text="Ich bringe dir das Kommando Schritt für Schritt bei." class="tutorial-body" />
+                    <ui:Label name="TutorialTask" text="LEKTION 1 VON 5" class="tutorial-task" />
+                    <ui:Button name="TutorialContinueButton" text="LOS GEHT'S" class="primary-button tutorial-continue" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="StartupSplash" class="startup-splash">
+            <ui:VisualElement name="StartupSplashLogo" class="startup-splash-logo" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

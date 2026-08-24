@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: b625f947f531b214586c22ea13d2449c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3296640935356673582
+    second: ares-foreground-warship_0
+  - first:
+      213: 8582674975030704046
+    second: ares-foreground-warship_1
+  - first:
+      213: -8030374611378270053
+    second: ares-foreground-warship_2
+  - first:
+      213: -6820260977332425539
+    second: ares-foreground-warship_3
+  - first:
+      213: 1233051112902993081
+    second: ares-foreground-warship_4
+  - first:
+      213: 6924622442344415843
+    second: ares-foreground-warship_5
+  - first:
+      213: -772362549777614467
+    second: ares-foreground-warship_6
+  - first:
+      213: -8085435295394097705
+    second: ares-foreground-warship_7
+  - first:
+      213: 7878732981749380981
+    second: ares-foreground-warship_8
+  - first:
+      213: 2924013405124067203
+    second: ares-foreground-warship_9
+  - first:
+      213: 9040852913105227136
+    second: ares-foreground-warship_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ares-foreground-warship_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 1520
+        height: 922
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d1dd00298aff32d0800000000000000
+      internalID: -3296640935356673582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 894
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea7f655ba69cb1770800000000000000
+      internalID: 8582674975030704046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 842
+        width: 111
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b909b7376d06e8090800000000000000
+      internalID: -8030374611378270053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_3
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 902
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc64a2c6c09951a0800000000000000
+      internalID: -6820260977332425539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_4
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 896
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4ab76447dac1110800000000000000
+      internalID: 1233051112902993081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_5
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 829
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36203af4c63391060800000000000000
+      internalID: 6924622442344415843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_6
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 923
+        width: 94
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d79b0b66a540845f0800000000000000
+      internalID: -772362549777614467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_7
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 863
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d511a3ff63cacf80800000000000000
+      internalID: -8085435295394097705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_8
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 955
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 577735157e1e65d60800000000000000
+      internalID: 7878732981749380981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_9
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 939
+        width: 94
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f76ea23be249820800000000000000
+      internalID: 2924013405124067203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ares-foreground-warship_10
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 833
+        width: 94
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08d4130f2df877d70800000000000000
+      internalID: 9040852913105227136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ares-foreground-warship_0: -3296640935356673582
+      ares-foreground-warship_1: 8582674975030704046
+      ares-foreground-warship_10: 9040852913105227136
+      ares-foreground-warship_2: -8030374611378270053
+      ares-foreground-warship_3: -6820260977332425539
+      ares-foreground-warship_4: 1233051112902993081
+      ares-foreground-warship_5: 6924622442344415843
+      ares-foreground-warship_6: -772362549777614467
+      ares-foreground-warship_7: -8085435295394097705
+      ares-foreground-warship_8: 7878732981749380981
+      ares-foreground-warship_9: 2924013405124067203
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
