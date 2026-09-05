@@ -15,7 +15,14 @@ public sealed class NavalStoredValue<T>
 }
 
 /// <summary>All authoritative records are server-only Cloud Save custom items.</summary>
-public sealed class NavalCloudSaveStore
+public interface INavalCloudSaveStore
+{
+    Task<NavalStoredValue<T>> GetAsync<T>(IExecutionContext context, string entityId, string key);
+    Task<string?> PutAsync<T>(IExecutionContext context, string entityId, string key, T value, string? writeLock);
+    Task DeleteEntityAsync(IExecutionContext context, string entityId);
+}
+
+public sealed class NavalCloudSaveStore : INavalCloudSaveStore
 {
     private readonly IGameApiClient _api;
 

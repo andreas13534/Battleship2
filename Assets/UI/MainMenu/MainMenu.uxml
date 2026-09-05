@@ -47,29 +47,30 @@
             </ui:VisualElement>
             <ui:VisualElement class="bottombar">
                 <ui:VisualElement class="bottom-line" />
-                <ui:Label text="SECURE CHANNEL // 01" class="footer-status" />
             </ui:VisualElement>
         </ui:VisualElement>
 
         <ui:VisualElement name="OnlineLoginScreen" class="screen online-screen hidden">
             <ui:VisualElement class="compact-header">
                 <ui:Button name="OnlineLoginBackButton" text="‹" class="icon-button" />
-                <ui:VisualElement class="header-copy">
-                    <ui:Label text="SICHERER ZUGANG" class="screen-title" />
-                    <ui:Label text="ONLINE-KONTO ERFORDERLICH" class="micro-label" />
-                </ui:VisualElement>
+                <ui:VisualElement class="header-copy" />
             </ui:VisualElement>
             <ui:VisualElement class="online-center">
                 <ui:VisualElement class="online-panel auth-panel">
-                    <ui:Label text="NAVAL ID" class="online-kicker" />
                     <ui:Label text="ANMELDEN" class="online-title" />
-                    <ui:Label text="Dein Rang, deine Freunde und Käufe werden sicher mit diesem Konto verbunden." class="online-copy" />
+                    <ui:Label text="Mit Freunden spielen." class="online-copy" />
                     <ui:Toggle name="AgeConsentToggle" text="ICH BIN MINDESTENS 16 JAHRE ALT" class="debug-toggle online-consent" />
-                    <ui:Button name="PlayerAccountLoginButton" text="E-MAIL / UNITY-KONTO" class="primary-button online-wide-button" />
-                    <ui:Button name="AppleLoginButton" text="MIT APPLE ANMELDEN" class="secondary-button online-wide-button" />
-                    <ui:Button name="GoogleLoginButton" text="MIT GOOGLE ANMELDEN" class="secondary-button online-wide-button" />
+                    <ui:VisualElement name="WebCredentialsPanel" class="web-credentials hidden">
+                        <ui:TextField name="WebUsernameField" label="NUTZERNAME" max-length="20" class="online-input web-credential-input" />
+                        <ui:TextField name="WebPasswordField" label="PASSWORT" max-length="30" is-password-field="true" class="online-input web-credential-input" />
+                        <ui:Label text="3–20 ZEICHEN · PASSWORT MIT 8–30 ZEICHEN, GROSS-/KLEINBUCHSTABE, ZAHL UND SONDERZEICHEN" class="field-hint web-credential-hint" />
+                        <ui:Button name="WebSignInButton" text="ANMELDEN" class="primary-button online-wide-button" />
+                        <ui:Button name="WebRegisterButton" text="KONTO ERSTELLEN" class="secondary-button online-wide-button" />
+                    </ui:VisualElement>
+                    <ui:Button name="PlayerAccountLoginButton" text="ANMELDEN / REGISTRIEREN" class="primary-button online-wide-button" />
+                    <ui:Button name="AppleLoginButton" text="MIT APPLE ANMELDEN" class="secondary-button online-wide-button hidden" />
+                    <ui:Button name="GoogleLoginButton" text="MIT GOOGLE ANMELDEN" class="secondary-button online-wide-button hidden" />
                     <ui:Label name="LoginStatusLabel" text="DIENSTE WERDEN INITIALISIERT..." class="online-message" />
-                    <ui:Label text="Nur für Spieler ab 16 Jahren." class="micro-label online-age" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
@@ -84,14 +85,12 @@
                 </ui:VisualElement>
                 <ui:VisualElement class="online-header-signal">
                     <ui:VisualElement class="online-signal-dot" />
-                    <ui:Label text="LIVE" class="online-live-label" />
                 </ui:VisualElement>
             </ui:VisualElement>
 
             <ui:VisualElement name="OnlineTabViewport" class="online-tab-viewport">
                 <ui:VisualElement name="StoreScreen" class="online-tab-page hidden">
                     <ui:ScrollView mode="Vertical" horizontal-scroller-visibility="Hidden" class="online-tab-scroll">
-                        <ui:Label text="AKTUELLES ANGEBOT" class="section-label" />
                         <ui:VisualElement class="featured-offer">
                             <ui:VisualElement class="featured-offer-ribbon"><ui:Label text="VECTOR-ANGEBOT" class="featured-offer-ribbon-text" /></ui:VisualElement>
                             <ui:VisualElement class="featured-offer-stage">
@@ -136,7 +135,6 @@
                         </ui:VisualElement>
                         <ui:Label text="BELOHNUNGSCODES" class="section-label reward-code-section-label" />
                         <ui:VisualElement class="reward-code-card">
-                            <ui:Label text="CODE EINGEBEN UND BELOHNUNG SICHERN" class="reward-code-copy" />
                             <ui:VisualElement class="reward-code-row">
                                 <ui:TextField name="RewardCodeField" label="" value="" max-length="64" class="online-input reward-code-input" />
                                 <ui:Button name="RedeemRewardCodeButton" text="EINLÖSEN" class="store-buy-button reward-code-button" />
@@ -157,10 +155,10 @@
                             <ui:Button name="RefreshFriendsButton" text="↻" class="refresh-chip" />
                         </ui:VisualElement>
                         <ui:VisualElement class="friend-code-card">
-                            <ui:TextField name="FriendNameField" label="" value="" class="online-input friend-code-input" />
+                            <ui:TextField name="FriendNameField" label="" value="" tooltip="Freundescode oder vollständige Spieler-ID wie Name#12345" class="online-input friend-code-input" />
                             <ui:Button name="AddFriendButton" text="HINZUFÜGEN" class="primary-button friend-add-button" />
                         </ui:VisualElement>
-                        <ui:Label text="NAME ODER FREUNDESCODE" class="field-hint" />
+                        <ui:Label name="FriendCodeHint" text="NAME#12345 ODER SPIELER-ID" class="field-hint" />
                         <ui:VisualElement name="InvitesPanel" class="online-panel invite-card hidden">
                             <ui:Label text="DUELL-ANFRAGEN" class="section-label" />
                             <ui:VisualElement name="InvitesList" class="friends-list" />
@@ -207,9 +205,7 @@
                 <ui:VisualElement name="LeaderboardScreen" class="online-tab-page hidden">
                     <ui:ScrollView mode="Vertical" class="online-tab-scroll">
                         <ui:VisualElement class="leaderboard-hero">
-                            <ui:Label text="SAISON 01" class="battle-season" />
-                            <ui:Label text="GLOBAL COMMAND" class="tab-hero-title" />
-                            <ui:Label text="DIE BESTEN KOMMANDANTEN" class="tab-hero-copy" />
+                            <ui:Label text="RANGLISTE" class="tab-hero-title" />
                         </ui:VisualElement>
                         <ui:VisualElement class="leaderboard-column-labels">
                             <ui:Label text="RANG" /><ui:Label text="KOMMANDANT" /><ui:Label text="RP" />
@@ -234,6 +230,7 @@
                                 </ui:Button>
                             </ui:VisualElement>
                             <ui:Label name="ProfileIdentityCodeLabel" text="CODE --------" class="profile-identity-code" />
+                            <ui:Button name="CopyFriendCodeButton" text="FREUNDESCODE KOPIEREN" class="secondary-button" />
                         </ui:VisualElement>
 
                         <ui:VisualElement class="profile-stats-grid">
@@ -318,7 +315,7 @@
                     <ui:VisualElement class="matchmaking-sweep" />
                 </ui:VisualElement>
                 <ui:Label text="GEGNER WIRD GESUCHT" class="online-title matchmaking-title" />
-                <ui:Label name="MatchmakingStatusLabel" text="MMR-FENSTER ±100" class="online-message" />
+                <ui:Label name="MatchmakingStatusLabel" text="SUCHE WIRD GESTARTET..." class="online-message" />
                 <ui:Button name="CancelMatchmakingButton" text="SUCHE ABBRECHEN" class="secondary-button online-wide-button matchmaking-cancel" />
             </ui:VisualElement>
         </ui:VisualElement>
@@ -330,7 +327,6 @@
                 <ui:VisualElement class="ranked-match-found-grid-line ranked-match-found-grid-h grid-h-one" />
                 <ui:VisualElement class="ranked-match-found-grid-line ranked-match-found-grid-h grid-h-two" />
             </ui:VisualElement>
-            <ui:Label text="RANKED-VERBINDUNG HERGESTELLT" class="ranked-match-found-kicker" />
             <ui:VisualElement class="ranked-match-found-arena">
                 <ui:VisualElement class="ranked-match-player-card ranked-match-player-own">
                     <ui:Label text="DEINE FLOTTE" class="ranked-match-player-side" />
@@ -360,7 +356,6 @@
                 <ui:Button name="CommanderBackButton" text="‹" class="icon-button" />
                 <ui:VisualElement class="header-copy">
                     <ui:Label text="KOMMANDANT WÄHLEN" class="screen-title" />
-                    <ui:Label text="FLOTTE UND FÄHIGKEITEN FESTLEGEN" class="micro-label" />
                 </ui:VisualElement>
                 <ui:VisualElement class="signal">
                     <ui:VisualElement class="signal-bar s1" />
@@ -499,7 +494,7 @@
 
             <ui:VisualElement class="setup-main">
                 <ui:VisualElement class="board-frame setup-board-frame">
-                    <ui:Label text="EIGENES RASTER // 10×10" class="board-caption console-title" />
+                    <ui:Label text="EIGENES RASTER" class="board-caption console-title" />
                     <ui:VisualElement name="SetupGrid" class="battle-grid setup-grid" />
                     <ui:VisualElement class="corner corner-tl" />
                     <ui:VisualElement class="corner corner-tr" />
@@ -630,6 +625,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
+
+        <ui:Button name="TutorialSkipButton" text="ÜBERSPRINGEN" class="secondary-button tutorial-skip-button hidden" />
 
         <ui:VisualElement name="StartupSplash" class="startup-splash">
             <ui:VisualElement name="StartupSplashLogo" class="startup-splash-logo" />

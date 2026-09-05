@@ -9,10 +9,11 @@ using Unity.Services.CloudCode.Subscriptions;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using Unity.Services.Friends;
+using Unity.Services.Friends.Exceptions;
 using Unity.Services.Friends.Models;
 using Unity.Services.Authentication.PlayerAccounts;
 
-public sealed class UgsNavalOnlineService : INavalOnlineService
+public sealed class UgsNavalOnlineService : INavalOnlineService, IDisposable
 {
     [Serializable]
     private sealed class MatchPushEnvelope
@@ -23,6 +24,13 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
     private ISubscriptionEvents subscription;
     private bool friendsInitialized;
+    private Task initializationTask;
+    private Task friendsInitializationTask;
+    private bool signInPending;
+    private bool disposed;
+    private int sessionVersion;
+    private NavalPlayerMatchView latestMatch;
+    private IAuthenticationService observedAuthentication;
 
     public NavalOnlineStatus Status { get; private set; } = NavalOnlineStatus.Offline;
     public string LastError { get; private set; } = string.Empty;
@@ -34,7 +42,14 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
     public event Action StateChanged;
     public event Action<NavalPlayerMatchView> MatchChanged;
 
-    public async Task InitializeAsync(string environmentName)
+    public Task InitializeAsync(string environmentName)
+    {
+        if (initializationTask != null && !initializationTask.IsCompleted) return initializationTask;
+        initializationTask = InitializeCoreAsync(environmentName);
+        return initializationTask;
+    }
+
+    private async Task InitializeCoreAsync(string environmentName)
     {
         SetStatus(NavalOnlineStatus.Initializing);
         try
@@ -50,14 +65,24 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
             }
 
             IAuthenticationService authentication = AuthenticationService.Instance;
+            if (observedAuthentication == null)
+            {
+                observedAuthentication = authentication;
+                authentication.Expired += HandleSessionExpired;
+                authentication.SignedOut += HandleSessionSignedOut;
+            }
             if (!authentication.IsSignedIn && authentication.SessionTokenExists)
             {
                 SetStatus(NavalOnlineStatus.SigningIn);
-                await authentication.SignInAnonymouslyAsync(new SignInOptions
+                try
                 {
-                    // A missing token must never create an unrelated anonymous account.
-                    CreateAccount = false
-                });
+                    await authentication.SignInAnonymouslyAsync(new SignInOptions { CreateAccount = false });
+                }
+                catch (AuthenticationException)
+                {
+                    // An expired/revoked saved session must still allow interactive login.
+                    authentication.SignOut(true);
+                }
             }
 
             SetStatus(authentication.IsSignedIn
@@ -92,6 +117,11 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
     public async Task SignInWithPlayerAccountAsync()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        SetError("DIE ANMELDUNG BENÖTIGT DIE ANDROID-, IOS- ODER WINDOWS-APP.");
+        await Task.CompletedTask;
+        return;
+#else
         await RunSignInAsync(async () =>
         {
             IPlayerAccountService playerAccounts = PlayerAccountService.Instance;
@@ -107,8 +137,13 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
                 {
                     // StartSignInAsync only launches the browser. The access token becomes
                     // available later through SignedIn after the browser callback completes.
-                    await playerAccounts.StartSignInAsync();
-                    Task finished = await Task.WhenAny(signInCompleted.Task, Task.Delay(TimeSpan.FromMinutes(3)));
+                    Task timeout = Task.Delay(TimeSpan.FromMinutes(3));
+                    Task launch = playerAccounts.StartSignInAsync();
+                    Task first = await Task.WhenAny(launch, signInCompleted.Task, timeout);
+                    if (first == timeout)
+                        throw new TimeoutException("ANMELDUNG WURDE NICHT RECHTZEITIG ABGESCHLOSSEN");
+                    if (first == launch) await launch;
+                    Task finished = await Task.WhenAny(signInCompleted.Task, timeout);
                     if (finished != signInCompleted.Task)
                         throw new TimeoutException("ANMELDUNG WURDE NICHT RECHTZEITIG ABGESCHLOSSEN");
                     await signInCompleted.Task;
@@ -125,6 +160,19 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
             await AuthenticationService.Instance.SignInWithUnityAsync(playerAccounts.AccessToken);
         });
+#endif
+    }
+
+    public Task SignInWithUsernamePasswordAsync(string username, string password)
+    {
+        return RunSignInAsync(() => AuthenticationService.Instance.SignInWithUsernamePasswordAsync(
+            (username ?? string.Empty).Trim(), password ?? string.Empty));
+    }
+
+    public Task SignUpWithUsernamePasswordAsync(string username, string password)
+    {
+        return RunSignInAsync(() => AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(
+            (username ?? string.Empty).Trim(), password ?? string.Empty));
     }
 
     public async Task SignInWithAppleAsync(string idToken)
@@ -151,15 +199,19 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
     public async Task SignOutAsync()
     {
+        sessionVersion++;
+        latestMatch = null;
         await UnsubscribeAsync();
-
-        PlayerAccountService.Instance.SignOut();
-        if (AuthenticationService.Instance.IsSignedIn)
+        if (UnityServices.State == ServicesInitializationState.Initialized)
         {
+#if !UNITY_WEBGL || UNITY_EDITOR
+            PlayerAccountService.Instance.SignOut();
+#endif
             AuthenticationService.Instance.SignOut(true);
         }
 
         friendsInitialized = false;
+        friendsInitializationTask = null;
         Profile = null;
         Entitlements = new NavalEntitlements();
         SetStatus(NavalOnlineStatus.Ready);
@@ -197,8 +249,11 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
     public async Task<NavalPlayerProfile> UpdateDisplayNameAsync(string displayName)
     {
         EnsureSignedIn();
+        int session = sessionVersion;
         string normalized = ValidateDisplayName(displayName);
         await AuthenticationService.Instance.UpdatePlayerNameAsync(normalized);
+        if (disposed || session != sessionVersion || !IsSignedIn)
+            throw new OperationCanceledException("SITZUNG BEENDET");
 
         Profile = await CallAsync<NavalPlayerProfile>("UpdateProfile", new Dictionary<string, object>
         {
@@ -213,8 +268,11 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
     public async Task<IReadOnlyList<NavalFriendProfile>> GetFriendsAsync()
     {
         EnsureSignedIn();
+        int session = sessionVersion;
         await EnsureFriendsInitializedAsync();
         await FriendsService.Instance.ForceRelationshipsRefreshAsync();
+        if (disposed || session != sessionVersion || !IsSignedIn)
+            throw new OperationCanceledException("SITZUNG BEENDET");
         return FriendsService.Instance.Relationships.Select(ToFriendProfile).ToList();
     }
 
@@ -224,17 +282,30 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
         await EnsureFriendsInitializedAsync();
         if (string.IsNullOrWhiteSpace(playerName)) throw new ArgumentException("SPIELERNAME FEHLT");
         string normalized = playerName.Trim();
-        if (LooksLikeFriendCode(normalized))
+        try
         {
-            string playerId = await CallAsync<string>("ResolveFriendCode", new Dictionary<string, object>
+            if (LooksLikeFriendCode(normalized))
             {
-                { "friendCode", normalized.ToUpperInvariant() }
-            });
-            await FriendsService.Instance.AddFriendAsync(playerId);
+                string playerId = await CallAsync<string>("ResolveFriendCode", new Dictionary<string, object>
+                {
+                    { "friendCode", normalized.ToUpperInvariant() }
+                });
+                if (string.Equals(playerId, AuthenticationService.Instance.PlayerId, StringComparison.Ordinal))
+                    throw new InvalidOperationException("DU KANNST DICH NICHT SELBST HINZUFÜGEN");
+                await FriendsService.Instance.AddFriendAsync(playerId);
+            }
+            else
+            {
+                if (!LooksLikeUnityPlayerName(normalized))
+                    throw new ArgumentException("VOLLSTÄNDIGE SPIELER-ID MIT #NUMMER ODER FREUNDESCODE EINGEBEN");
+                if (string.Equals(normalized, AuthenticationService.Instance.PlayerName, StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException("DU KANNST DICH NICHT SELBST HINZUFÜGEN");
+                await FriendsService.Instance.AddFriendByNameAsync(normalized);
+            }
         }
-        else
+        catch (FriendsServiceException exception)
         {
-            await FriendsService.Instance.AddFriendByNameAsync(normalized);
+            throw new InvalidOperationException(ToFriendRequestMessage(exception), exception);
         }
         RaiseStateChanged();
     }
@@ -328,6 +399,27 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
         });
     }
 
+    public Task<NavalMatchTicket> PollFriendlyMatchAsync(string friendPlayerId, string inviteId)
+    {
+        return CallAsync<NavalMatchTicket>("PollFriendlyMatch", new Dictionary<string, object>
+        {
+            { "friendPlayerId", friendPlayerId }, { "inviteId", inviteId }
+        });
+    }
+
+    public Task<NavalMatchTicket> CancelFriendlyMatchAsync(string friendPlayerId, string inviteId)
+    {
+        return CallAsync<NavalMatchTicket>("CancelFriendlyMatch", new Dictionary<string, object>
+        {
+            { "friendPlayerId", friendPlayerId }, { "inviteId", inviteId }
+        });
+    }
+
+    public async Task DeclineFriendlyMatchAsync(string inviteId)
+    {
+        await CallAsync<string>("DeclineFriendlyMatch", new Dictionary<string, object> { { "inviteId", inviteId } });
+    }
+
     public async Task<IReadOnlyList<NavalFriendlyInvite>> GetFriendlyInvitesAsync()
     {
         List<NavalFriendlyInvite> invites = await CallAsync<List<NavalFriendlyInvite>>("GetFriendlyInvites", null);
@@ -349,8 +441,7 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
     {
         NavalPlayerMatchView view = await CallAsync<NavalPlayerMatchView>("GetMatchView",
             new Dictionary<string, object> { { "matchId", matchId } });
-        NotifyMatch(view);
-        return view;
+        return NotifyMatch(view);
     }
 
     public Task<NavalMatchIntro> GetMatchIntroAsync(string matchId)
@@ -363,8 +454,7 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
     public async Task<NavalPlayerMatchView> ReconnectMatchAsync()
     {
         NavalPlayerMatchView view = await CallAsync<NavalPlayerMatchView>("ReconnectMatch", null);
-        if (view != null) NotifyMatch(view);
-        return view;
+        return view == null ? null : NotifyMatch(view);
     }
 
     public async Task<NavalPlayerMatchView> SubmitActionAsync(NavalMatchAction action)
@@ -374,8 +464,7 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
         NavalPlayerMatchView view = await CallAsync<NavalPlayerMatchView>("SubmitAction",
             new Dictionary<string, object> { { "action", action } });
-        NotifyMatch(view);
-        return view;
+        return NotifyMatch(view);
     }
 
     public Task<NavalPlayerMatchView> ClaimTimeoutAsync(string matchId, int expectedVersion)
@@ -440,7 +529,9 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
         await CallAsync<string>("PrepareAccountDeletion", null);
         await UnsubscribeAsync();
         await AuthenticationService.Instance.DeleteAccountAsync();
+#if !UNITY_WEBGL || UNITY_EDITOR
         PlayerAccountService.Instance.SignOut();
+#endif
         friendsInitialized = false;
         Profile = null;
         Entitlements = new NavalEntitlements();
@@ -449,16 +540,17 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
     private async Task RunSignInAsync(Func<Task> signIn)
     {
-        if (UnityServices.State != ServicesInitializationState.Initialized)
-        {
-            await InitializeAsync(NavalOnlineEnvironment.Current);
-            if (UnityServices.State != ServicesInitializationState.Initialized) return;
-        }
-
-        SetStatus(NavalOnlineStatus.SigningIn);
+        if (signInPending || disposed) return;
+        signInPending = true;
         try
         {
-            await signIn();
+            if (UnityServices.State != ServicesInitializationState.Initialized)
+            {
+                await InitializeAsync(NavalOnlineEnvironment.Current);
+                if (UnityServices.State != ServicesInitializationState.Initialized) return;
+            }
+            SetStatus(NavalOnlineStatus.SigningIn);
+            if (!IsSignedIn) await signIn();
             await InitializeSignedInServicesAsync();
             if (Status != NavalOnlineStatus.InMatch)
                 SetStatus(NavalOnlineStatus.SignedIn);
@@ -467,31 +559,57 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
         {
             SetError(ToUserMessage(exception));
         }
+        finally { signInPending = false; }
     }
 
     private async Task InitializeSignedInServicesAsync()
     {
-        await EnsureFriendsInitializedAsync();
         await RefreshProfileAsync();
         await RefreshEntitlementsAsync();
-        await SubscribeToMatchMessagesAsync();
-        await ReconnectMatchAsync();
+        await AuthenticationService.Instance.GetPlayerNameAsync();
+        // Live subscriptions enhance the polling path; a push outage must not block login.
+        try { await EnsureFriendsInitializedAsync(); }
+        catch (Exception) { friendsInitialized = false; }
+        try { await SubscribeToMatchMessagesAsync(); }
+        catch (Exception) { subscription = null; }
+        // An interrupted match must not make an otherwise valid account login fail.
+        // The UI retries the match lookup on resume and through its polling loop.
+        try { await ReconnectMatchAsync(); }
+        catch (Exception) { latestMatch = null; }
     }
 
-    private async Task EnsureFriendsInitializedAsync()
+    private Task EnsureFriendsInitializedAsync()
     {
-        if (friendsInitialized) return;
+        if (friendsInitialized) return Task.CompletedTask;
+        if (friendsInitializationTask != null && !friendsInitializationTask.IsCompleted) return friendsInitializationTask;
+        friendsInitializationTask = InitializeFriendsCoreAsync();
+        return friendsInitializationTask;
+    }
+
+    private async Task InitializeFriendsCoreAsync()
+    {
+        int session = sessionVersion;
         await FriendsService.Instance.InitializeAsync();
+        if (session != sessionVersion || disposed || !IsSignedIn) return;
+        await FriendsService.Instance.SetPresenceAvailabilityAsync(Availability.Online);
         friendsInitialized = true;
     }
 
     private async Task SubscribeToMatchMessagesAsync()
     {
         if (subscription != null) return;
+        int session = sessionVersion;
         SubscriptionEventCallbacks callbacks = new SubscriptionEventCallbacks();
         callbacks.MessageReceived += HandlePushMessage;
-        callbacks.Error += error => SetError("LIVE-VERBINDUNG: " + error);
-        subscription = await CloudCodeService.Instance.SubscribeToPlayerMessagesAsync(callbacks);
+        // Polling keeps the game running while the SDK reconnects its live channel.
+        callbacks.Error += error => RaiseStateChanged();
+        ISubscriptionEvents created = await CloudCodeService.Instance.SubscribeToPlayerMessagesAsync(callbacks);
+        if (disposed || session != sessionVersion || !IsSignedIn)
+        {
+            await created.UnsubscribeAsync();
+            return;
+        }
+        subscription = created;
     }
 
     private async Task UnsubscribeAsync()
@@ -504,7 +622,7 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
     private async void HandlePushMessage(IMessageReceivedEvent message)
     {
-        if (message == null) return;
+        if (message == null || disposed || !IsSignedIn) return;
         if (message.MessageType == "naval.friend.invite")
         {
             RaiseStateChanged();
@@ -519,9 +637,9 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
                 await GetMatchViewAsync(envelope.matchId);
             }
         }
-        catch (Exception exception)
+        catch (Exception)
         {
-            SetError("MATCH-UPDATE FEHLGESCHLAGEN: " + exception.Message);
+            // The next poll retries without turning an otherwise valid account into an error state.
         }
     }
 
@@ -531,8 +649,13 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
         return new NavalFriendProfile
         {
             playerId = relationship.Member.Id,
-            displayName = StripPlayerNameSuffix(relationship.Member.Profile?.Name),
-            online = relationship.Member.Presence != null && relationship.Member.Presence.Availability != Availability.Offline,
+            displayName = string.IsNullOrWhiteSpace(relationship.Member.Profile?.Name)
+                ? "COMMANDER"
+                : relationship.Member.Profile.Name,
+            online = relationship.Member.Presence != null &&
+                (relationship.Member.Presence.Availability == Availability.Online ||
+                 relationship.Member.Presence.Availability == Availability.Away ||
+                 relationship.Member.Presence.Availability == Availability.Busy),
             incomingRequest = incoming,
             outgoingRequest = relationship.Type == RelationshipType.FriendRequest && !incoming,
             blocked = relationship.Type == RelationshipType.Block
@@ -542,22 +665,34 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
     private async Task<T> CallAsync<T>(string function, Dictionary<string, object> arguments)
     {
         EnsureSignedIn();
-        return await CloudCodeService.Instance.CallModuleEndpointAsync<T>(
-            NavalOnlineProtocol.CloudModule,
-            function,
-            arguments ?? new Dictionary<string, object>());
+        int session = sessionVersion;
+        string playerId = AuthenticationService.Instance.PlayerId;
+        T result;
+        try
+        {
+            result = await CloudCodeService.Instance.CallModuleEndpointAsync<T>(
+                NavalOnlineProtocol.CloudModule, function, arguments ?? new Dictionary<string, object>());
+        }
+        catch (Exception exception) { throw new InvalidOperationException(ToUserMessage(exception), exception); }
+        if (disposed || session != sessionVersion || !IsSignedIn || AuthenticationService.Instance.PlayerId != playerId)
+            throw new OperationCanceledException("SITZUNG BEENDET");
+        return result;
     }
 
-    private void NotifyMatch(NavalPlayerMatchView view)
+    private NavalPlayerMatchView NotifyMatch(NavalPlayerMatchView view)
     {
-        if (view == null) return;
-        SetStatus(view.status == NavalMatchStatus.Finished ? NavalOnlineStatus.SignedIn : NavalOnlineStatus.InMatch);
+        if (view == null || disposed) return view;
+        if (latestMatch != null && latestMatch.matchId == view.matchId && view.version < latestMatch.version) return latestMatch;
+        latestMatch = view;
+        NavalOnlineStatus status = view.status == NavalMatchStatus.Finished ? NavalOnlineStatus.SignedIn : NavalOnlineStatus.InMatch;
+        if (Status != status) SetStatus(status);
         MatchChanged?.Invoke(view);
+        return view;
     }
 
     private void EnsureSignedIn()
     {
-        if (!AuthenticationService.Instance.IsSignedIn)
+        if (disposed || !IsSignedIn)
             throw new InvalidOperationException("ONLINE-ANMELDUNG ERFORDERLICH");
     }
 
@@ -577,7 +712,40 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
 
     private void RaiseStateChanged()
     {
-        StateChanged?.Invoke();
+        if (!disposed) StateChanged?.Invoke();
+    }
+
+    private void HandleSessionExpired()
+    {
+        AuthenticationService.Instance.SignOut();
+        SetError("SITZUNG ABGELAUFEN. BITTE ERNEUT ANMELDEN.");
+    }
+
+    private void HandleSessionSignedOut()
+    {
+        sessionVersion++;
+        Profile = null;
+        Entitlements = new NavalEntitlements();
+        latestMatch = null;
+        friendsInitialized = false;
+        friendsInitializationTask = null;
+        _ = UnsubscribeAsync();
+        SetStatus(NavalOnlineStatus.Ready);
+    }
+
+    public void Dispose()
+    {
+        disposed = true;
+        sessionVersion++;
+        if (observedAuthentication != null)
+        {
+            observedAuthentication.Expired -= HandleSessionExpired;
+            observedAuthentication.SignedOut -= HandleSessionSignedOut;
+            observedAuthentication = null;
+        }
+        _ = UnsubscribeAsync();
+        StateChanged = null;
+        MatchChanged = null;
     }
 
     private static string ValidateDisplayName(string value)
@@ -601,13 +769,6 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
             throw new ArgumentException("ONLINE-FLOTTE IST NICHT BEREIT");
     }
 
-    private static string StripPlayerNameSuffix(string playerName)
-    {
-        if (string.IsNullOrWhiteSpace(playerName)) return "COMMANDER";
-        int suffix = playerName.LastIndexOf('#');
-        return suffix > 0 ? playerName.Substring(0, suffix) : playerName;
-    }
-
     private static string CreateLocalFriendCode(string playerId)
     {
         if (string.IsNullOrWhiteSpace(playerId)) return "--------";
@@ -622,11 +783,76 @@ public sealed class UgsNavalOnlineService : INavalOnlineService
         return true;
     }
 
+    private static bool LooksLikeUnityPlayerName(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return false;
+        int separator = value.LastIndexOf('#');
+        if (separator < 3 || separator >= value.Length - 1) return false;
+        for (int index = separator + 1; index < value.Length; index++)
+            if (!char.IsDigit(value[index])) return false;
+        return true;
+    }
+
+    private static string ToFriendRequestMessage(FriendsServiceException exception)
+    {
+        switch (exception.ErrorCode)
+        {
+            case FriendsErrorCode.RelationshipAlreadyExists:
+            case FriendsErrorCode.FriendshipAlreadyExists:
+                return "ANFRAGE BEREITS GESENDET ODER SPIELER BEREITS BEFREUNDET";
+            case FriendsErrorCode.UserTargetingSelf:
+            case FriendsErrorCode.InvalidCreateTarget:
+                return "DU KANNST DICH NICHT SELBST HINZUFÜGEN";
+            case FriendsErrorCode.ActionUnauthorizedWhenBlocked:
+                return "FREUNDESANFRAGE NICHT MÖGLICH, SPIELER IST BLOCKIERT";
+            case FriendsErrorCode.FriendLimitReached:
+            case FriendsErrorCode.FriendRequestLimitReached:
+                return "DEIN FREUNDES- ODER ANFRAGENLIMIT IST ERREICHT";
+            case FriendsErrorCode.TargetsFriendLimitReached:
+                return "DIESER SPIELER KANN KEINE WEITEREN FREUNDE ANNEHMEN";
+            case FriendsErrorCode.ProjectNotEnabled:
+                return "UNITY FRIENDS IST FÜR DIESES ENVIRONMENT NICHT AKTIVIERT";
+            case FriendsErrorCode.NetworkError:
+                return "KEINE VERBINDUNG ZUM FREUNDEDIENST. BITTE ERNEUT VERSUCHEN";
+        }
+
+        if ((int)exception.StatusCode == 404)
+            return "SPIELER NICHT GEFUNDEN. SPIELER-ID UND #NUMMER PRÜFEN";
+        return "FREUNDESANFRAGE KONNTE NICHT GESENDET WERDEN. BITTE ERNEUT VERSUCHEN";
+    }
+
     private static string ToUserMessage(Exception exception)
     {
         string message = exception?.Message ?? "UNBEKANNTER FEHLER";
+        var errors = new Dictionary<string, string>
+        {
+            { "INVITE_NOT_FOUND", "DIE EINLADUNG IST NICHT MEHR VERFÜGBAR" },
+            { "INVITE_EXPIRED", "DIE EINLADUNG IST ABGELAUFEN" },
+            { "FRIEND_CODE_NOT_FOUND", "FREUNDESCODE NICHT GEFUNDEN" },
+            { "INVALID_FRIEND_CODE", "FREUNDESCODE PRÜFEN" },
+            { "FRIENDSHIP_REQUIRED", "BITTE ZUERST DIE FREUNDESANFRAGE ANNEHMEN" },
+            { "FRIEND_ALREADY_IN_MATCH", "DEIN FREUND SPIELT GERADE" },
+            { "ACTIVE_MATCH_EXISTS", "DU HAST BEREITS EIN LAUFENDES SPIEL" },
+            { "INVITE_LIMIT_REACHED", "DEIN FREUND HAT ZU VIELE OFFENE EINLADUNGEN" },
+            { "MATCH_BUSY_RETRY", "DUELL WIRD VORBEREITET. BITTE ERNEUT VERSUCHEN." },
+            { "STALE_MATCH_VERSION", "SPIELSTAND WIRD AKTUALISIERT" },
+            { "NOT_YOUR_TURN", "DEIN GEGNER IST AM ZUG" }
+        };
+        foreach (var error in errors)
+            if (message.IndexOf(error.Key, StringComparison.OrdinalIgnoreCase) >= 0) return error.Value;
+        if (exception is TimeoutException) return "ANMELDUNG ABGELAUFEN. BITTE ERNEUT VERSUCHEN.";
         if (message.IndexOf("Singleton is not initialized", StringComparison.OrdinalIgnoreCase) >= 0)
             return "UNITY PLAYER ACCOUNTS IST IM PROJEKT NOCH NICHT KONFIGURIERT";
+        if (message.IndexOf("USERNAME_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "DIESER NUTZERNAME IST BEREITS VERGEBEN";
+        if (message.IndexOf("INVALID_USERNAME_PASSWORD", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            message.IndexOf("INVALID_CREDENTIALS", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "NUTZERNAME ODER PASSWORT IST FALSCH";
+        if (message.IndexOf("ID_PROVIDER_NOT_FOUND", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "BROWSER-ANMELDUNG IST IM UNITY DASHBOARD NOCH NICHT AKTIVIERT";
+        if (message.IndexOf("INVALID_PARAMETERS", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            message.IndexOf("correct format", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "NUTZERNAME ODER PASSWORT ERFÜLLT DIE ANFORDERUNGEN NICHT";
         if (message.IndexOf("client", StringComparison.OrdinalIgnoreCase) >= 0 &&
             message.IndexOf("id", StringComparison.OrdinalIgnoreCase) >= 0)
             return "PLAYER-ACCOUNTS CLIENT-ID FEHLT // UNITY DASHBOARD KONFIGURIEREN";

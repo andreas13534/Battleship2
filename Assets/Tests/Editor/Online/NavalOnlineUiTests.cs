@@ -8,6 +8,31 @@ using UnityEngine.UIElements;
 
 public sealed class NavalOnlineUiTests
 {
+    [TestCase("andreas_dev#99958", true)]
+    [TestCase("andreas_dev", false)]
+    [TestCase("andreas_dev#abc", false)]
+    [TestCase("ab#12345", false)]
+    public void FriendLookup_AcceptsOnlyCompleteUnityPlayerNames(string value, bool expected)
+    {
+        MethodInfo method = typeof(UgsNavalOnlineService).GetMethod(
+            "LooksLikeUnityPlayerName", BindingFlags.Static | BindingFlags.NonPublic);
+
+        Assert.That(method, Is.Not.Null);
+        Assert.That(method.Invoke(null, new object[] { value }), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void FriendInput_ExplainsTheRequiredPlayerIdFormat()
+    {
+        VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/UI/MainMenu/MainMenu.uxml");
+        TemplateContainer root = asset.CloneTree();
+        TextField field = root.Q<TextField>("FriendNameField");
+        Label hint = root.Q<Label>("FriendCodeHint");
+
+        Assert.That(field.tooltip, Does.Contain("Name#12345"));
+        Assert.That(hint.text, Does.Contain("NAME#12345"));
+    }
+
     [Test]
     public void OnlineUxml_ContainsAllPlatformScreensAndCriticalControls()
     {
@@ -16,7 +41,8 @@ public sealed class NavalOnlineUiTests
         TemplateContainer root = asset.CloneTree();
         string[] requiredNames =
         {
-            "OnlineLoginScreen", "OnlineHubScreen", "OnlineTabViewport", "FriendsScreen", "PlayScreen",
+            "OnlineLoginScreen", "WebCredentialsPanel", "WebUsernameField", "WebPasswordField", "WebSignInButton", "WebRegisterButton",
+            "OnlineHubScreen", "OnlineTabViewport", "FriendsScreen", "PlayScreen",
             "ProfileScreen", "StoreScreen", "LeaderboardScreen", "MatchmakingScreen", "RankedMatchFoundScreen", "AgeConsentToggle", "RankedBattleButton",
             "FriendsList", "InvitesList", "StoreButton", "BuyEliasButton", "BuyDaeButton", "BuyArjanButton", "WatchImaniAdButton",
             "RewardCodeField", "RedeemRewardCodeButton",

@@ -16,15 +16,18 @@ namespace NavalCommandOnline;
 public sealed class NavalCommandModule
 {
     private const string StateKey = "state_v1";
-    private readonly NavalCloudSaveStore _store;
+    private readonly INavalCloudSaveStore _store;
+    private readonly INavalFriendshipVerifier _friendships;
     private readonly IGameApiClient _gameApi;
     private readonly ILogger<NavalCommandModule> _logger;
 
-    public NavalCommandModule(NavalCloudSaveStore store, IGameApiClient gameApi, ILogger<NavalCommandModule> logger)
+    public NavalCommandModule(INavalCloudSaveStore store, IGameApiClient gameApi, ILogger<NavalCommandModule> logger,
+        INavalFriendshipVerifier friendships)
     {
         _store = store;
         _gameApi = gameApi;
         _logger = logger;
+        _friendships = friendships;
     }
 
     [CloudCodeFunction("GetOrCreateProfile")]
@@ -238,7 +241,11 @@ public sealed class NavalCommandModule
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(friendPlayerId), StateKey);
         FriendlyInbox inbox = record.Value ?? new FriendlyInbox();
+        if (inbox.invites.Any(item => item.senderPlayerId == playerId && item.state == "invited" && item.expiresUnixMs > now &&
+            item.startingUnixMs > 0 && now - item.startingUnixMs < 60_000))
+            throw new InvalidOperationException("MATCH_BUSY_RETRY");
         inbox.invites.RemoveAll(item => item.expiresUnixMs <= now || item.senderPlayerId == playerId);
+        if (inbox.invites.Count >= 100) throw new InvalidOperationException("INVITE_LIMIT_REACHED");
         string inviteId = Guid.NewGuid().ToString("N");
         inbox.invites.Add(new StoredFriendlyInvite
         {
@@ -261,13 +268,92 @@ public sealed class NavalCommandModule
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(playerId), StateKey);
         FriendlyInbox inbox = record.Value ?? new FriendlyInbox();
-        return inbox.invites.Where(item => item.expiresUnixMs > now).Select(item => new NavalFriendlyInvite
+        List<NavalFriendlyInvite> invites = new();
+        foreach (StoredFriendlyInvite item in inbox.invites.Where(item => item.expiresUnixMs > now && item.state == "invited" &&
+            (item.startingUnixMs == 0 || now - item.startingUnixMs >= 60_000)))
         {
-            inviteId = item.inviteId,
-            senderPlayerId = item.senderPlayerId,
-            senderDisplayName = item.senderDisplayName,
-            expiresUnixMs = item.expiresUnixMs
-        }).ToList();
+            if (item.startingUnixMs > 0)
+            {
+                var match = await _store.GetAsync<NavalServerMatch>(context, MatchEntity(item.inviteId), StateKey);
+                if (match.Value != null) continue;
+            }
+            invites.Add(new NavalFriendlyInvite
+            {
+                inviteId = item.inviteId, senderPlayerId = item.senderPlayerId,
+                senderDisplayName = item.senderDisplayName, expiresUnixMs = item.expiresUnixMs
+            });
+        }
+        return invites;
+    }
+
+    [CloudCodeFunction("PollFriendlyMatch")]
+    public async Task<NavalMatchTicket> PollFriendlyMatch(IExecutionContext context, string friendPlayerId, string inviteId)
+    {
+        string playerId = RequirePlayer(context);
+        ValidateFriendlyLookup(friendPlayerId, inviteId);
+        long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        // The invitation ID is also the match ID, so a lost accept response is recoverable.
+        NavalStoredValue<NavalServerMatch> match = await _store.GetAsync<NavalServerMatch>(context, MatchEntity(inviteId), StateKey);
+        if (match.Value != null)
+        {
+            NavalAuthoritativeEngine.BuildView(match.Value, playerId);
+            return Ticket(inviteId, inviteId, "matched", now);
+        }
+        NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(friendPlayerId), StateKey);
+        StoredFriendlyInvite? invite = record.Value?.invites.FirstOrDefault(item => item.inviteId == inviteId && item.senderPlayerId == playerId);
+        return Ticket(inviteId, null, invite == null || invite.expiresUnixMs <= now ? "expired" : invite.state, now);
+    }
+
+    [CloudCodeFunction("CancelFriendlyMatch")]
+    public async Task<NavalMatchTicket> CancelFriendlyMatch(IExecutionContext context, string friendPlayerId, string inviteId)
+    {
+        string playerId = RequirePlayer(context);
+        ValidateFriendlyLookup(friendPlayerId, inviteId);
+        NavalMatchTicket ticket = await PollFriendlyMatch(context, friendPlayerId, inviteId);
+        if (!string.IsNullOrWhiteSpace(ticket.matchId)) return ticket;
+        NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(friendPlayerId), StateKey);
+        StoredFriendlyInvite? invite = record.Value?.invites.FirstOrDefault(item => item.inviteId == inviteId && item.senderPlayerId == playerId);
+        if (invite != null)
+        {
+            // Accept and cancel compete on the same write lock before a match can be created.
+            if (invite.startingUnixMs > 0 && DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - invite.startingUnixMs < 60_000)
+                throw new InvalidOperationException("MATCH_BUSY_RETRY");
+            invite.state = "cancelled";
+            await _store.PutAsync(context, InviteEntity(friendPlayerId), StateKey, record.Value, record.WriteLock);
+            await ClearActiveMatchIfEqual(context, playerId, inviteId);
+            await ClearActiveMatchIfEqual(context, friendPlayerId, inviteId);
+        }
+        return Ticket(inviteId, null, "cancelled", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+    }
+
+    [CloudCodeFunction("DeclineFriendlyMatch")]
+    public async Task<string> DeclineFriendlyMatch(IExecutionContext context, string inviteId)
+    {
+        string playerId = RequirePlayer(context);
+        ValidateFriendlyLookup(playerId, inviteId);
+        NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(playerId), StateKey);
+        StoredFriendlyInvite? invite = record.Value?.invites.FirstOrDefault(item => item.inviteId == inviteId);
+        if (invite == null) return "declined";
+        if (invite.state != "invited") return invite.state;
+        if (invite.startingUnixMs > 0)
+        {
+            var match = await _store.GetAsync<NavalServerMatch>(context, MatchEntity(inviteId), StateKey);
+            if (match.Value != null) return "matched";
+            if (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - invite.startingUnixMs < 60_000)
+                throw new InvalidOperationException("MATCH_BUSY_RETRY");
+        }
+        invite.state = "declined";
+        await _store.PutAsync(context, InviteEntity(playerId), StateKey, record.Value, record.WriteLock);
+        await ClearActiveMatchIfEqual(context, playerId, inviteId);
+        await ClearActiveMatchIfEqual(context, invite.senderPlayerId, inviteId);
+        return "declined";
+    }
+
+    private static void ValidateFriendlyLookup(string playerId, string inviteId)
+    {
+        if (string.IsNullOrWhiteSpace(playerId) || playerId.Length > 128 ||
+            string.IsNullOrWhiteSpace(inviteId) || !Guid.TryParseExact(inviteId, "N", out _))
+            throw new InvalidOperationException("INVITE_NOT_FOUND");
     }
 
     [CloudCodeFunction("AcceptFriendlyMatch")]
@@ -275,32 +361,75 @@ public sealed class NavalCommandModule
         IExecutionContext context, IPushClient pushClient, string inviteId, NavalPendingLoadout loadout)
     {
         string playerId = RequirePlayer(context);
+        ValidateFriendlyLookup(playerId, inviteId);
         NavalAuthoritativeEngine.ValidateLoadout(loadout);
+        NavalStoredValue<NavalServerMatch> existing = await _store.GetAsync<NavalServerMatch>(context, MatchEntity(inviteId), StateKey);
+        if (existing.Value != null)
+        {
+            NavalAuthoritativeEngine.BuildView(existing.Value, playerId);
+            return Ticket(inviteId, inviteId, "matched", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+        }
         StoredProfile recipient = await GetOrCreateStoredProfile(context, playerId);
         EnsureCommanderOwned(recipient.entitlements, loadout.commanderId);
-        if (!string.IsNullOrWhiteSpace(recipient.activeMatchId)) throw new InvalidOperationException("ACTIVE_MATCH_EXISTS");
+        if (!string.IsNullOrWhiteSpace(recipient.activeMatchId) && recipient.activeMatchId != inviteId)
+            throw new InvalidOperationException("ACTIVE_MATCH_EXISTS");
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(playerId), StateKey);
         FriendlyInbox inbox = record.Value ?? throw new InvalidOperationException("INVITE_NOT_FOUND");
         StoredFriendlyInvite invite = inbox.invites.FirstOrDefault(item => item.inviteId == inviteId)
             ?? throw new InvalidOperationException("INVITE_NOT_FOUND");
         if (invite.expiresUnixMs <= now) throw new InvalidOperationException("INVITE_EXPIRED");
+        if (invite.state != "invited") throw new InvalidOperationException("INVITE_NOT_FOUND");
+        if (invite.startingUnixMs > 0 && now - invite.startingUnixMs < 60_000)
+            throw new InvalidOperationException("MATCH_BUSY_RETRY");
         await EnsureFriend(context, invite.senderPlayerId);
         StoredProfile sender = await GetOrCreateStoredProfile(context, invite.senderPlayerId);
-        if (!string.IsNullOrWhiteSpace(sender.activeMatchId)) throw new InvalidOperationException("FRIEND_ALREADY_IN_MATCH");
-        string matchId = Guid.NewGuid().ToString("N");
-        NavalServerMatch match = NavalAuthoritativeEngine.CreateMatch(
-            matchId, NavalMatchMode.Friendly,
-            invite.senderPlayerId, sender.profile.displayName, invite.loadout,
-            playerId, recipient.profile.displayName, loadout, now);
-        await _store.PutAsync(context, MatchEntity(matchId), StateKey, match, null);
-        await SetActiveMatch(context, invite.senderPlayerId, matchId);
-        await SetActiveMatch(context, playerId, matchId);
-        inbox.invites.RemoveAll(item => item.inviteId == inviteId);
+        if (!string.IsNullOrWhiteSpace(sender.activeMatchId) && sender.activeMatchId != inviteId)
+            throw new InvalidOperationException("FRIEND_ALREADY_IN_MATCH");
+        EnsureCommanderOwned(sender.entitlements, invite.loadout.commanderId);
+        string matchId = inviteId;
+        invite.startingUnixMs = now;
+        // Claim the invitation before any match/profile writes. Duplicate accepts cannot create two matches.
         await _store.PutAsync(context, InviteEntity(playerId), StateKey, inbox, record.WriteLock);
-        await TryPushMatch(context, pushClient, invite.senderPlayerId, matchId, match.version);
-        await TryPushMatch(context, pushClient, playerId, matchId, match.version);
-        return Ticket(inviteId, matchId, "matched", now);
+        try
+        {
+            await ClaimActiveMatch(context, invite.senderPlayerId, matchId);
+            await ClaimActiveMatch(context, playerId, matchId);
+            NavalServerMatch match = NavalAuthoritativeEngine.CreateMatch(
+                matchId, NavalMatchMode.Friendly,
+                invite.senderPlayerId, sender.profile.displayName, invite.loadout,
+                playerId, recipient.profile.displayName, loadout, now);
+            await _store.PutAsync(context, MatchEntity(matchId), StateKey, match, null);
+            await MarkFriendlyStarted(context, playerId, inviteId);
+            await TryPushMatch(context, pushClient, invite.senderPlayerId, matchId, match.version);
+            await TryPushMatch(context, pushClient, playerId, matchId, match.version);
+            return Ticket(inviteId, matchId, "matched", now);
+        }
+        catch
+        {
+            // A lost write response can mean the match exists already. Never replace it or create another.
+            NavalStoredValue<NavalServerMatch> committed = await _store.GetAsync<NavalServerMatch>(context, MatchEntity(matchId), StateKey);
+            if (committed.Value != null) return Ticket(inviteId, matchId, "matched", now);
+            await ClearActiveMatchIfEqual(context, invite.senderPlayerId, matchId);
+            await ClearActiveMatchIfEqual(context, playerId, matchId);
+            NavalStoredValue<FriendlyInbox> retry = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(playerId), StateKey);
+            StoredFriendlyInvite? pending = retry.Value?.invites.FirstOrDefault(item => item.inviteId == inviteId);
+            if (pending != null && pending.startingUnixMs == now)
+            {
+                pending.startingUnixMs = 0;
+                await _store.PutAsync(context, InviteEntity(playerId), StateKey, retry.Value, retry.WriteLock);
+            }
+            throw;
+        }
+    }
+
+    private async Task MarkFriendlyStarted(IExecutionContext context, string playerId, string inviteId)
+    {
+        NavalStoredValue<FriendlyInbox> record = await _store.GetAsync<FriendlyInbox>(context, InviteEntity(playerId), StateKey);
+        StoredFriendlyInvite? invite = record.Value?.invites.FirstOrDefault(item => item.inviteId == inviteId);
+        if (invite == null) return;
+        invite.state = "matched";
+        await _store.PutAsync(context, InviteEntity(playerId), StateKey, record.Value, record.WriteLock);
     }
 
     [CloudCodeFunction("GetMatchView")]
@@ -664,18 +793,27 @@ public sealed class NavalCommandModule
         await _store.PutAsync(context, ProfileEntity(playerId), StateKey, stored, record.WriteLock);
     }
 
+    private async Task ClaimActiveMatch(IExecutionContext context, string playerId, string matchId)
+    {
+        NavalStoredValue<StoredProfile> record = await _store.GetAsync<StoredProfile>(context, ProfileEntity(playerId), StateKey);
+        StoredProfile stored = record.Value ?? throw new InvalidOperationException("PROFILE_NOT_FOUND");
+        if (stored.activeMatchId == matchId) return;
+        if (!string.IsNullOrWhiteSpace(stored.activeMatchId)) throw new InvalidOperationException("ACTIVE_MATCH_EXISTS");
+        stored.activeMatchId = matchId;
+        await _store.PutAsync(context, ProfileEntity(playerId), StateKey, stored, record.WriteLock);
+    }
+
+    private async Task ClearActiveMatchIfEqual(IExecutionContext context, string playerId, string matchId)
+    {
+        NavalStoredValue<StoredProfile> record = await _store.GetAsync<StoredProfile>(context, ProfileEntity(playerId), StateKey);
+        if (record.Value?.activeMatchId != matchId) return;
+        record.Value.activeMatchId = null;
+        await _store.PutAsync(context, ProfileEntity(playerId), StateKey, record.Value, record.WriteLock);
+    }
+
     private async Task EnsureFriend(IExecutionContext context, string otherPlayerId)
     {
-        var response = await _gameApi.FriendsRelationshipsApi.GetRelationshipsAsync(
-            context, context.AccessToken, 100, 0, false, false,
-            new List<Unity.Services.Friends.Model.RelationshipType>
-            {
-                Unity.Services.Friends.Model.RelationshipType.FRIEND
-            });
-        bool acceptedFriend = response.Data.Any(relationship =>
-            relationship.Type == Unity.Services.Friends.Model.RelationshipType.FRIEND &&
-            relationship.Members.Any(member => member.Id == otherPlayerId));
-        if (!acceptedFriend) throw new InvalidOperationException("FRIENDSHIP_REQUIRED");
+        await _friendships.EnsureFriendAsync(context, otherPlayerId);
     }
 
     private static StoredProfile CreateStoredProfile(string playerId, long joinedUnixMs = 0)
@@ -907,6 +1045,8 @@ public sealed class NavalCommandModule
         public string senderPlayerId = string.Empty;
         public string senderDisplayName = string.Empty;
         public long expiresUnixMs;
+        public string state = "invited";
+        public long startingUnixMs;
         public NavalPendingLoadout loadout = new();
     }
 }

@@ -58,6 +58,19 @@
     letter-spacing: 2px;
 }
 
+.tutorial-skip-button {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    height: 48px;
+    min-width: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    background-color: rgb(17, 31, 38);
+    color: rgb(239, 245, 242);
+}
+
 .tutorial-overlay {
     position: absolute;
     left: 0;
@@ -4636,6 +4649,80 @@
 .profile-account-action,
 .profile-account-cancel,
 .online-message { font-size: 16px; }
+
+/* Anmeldung // auf kleinen Displays deutlich lesbarer */
+#OnlineLoginScreen .screen-title { font-size: 30px; }
+#OnlineLoginScreen .online-title { font-size: 42px; }
+#OnlineLoginScreen .online-copy { font-size: 23px; }
+#OnlineLoginScreen .online-consent { height: 64px; font-size: 19px; }
+#OnlineLoginScreen .online-wide-button { min-height: 76px; font-size: 23px; }
+#OnlineLoginScreen .online-message { min-height: 32px; font-size: 18px; }
+.web-credentials { width: 100%; }
+.web-credential-input { width: 100%; }
+.web-credential-input .unity-base-field__label {
+    min-width: 150px;
+    color: rgb(169, 244, 204);
+    font-size: 18px;
+}
+.web-credential-hint { margin-bottom: 4px; font-size: 16px; white-space: normal; }
+
+/* Menüs // einheitliche, gut lesbare Mindestgrößen */
+.topbar-button { font-size: 18px; }
+.tutorial-menu-button { height: 48px; font-size: 18px; }
+.tutorial-replay-button,
+.play-mode-button,
+.online-tab-label { font-size: 25px; }
+.secondary-button { font-size: 20px; }
+.micro-label { font-size: 18px; }
+.online-app-title { font-size: 32px; }
+.online-message { font-size: 18px; }
+.featured-offer-subtitle,
+.featured-content-name,
+.featured-price-note,
+.shop-banner-copy,
+.shop-card-subtitle,
+.shop-card-feature,
+.reward-code-copy,
+.tab-hero-copy,
+.tab-subheading,
+.field-hint,
+.profile-code-chip,
+.battle-season,
+.battle-meta,
+.play-launch-caption,
+.mode-selector-hint,
+.game-mode-subtitle,
+.play-info-label,
+.profile-tagline,
+.field-label,
+.profile-identity-code,
+.profile-stat-label,
+.profile-minimal-label,
+.profile-account-subtitle,
+.leaderboard-column-labels,
+.developer-admin-account { font-size: 20px; }
+.section-label { font-size: 20px; }
+.featured-offer-ribbon-text { font-size: 26px; }
+.featured-offer-title { font-size: 30px; }
+.rewarded-commander-title { font-size: 27px; }
+.shop-card-title { font-size: 24px; }
+.shop-buy-button,
+.rewarded-ad-button,
+.solo-battle-button,
+.text-link-button { font-size: 20px; }
+.tab-heading { font-size: 32px; }
+.game-mode-option { font-size: 21px; }
+.friend-name { font-size: 22px; }
+.friend-state,
+.friend-action { font-size: 19px; }
+.profile-identity-code,
+.profile-stat-label,
+.profile-minimal-label { font-size: 20px; }
+.profile-account-action,
+.profile-save-button,
+.profile-avatar-button { font-size: 20px; }
+.commander-card-rank,
+.commander-card-abilities { font-size: 18px; }
 
 .ability-cinematic-abyss-torpedo .ability-cinematic-panel,
 .ability-cinematic-abyss-submerge .ability-cinematic-panel {

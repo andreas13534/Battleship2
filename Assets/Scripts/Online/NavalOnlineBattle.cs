@@ -69,10 +69,13 @@ public sealed partial class NavalGameController
     private void RefreshOnlineBattle(NavalPlayerMatchView view)
     {
         if (view == null) return;
+        if (onlineMatchView != null && onlineMatchView.matchId == view.matchId && view.version < onlineMatchView.version) return;
         ObserveOnlineOpponentAction(view);
         onlineMatchView = view;
         if (mainCells == null || mainCells.Length == 0) return;
 
+        SyncOnlineFleet(view);
+        bonusShotsRemaining = view.ownBonusShotsRemaining;
         points = view.ownAbilityPoints;
         playerTurn = view.IsOwnTurn && !onlineActionPending;
         gameOver = view.status == NavalMatchStatus.Finished;
@@ -558,9 +561,35 @@ public sealed partial class NavalGameController
         }
     }
 
+    private void SyncOnlineFleet(NavalPlayerMatchView view)
+    {
+        if (view.ownShips == null || view.ownShips.Count == 0) return;
+        if (playerShips == null || playerShips.Length != view.ownShips.Count)
+            playerShips = new ShipState[view.ownShips.Count];
+        playerBoard = CreateEmptyBoard();
+        for (int index = 0; index < view.ownShips.Count; index++)
+        {
+            NavalShipPlacement placement = view.ownShips[index];
+            ShipState ship = playerShips[index] ?? (playerShips[index] = new ShipState());
+            ship.length = placement.length;
+            ship.width = placement.width;
+            ship.height = placement.height;
+            ship.row = placement.row;
+            ship.column = placement.column;
+            ship.vertical = placement.vertical;
+            ship.placed = true;
+            int rows = ship.vertical ? ship.width : ship.height;
+            int columns = ship.vertical ? ship.height : ship.width;
+            for (int row = 0; row < rows; row++)
+            for (int column = 0; column < columns; column++)
+                playerBoard[ship.row + row, ship.column + column] = index;
+        }
+    }
+
     private void Update()
     {
         UpdateOnlineMatchmaking();
+        UpdateOnlineRefresh();
         if (IsActiveOnlineMatch && onlineMatchView.status == NavalMatchStatus.InProgress)
             UpdateOnlineClock();
     }

@@ -15,6 +15,8 @@ public interface INavalOnlineService
 
     Task InitializeAsync(string environmentName);
     Task SignInWithPlayerAccountAsync();
+    Task SignInWithUsernamePasswordAsync(string username, string password);
+    Task SignUpWithUsernamePasswordAsync(string username, string password);
     Task SignInWithAppleAsync(string idToken);
     Task SignInWithGoogleAsync(string idToken);
     Task SignOutAsync();
@@ -31,6 +33,9 @@ public interface INavalOnlineService
     Task<NavalMatchTicket> PollRankedAsync(string ticketId);
     Task CancelQueueAsync(string ticketId);
     Task<NavalMatchTicket> CreateFriendlyMatchAsync(string friendPlayerId, NavalPendingLoadout loadout);
+    Task<NavalMatchTicket> PollFriendlyMatchAsync(string friendPlayerId, string inviteId);
+    Task<NavalMatchTicket> CancelFriendlyMatchAsync(string friendPlayerId, string inviteId);
+    Task DeclineFriendlyMatchAsync(string inviteId);
     Task<IReadOnlyList<NavalFriendlyInvite>> GetFriendlyInvitesAsync();
     Task<NavalMatchTicket> AcceptFriendlyMatchAsync(string inviteId, NavalPendingLoadout loadout);
     Task<NavalPlayerMatchView> GetMatchViewAsync(string matchId);

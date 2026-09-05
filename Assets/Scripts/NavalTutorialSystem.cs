@@ -19,6 +19,7 @@ public sealed partial class NavalGameController
     private Label tutorialBody;
     private Label tutorialTask;
     private Button tutorialContinueButton;
+    private Button tutorialSkipButton;
     private Button tutorialMenuButton;
     private Button tutorialReplayButton;
     private VisualElement tutorialPointsPanel;
@@ -36,6 +37,7 @@ public sealed partial class NavalGameController
         tutorialBody = root.Q<Label>("TutorialBody");
         tutorialTask = root.Q<Label>("TutorialTask");
         tutorialContinueButton = root.Q<Button>("TutorialContinueButton");
+        tutorialSkipButton = root.Q<Button>("TutorialSkipButton");
         tutorialMenuButton = root.Q<Button>("TutorialButton");
         tutorialReplayButton = root.Q<Button>("TutorialReplayButton");
         tutorialPointsPanel = root.Q<VisualElement>(className: "points-panel");
@@ -49,6 +51,7 @@ public sealed partial class NavalGameController
     private void BindTutorialUi()
     {
         tutorialContinueButton.clicked += AdvanceTutorialFromCard;
+        tutorialSkipButton.clicked += SkipTutorial;
         tutorialMenuButton.clicked += BeginTutorial;
         tutorialReplayButton.clicked += BeginTutorial;
     }
@@ -63,6 +66,7 @@ public sealed partial class NavalGameController
         StopAllCoroutines();
         onlineFlowMode = OnlineFlowMode.None;
         tutorialActive = true;
+        tutorialSkipButton.RemoveFromClassList("hidden");
         tutorialAdvancePending = false;
         tutorialStage = TutorialStage.Welcome;
         currentCommander = CreateTutorialCommander();
@@ -233,9 +237,18 @@ public sealed partial class NavalGameController
             "KONRAD WEISS // ENDE DER AUSBILDUNG", "ZUM HAUPTMENÜ", true);
     }
 
+    private void SkipTutorial()
+    {
+        if (!tutorialActive) return;
+        PlayerPrefs.SetInt(TutorialCompletedKey, 1);
+        PlayerPrefs.Save();
+        FinishTutorial();
+    }
+
     private void FinishTutorial()
     {
         tutorialActive = false;
+        tutorialSkipButton.AddToClassList("hidden");
         tutorialStage = TutorialStage.None;
         tutorialAdvancePending = false;
         HideTutorialCard();

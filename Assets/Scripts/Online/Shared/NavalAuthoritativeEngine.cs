@@ -180,10 +180,18 @@ public static class NavalAuthoritativeEngine
             ownJetActive = viewer.jetActive,
             opponentJetActive = opponent.jetActive,
             ownAbilitiesJammed = viewer.abilitiesJammed,
+            ownBonusShotsRemaining = viewer.bonusShotsRemaining,
             lastEvent = match.lastEvent,
             winnerPlayerId = match.winnerPlayerId,
             ratingDelta = viewer.playerId == match.first.playerId ? match.firstRatingDelta : match.secondRatingDelta
         };
+
+        foreach (NavalServerShip ship in viewer.ships)
+            view.ownShips.Add(new NavalShipPlacement
+            {
+                length = ship.length, width = ship.width, height = ship.height,
+                row = ship.row, column = ship.column, vertical = ship.vertical
+            });
 
         for (int row = 0; row < NavalOnlineProtocol.BoardSize; row++)
         {

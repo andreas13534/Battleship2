@@ -10,6 +10,7 @@ public sealed class ModuleSetup : ICloudCodeSetup
     public void Setup(ICloudCodeConfig config)
     {
         config.AddGameApiClient();
-        config.Dependencies.AddSingleton<NavalCloudSaveStore>();
+        config.Dependencies.AddSingleton<INavalCloudSaveStore, NavalCloudSaveStore>();
+        config.Dependencies.AddSingleton<INavalFriendshipVerifier, NavalFriendshipVerifier>();
     }
 }

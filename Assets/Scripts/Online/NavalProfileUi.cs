@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,6 +25,9 @@ public sealed partial class NavalGameController
     private Button profileAccountButton;
     private Button profileAccountCancelButton;
     private Texture2D profileAvatarTexture;
+    private string renderedAvatarBase64;
+    private bool avatarRendered;
+    private Button copyFriendCodeButton;
 
     private void CacheProfilePresentationUi(VisualElement root)
     {
@@ -40,6 +45,7 @@ public sealed partial class NavalGameController
         profileAvatarButton = root.Q<Button>("ProfileAvatarButton");
         profileAccountButton = root.Q<Button>("ProfileAccountButton");
         profileAccountCancelButton = root.Q<Button>("ProfileAccountCancelButton");
+        copyFriendCodeButton = root.Q<Button>("CopyFriendCodeButton");
     }
 
     private void BindProfilePresentationUi()
@@ -47,6 +53,13 @@ public sealed partial class NavalGameController
         profileAvatarButton.clicked += RequestProfileImage;
         profileAccountButton.clicked += OpenProfileAccountMenu;
         profileAccountCancelButton.clicked += CloseProfileAccountMenu;
+        copyFriendCodeButton.clicked += () =>
+        {
+            string code = onlineService?.Profile?.friendCode;
+            if (string.IsNullOrWhiteSpace(code)) return;
+            GUIUtility.systemCopyBuffer = code;
+            copyFriendCodeButton.text = "KOPIERT";
+        };
         profileAccountMenu.RegisterCallback<ClickEvent>(evt =>
         {
             if (evt.target == profileAccountMenu)
@@ -59,7 +72,15 @@ public sealed partial class NavalGameController
         if (profileDisplayNameLabel == null) return;
         string displayName = profile?.displayName ?? "COMMANDER";
         profileDisplayNameLabel.text = displayName;
-        profileIdentityCodeLabel.text = "CODE " + (profile?.friendCode ?? "--------");
+        string playerName = UnityServices.State == ServicesInitializationState.Initialized &&
+            AuthenticationService.Instance.IsSignedIn
+                ? AuthenticationService.Instance.PlayerName
+                : string.Empty;
+        profileIdentityCodeLabel.text = string.IsNullOrWhiteSpace(playerName)
+            ? "CODE " + (profile?.friendCode ?? "--------")
+            : playerName + "\nCODE " + (profile?.friendCode ?? "--------");
+        copyFriendCodeButton.SetEnabled(signedIn && !string.IsNullOrWhiteSpace(profile?.friendCode));
+        copyFriendCodeButton.text = "FREUNDESCODE KOPIEREN";
         profileWinsValue.text = (profile?.lifetimeWins ?? 0).ToString();
         profileLossesValue.text = (profile?.lifetimeLosses ?? 0).ToString();
         profileRankValue.text = (profile?.league ?? "PLATZIERUNG") + "\n" +
@@ -82,6 +103,10 @@ public sealed partial class NavalGameController
 
     private void RenderProfileAvatar(string imageBase64, string displayName)
     {
+        profileAvatarInitials.text = GetInitials(displayName);
+        if (avatarRendered && renderedAvatarBase64 == imageBase64) return;
+        avatarRendered = true;
+        renderedAvatarBase64 = imageBase64;
         DisposeProfileAvatarTexture();
         profileAvatarImage.style.backgroundImage = StyleKeyword.None;
         bool loaded = false;

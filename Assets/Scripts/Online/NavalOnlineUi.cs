@@ -45,6 +45,8 @@ public sealed partial class NavalGameController
     private Button onlineLoginBackButton;
     private Button onlineHubBackButton;
     private Button playerAccountLoginButton;
+    private Button webSignInButton;
+    private Button webRegisterButton;
     private Button appleLoginButton;
     private Button googleLoginButton;
     private Button signOutButton;
@@ -85,9 +87,12 @@ public sealed partial class NavalGameController
     private Label onlineTabTitle;
     private Label gameModeMessageLabel;
     private TextField friendNameField;
+    private TextField webUsernameField;
+    private TextField webPasswordField;
     private TextField profileNameField;
     private TextField rewardCodeField;
     private Toggle ageConsentToggle;
+    private VisualElement webCredentialsPanel;
     private long deleteAccountArmedUntilUnixMs;
     private long nextMatchmakingPollUnixMs;
     private long lastResumeRefreshUnixMs;
@@ -96,6 +101,15 @@ public sealed partial class NavalGameController
     private bool rewardCodeRedemptionPending;
     private int activeOnlineTab = -1;
     private bool selectedRankedMode;
+    private bool loginPending;
+    private bool queueRequestPending;
+    private bool cancelQueuePending;
+    private bool socialRefreshPending;
+    private bool friendRequestPending;
+    private long nextSocialRefreshUnixMs;
+    private long nextBattleRefreshUnixMs;
+    private int loginReturnTab = 2;
+    private int tabTransitionVersion;
 
     private static readonly string[] OnlineTabTitles =
     {
@@ -125,6 +139,8 @@ public sealed partial class NavalGameController
         onlineLoginBackButton = root.Q<Button>("OnlineLoginBackButton");
         onlineHubBackButton = root.Q<Button>("OnlineHubBackButton");
         playerAccountLoginButton = root.Q<Button>("PlayerAccountLoginButton");
+        webSignInButton = root.Q<Button>("WebSignInButton");
+        webRegisterButton = root.Q<Button>("WebRegisterButton");
         appleLoginButton = root.Q<Button>("AppleLoginButton");
         googleLoginButton = root.Q<Button>("GoogleLoginButton");
         signOutButton = root.Q<Button>("SignOutButton");
@@ -173,9 +189,19 @@ public sealed partial class NavalGameController
         onlineTabTitle = root.Q<Label>("OnlineTabTitle");
         gameModeMessageLabel = root.Q<Label>("GameModeMessageLabel");
         friendNameField = root.Q<TextField>("FriendNameField");
+        webUsernameField = root.Q<TextField>("WebUsernameField");
+        webPasswordField = root.Q<TextField>("WebPasswordField");
         profileNameField = root.Q<TextField>("ProfileNameField");
         rewardCodeField = root.Q<TextField>("RewardCodeField");
         ageConsentToggle = root.Q<Toggle>("AgeConsentToggle");
+        webCredentialsPanel = root.Q<VisualElement>("WebCredentialsPanel");
+#if UNITY_WEBGL && !UNITY_EDITOR
+        webCredentialsPanel.RemoveFromClassList("hidden");
+        playerAccountLoginButton.AddToClassList("hidden");
+#else
+        webCredentialsPanel.AddToClassList("hidden");
+        playerAccountLoginButton.RemoveFromClassList("hidden");
+#endif
         CacheProfilePresentationUi(root);
         CacheRankedMatchFoundUi(root);
         CacheDeveloperAdminUi(root);
@@ -184,10 +210,12 @@ public sealed partial class NavalGameController
     private void BindOnlineUi()
     {
         onlineButton.clicked += OpenOnline;
-        accountButton.clicked += OpenOnline;
+        accountButton.clicked += () => SwitchOnlineTab(4);
         onlineLoginBackButton.clicked += ShowOnlineAppHome;
         onlineHubBackButton.clicked += ShowOnlineAppHome;
         playerAccountLoginButton.clicked += () => _ = SignInWithPlayerAccountAsync();
+        webSignInButton.clicked += () => _ = SignInWithWebCredentialsAsync(false);
+        webRegisterButton.clicked += () => _ = SignInWithWebCredentialsAsync(true);
         appleLoginButton.clicked += () => _ = SignInWithPlayerAccountAsync();
         googleLoginButton.clicked += () => _ = SignInWithPlayerAccountAsync();
         signOutButton.clicked += () =>
@@ -203,7 +231,7 @@ public sealed partial class NavalGameController
         modeSelectorButton.clicked += OpenGameModeMenu;
         closeGameModeButton.clicked += CloseGameModeMenu;
         playLoginButton.clicked += OpenOnline;
-        profileLoginButton.clicked += OpenOnline;
+        profileLoginButton.clicked += () => OpenOnlineLogin(4);
         leaderboardButton.clicked += () => SwitchOnlineTab(3);
         storeButton.clicked += () => SwitchOnlineTab(0);
         buyEliasButton.clicked += () => BuyProduct(NavalIapService.EliasProductId);
@@ -213,7 +241,7 @@ public sealed partial class NavalGameController
         redeemRewardCodeButton.clicked += () => _ = RedeemRewardCodeAsync();
         rewardCodeField.RegisterValueChangedCallback(_ => UpdateRewardCodeControls());
         restorePurchasesButton.clicked += RestorePurchases;
-        refreshFriendsButton.clicked += () => _ = RefreshFriendsAsync();
+        refreshFriendsButton.clicked += () => _ = RefreshSocialAsync();
         addFriendButton.clicked += () => _ = AddFriendAsync();
         cancelMatchmakingButton.clicked += () => _ = CancelMatchmakingAsync();
         for (int index = 0; index < onlineTabButtons.Length; index++)
@@ -245,6 +273,14 @@ public sealed partial class NavalGameController
             return;
         }
 
+        OpenOnlineLogin(2);
+    }
+
+    private void OpenOnlineLogin(int returnTab)
+    {
+        loginReturnTab = returnTab;
+        CloseGameModeMenu();
+        CloseProfileAccountMenu();
         ShowOnly(onlineLoginScreen);
         RefreshOnlineState();
     }
@@ -304,33 +340,81 @@ public sealed partial class NavalGameController
 
     private async Task SignInWithPlayerAccountAsync()
     {
+        await RunLoginUiAsync(
+            () => onlineService.SignInWithPlayerAccountAsync(),
+            "ANMELDUNG IM BROWSER ABSCHLIESSEN…");
+    }
+
+    private async Task SignInWithWebCredentialsAsync(bool createAccount)
+    {
+        string username = (webUsernameField.value ?? string.Empty).Trim();
+        string password = webPasswordField.value ?? string.Empty;
+        if (username.Length < 3 || username.Length > 20)
+        {
+            ShowLoginMessage("NUTZERNAME MUSS 3 BIS 20 ZEICHEN HABEN");
+            return;
+        }
+        if (password.Length < 8 || password.Length > 30)
+        {
+            ShowLoginMessage("PASSWORT MUSS 8 BIS 30 ZEICHEN HABEN");
+            return;
+        }
+
+        await RunLoginUiAsync(
+            () => createAccount
+                ? onlineService.SignUpWithUsernamePasswordAsync(username, password)
+                : onlineService.SignInWithUsernamePasswordAsync(username, password),
+            createAccount ? "KONTO WIRD ERSTELLT…" : "ANMELDUNG LÄUFT…");
+        if (this != null) webPasswordField.value = string.Empty;
+    }
+
+    private async Task RunLoginUiAsync(Func<Task> signIn, string pendingMessage)
+    {
+        if (loginPending || onlineService == null) return;
         if (!ageConsentToggle.value)
         {
             ShowLoginMessage("ONLINE-SPIEL IST ERST AB 16 JAHREN VERFÜGBAR");
             return;
         }
+        loginPending = true;
         SetOnlineButtonsEnabled(false);
-        ShowLoginMessage("SICHERES ANMELDEFENSTER WIRD GEÖFFNET...");
-        if (onlineService.IsSignedIn)
-            await onlineService.InitializeAsync(NavalOnlineEnvironment.Current);
-        else
-            await onlineService.SignInWithPlayerAccountAsync();
-        SetOnlineButtonsEnabled(ageConsentToggle.value);
+        try
+        {
+            ShowLoginMessage(pendingMessage);
+            if (onlineService.IsSignedIn)
+                await onlineService.InitializeAsync(NavalOnlineEnvironment.Current);
+            else
+                await signIn();
 
-        if (onlineService.IsSignedIn)
-        {
-            await ShowOnlineHubAsync();
+            if (this == null) return;
+            if (onlineService.IsSignedIn && onlineService.Profile != null && onlineService.Status != NavalOnlineStatus.Error)
+            {
+                if (!IsActiveOnlineMatch && !onlineLoginScreen.ClassListContains("hidden"))
+                {
+                    ShowOnly(onlineHubScreen);
+                    SwitchOnlineTab(loginReturnTab, true);
+                }
+            }
+            else ShowLoginMessage(onlineService.LastError);
         }
-        else
+        catch (Exception exception)
         {
-            ShowLoginMessage(onlineService.LastError);
+            if (this != null) ShowLoginMessage(exception.Message);
+        }
+        finally
+        {
+            loginPending = false;
+            if (this != null) SetOnlineButtonsEnabled(ageConsentToggle.value);
         }
     }
 
     private async Task SignOutOnlineAsync()
     {
         await onlineService.SignOutAsync();
-        onlineFlowMode = OnlineFlowMode.None;
+        ResetOnlineFlowForMenu();
+        invitesList.Clear();
+        invitesPanel.AddToClassList("hidden");
+        friendsList.Clear();
         ShowOnlineAppHome();
         RefreshOnlineState();
     }
@@ -390,7 +474,25 @@ public sealed partial class NavalGameController
         if (onlineTabPages == null || index < 0 || index >= onlineTabPages.Length)
             return;
 
+        if ((index == 1 || index == 4) && onlineService?.IsSignedIn != true)
+        {
+            OpenOnlineLogin(index);
+            return;
+        }
+
         CloseGameModeMenu();
+        CloseProfileAccountMenu();
+        int transition = ++tabTransitionVersion;
+        // A delayed callback from an older swipe must not hide a newly selected page.
+        foreach (VisualElement page in onlineTabPages)
+        {
+            if (page == null) continue;
+            page.RemoveFromClassList("online-tab-enter-left");
+            page.RemoveFromClassList("online-tab-enter-right");
+            page.RemoveFromClassList("online-tab-exit-left");
+            page.RemoveFromClassList("online-tab-exit-right");
+            page.EnableInClassList("hidden", page != onlineTabPages[index] && page != (activeOnlineTab < 0 ? null : onlineTabPages[activeOnlineTab]));
+        }
 
         int previousIndex = activeOnlineTab;
         VisualElement nextPage = onlineTabPages[index];
@@ -435,6 +537,7 @@ public sealed partial class NavalGameController
                 previousPage.AddToClassList(exitClass);
                 previousPage.schedule.Execute(() =>
                 {
+                    if (transition != tabTransitionVersion) return;
                     previousPage.AddToClassList("hidden");
                     previousPage.RemoveFromClassList(exitClass);
                 }).ExecuteLater(190);
@@ -460,8 +563,7 @@ public sealed partial class NavalGameController
                 await ShowStoreAsync();
                 break;
             case 1:
-                await RefreshFriendsAsync();
-                await RefreshInvitesAsync();
+                await RefreshSocialAsync();
                 break;
             case 3:
                 await ShowLeaderboardAsync();
@@ -679,13 +781,18 @@ public sealed partial class NavalGameController
 
     private void OpenProfileEditor()
     {
+        if (onlineService?.IsSignedIn != true)
+        {
+            OpenOnlineLogin(4);
+            return;
+        }
         NavalPlayerProfile profile = onlineService?.Profile;
         profileNameField.value = profile?.displayName ?? string.Empty;
         profileMessageLabel.text = string.Empty;
         bool signedIn = onlineService?.IsSignedIn == true;
         profileNameField.SetEnabled(signedIn);
         saveProfileButton.SetEnabled(signedIn);
-        signOutButton.AddToClassList("hidden");
+        signOutButton.EnableInClassList("hidden", !signedIn);
         deleteAccountButton.EnableInClassList("hidden", !signedIn);
         profileLoginButton.EnableInClassList("hidden", signedIn);
         RenderProfilePresentation(profile, signedIn);
@@ -712,18 +819,23 @@ public sealed partial class NavalGameController
         }
     }
 
-    private async Task RefreshFriendsAsync()
+    private async Task RefreshFriendsAsync(bool quiet = false)
     {
         if (onlineService == null || !onlineService.IsSignedIn) return;
-        friendsList.Clear();
-        friendsList.Add(CreateOnlineInfoLabel("FREUNDESLISTE WIRD GELADEN..."));
+        if (!quiet)
+        {
+            friendsList.Clear();
+            friendsList.Add(CreateOnlineInfoLabel("FREUNDE LADEN…"));
+        }
         try
         {
             IReadOnlyList<NavalFriendProfile> friends = await onlineService.GetFriendsAsync();
+            if (this == null || !onlineService.IsSignedIn) return;
             RenderFriends(friends);
         }
         catch (Exception exception)
         {
+            if (this == null || !onlineService.IsSignedIn) return;
             friendsList.Clear();
             friendsList.Add(CreateOnlineInfoLabel("FREUNDE NICHT VERFÜGBAR"));
             ShowHubMessage(exception.Message);
@@ -732,6 +844,8 @@ public sealed partial class NavalGameController
 
     private async Task AddFriendAsync()
     {
+        if (onlineService?.IsSignedIn != true) { OpenOnlineLogin(1); return; }
+        if (friendRequestPending) return;
         string playerName = friendNameField.value;
         if (string.IsNullOrWhiteSpace(playerName))
         {
@@ -739,6 +853,7 @@ public sealed partial class NavalGameController
             return;
         }
 
+        friendRequestPending = true;
         addFriendButton.SetEnabled(false);
         try
         {
@@ -753,7 +868,8 @@ public sealed partial class NavalGameController
         }
         finally
         {
-            addFriendButton.SetEnabled(true);
+            friendRequestPending = false;
+            addFriendButton.SetEnabled(onlineService?.IsSignedIn == true);
         }
     }
 
@@ -768,7 +884,7 @@ public sealed partial class NavalGameController
             friendsList.Add(CreateFriendRow(friend));
         }
 
-        friendCountLabel.text = accepted + " VERBUNDEN";
+        friendCountLabel.text = accepted + " FREUNDE";
         if (friends.Count == 0)
         {
             friendsList.Add(CreateOnlineInfoLabel("NOCH KEINE FREUNDE"));
@@ -781,6 +897,7 @@ public sealed partial class NavalGameController
         try
         {
             IReadOnlyList<NavalFriendlyInvite> invites = await onlineService.GetFriendlyInvitesAsync();
+            if (this == null || !onlineService.IsSignedIn) return;
             invitesList.Clear();
             invitesPanel.EnableInClassList("hidden", invites.Count == 0);
             for (int index = 0; index < invites.Count; index++)
@@ -794,13 +911,42 @@ public sealed partial class NavalGameController
                 Button accept = CreateFriendButton("DUELL ANNEHMEN");
                 accept.clicked += () => BeginAcceptFriendlyFlow(invite.inviteId);
                 row.Add(accept);
+                Button decline = CreateFriendButton("ABLEHNEN");
+                decline.clicked += () => _ = DeclineInviteAsync(invite.inviteId);
+                row.Add(decline);
                 invitesList.Add(row);
             }
         }
         catch (Exception exception)
         {
+            if (this == null || !onlineService.IsSignedIn) return;
             invitesPanel.EnableInClassList("hidden", true);
             ShowHubMessage(exception.Message);
+        }
+    }
+
+    private async Task DeclineInviteAsync(string inviteId)
+    {
+        try
+        {
+            await onlineService.DeclineFriendlyMatchAsync(inviteId);
+            await RefreshInvitesAsync();
+        }
+        catch (Exception exception) { ShowHubMessage(exception.Message); }
+    }
+
+    private async Task RefreshSocialAsync()
+    {
+        if (socialRefreshPending || onlineService?.IsSignedIn != true) return;
+        socialRefreshPending = true;
+        try
+        {
+            await Task.WhenAll(RefreshFriendsAsync(true), RefreshInvitesAsync());
+        }
+        finally
+        {
+            socialRefreshPending = false;
+            nextSocialRefreshUnixMs = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + 6000;
         }
     }
 
@@ -854,7 +1000,7 @@ public sealed partial class NavalGameController
 
         if (friend.blocked)
         {
-            Button unblock = CreateFriendButton("ENTBLOCK");
+            Button unblock = CreateFriendButton("FREIGEBEN");
             unblock.clicked += () => _ = UnblockFriendAsync(friend.playerId);
             row.Add(unblock);
         }
@@ -870,7 +1016,8 @@ public sealed partial class NavalGameController
         else if (!friend.outgoingRequest && !friend.blocked)
         {
             Button duel = CreateFriendButton("DUELL");
-            duel.SetEnabled(friend.online);
+            // Presence can be delayed; an accepted friend can always receive an invitation.
+            duel.SetEnabled(onlineService?.IsSignedIn == true);
             duel.clicked += () => BeginFriendlyFlow(friend.playerId);
             row.Add(duel);
             Button remove = CreateFriendButton("ENTF.");
@@ -947,29 +1094,34 @@ public sealed partial class NavalGameController
 
     private async Task BeginOnlineQueueAsync()
     {
-        NavalPendingLoadout loadout = CreateOnlineLoadout();
+        if (queueRequestPending || cancelQueuePending) return;
+        if (onlineService?.IsSignedIn != true) { OpenOnlineLogin(1); return; }
+        queueRequestPending = true;
         beginBattleButton.SetEnabled(false);
+        cancelMatchmakingButton.SetEnabled(false);
         matchmakingStatusLabel.text = onlineFlowMode == OnlineFlowMode.Ranked
-            ? "MMR-FENSTER ±100"
-            : "FREUNDSCHAFTSEINLADUNG WIRD GESENDET";
+            ? "GEGNER SUCHEN…"
+            : "DUELL VORBEREITEN…";
         ShowOnly(matchmakingScreen);
 
         try
         {
+            NavalPendingLoadout loadout = CreateOnlineLoadout();
             if (onlineFlowMode == OnlineFlowMode.Ranked)
                 activeMatchTicket = await onlineService.QueueRankedAsync(loadout);
             else if (onlineFlowMode == OnlineFlowMode.FriendlyAccept)
                 activeMatchTicket = await onlineService.AcceptFriendlyMatchAsync(pendingFriendlyInviteId, loadout);
             else
                 activeMatchTicket = await onlineService.CreateFriendlyMatchAsync(friendlyOpponentId, loadout);
+            if (activeMatchTicket == null) throw new InvalidOperationException("BITTE ERNEUT VERSUCHEN");
             matchmakingStatusLabel.text = onlineFlowMode == OnlineFlowMode.Ranked
-                ? "SUCHE AKTIV // TICKET " + ShortId(activeMatchTicket.ticketId)
+                ? "GEGNER WIRD GESUCHT…"
                 : string.IsNullOrWhiteSpace(activeMatchTicket.matchId)
-                    ? "EINLADUNG AKTIV // 10 MINUTEN"
-                    : "SICHERE VERBINDUNG WIRD AUFGEBAUT";
+                    ? "WARTE AUF DEINEN FREUND…"
+                    : "DUELL STARTET…";
             if (!string.IsNullOrWhiteSpace(activeMatchTicket.matchId))
                 await onlineService.GetMatchViewAsync(activeMatchTicket.matchId);
-            else if (onlineFlowMode == OnlineFlowMode.Ranked)
+            else
                 nextMatchmakingPollUnixMs = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + 1500;
         }
         catch (Exception exception)
@@ -977,6 +1129,11 @@ public sealed partial class NavalGameController
             ShowOnly(setupScreen);
             setupProgressLabel.text = "ONLINE-FEHLER // " + exception.Message.ToUpperInvariant();
             beginBattleButton.SetEnabled(true);
+        }
+        finally
+        {
+            queueRequestPending = false;
+            cancelMatchmakingButton.SetEnabled(true);
         }
     }
 
@@ -992,56 +1149,79 @@ public sealed partial class NavalGameController
 
     private async Task CancelMatchmakingAsync()
     {
-        if (activeMatchTicket != null && !string.IsNullOrWhiteSpace(activeMatchTicket.ticketId))
+        if (queueRequestPending || cancelQueuePending) return;
+        cancelQueuePending = true;
+        cancelMatchmakingButton.SetEnabled(false);
+        try
         {
-            try { await onlineService.CancelQueueAsync(activeMatchTicket.ticketId); }
-            catch (Exception exception) { ShowHubMessage(exception.Message); }
+            if (activeMatchTicket != null && !string.IsNullOrWhiteSpace(activeMatchTicket.ticketId))
+            {
+                if (onlineFlowMode == OnlineFlowMode.Friendly)
+                {
+                    NavalMatchTicket ticket = await onlineService.CancelFriendlyMatchAsync(friendlyOpponentId, activeMatchTicket.ticketId);
+                    if (!string.IsNullOrWhiteSpace(ticket?.matchId))
+                        await onlineService.GetMatchViewAsync(ticket.matchId);
+                }
+                else await onlineService.CancelQueueAsync(activeMatchTicket.ticketId);
+            }
+            if (IsActiveOnlineMatch) return;
+            activeMatchTicket = null;
+            onlineFlowMode = OnlineFlowMode.None;
+            await ShowOnlineHubAsync();
         }
-
-        if (IsActiveOnlineMatch) return;
-
-        activeMatchTicket = null;
-        onlineFlowMode = OnlineFlowMode.None;
-        await ShowOnlineHubAsync();
+        catch (Exception)
+        {
+            matchmakingStatusLabel.text = "ABBRUCH NICHT BESTÄTIGT. ERNEUT VERSUCHEN.";
+        }
+        finally
+        {
+            cancelQueuePending = false;
+            cancelMatchmakingButton.SetEnabled(true);
+        }
     }
 
     private void UpdateOnlineMatchmaking()
     {
-        if (onlineFlowMode != OnlineFlowMode.Ranked || activeMatchTicket == null ||
-            !string.IsNullOrWhiteSpace(activeMatchTicket.matchId) || matchmakingPollPending) return;
+        if ((onlineFlowMode != OnlineFlowMode.Ranked && onlineFlowMode != OnlineFlowMode.Friendly) || activeMatchTicket == null ||
+            !string.IsNullOrWhiteSpace(activeMatchTicket.matchId) || matchmakingPollPending || cancelQueuePending || IsActiveOnlineMatch) return;
 
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         if (now < nextMatchmakingPollUnixMs) return;
-        int expansionSteps = Mathf.Max(0, (int)((now - activeMatchTicket.createdUnixMs) / 15000L));
-        int window = Mathf.Min(500, 100 + expansionSteps * 50);
-        matchmakingStatusLabel.text = "SUCHE AKTIV // MMR-FENSTER ±" + window;
+        matchmakingStatusLabel.text = onlineFlowMode == OnlineFlowMode.Friendly
+            ? "WARTE AUF DEINEN FREUND…" : "GEGNER WIRD GESUCHT…";
         nextMatchmakingPollUnixMs = now + 2000;
         _ = PollRankedAsync();
     }
 
     private async Task PollRankedAsync()
     {
+        NavalMatchTicket requestedTicket = activeMatchTicket;
+        if (requestedTicket == null) return;
         matchmakingPollPending = true;
         try
         {
-            NavalMatchTicket ticket = await onlineService.PollRankedAsync(activeMatchTicket.ticketId);
+            NavalMatchTicket ticket = onlineFlowMode == OnlineFlowMode.Friendly
+                ? await onlineService.PollFriendlyMatchAsync(friendlyOpponentId, requestedTicket.ticketId)
+                : await onlineService.PollRankedAsync(requestedTicket.ticketId);
+            if (this == null || activeMatchTicket != requestedTicket || cancelQueuePending) return;
             if (ticket == null) return;
             if (!string.IsNullOrWhiteSpace(ticket.matchId))
             {
                 activeMatchTicket = ticket;
                 await onlineService.GetMatchViewAsync(ticket.matchId);
             }
-            else if (ticket.state == "expired")
+            else if (ticket.state == "expired" || ticket.state == "cancelled" || ticket.state == "declined")
             {
                 activeMatchTicket = null;
                 onlineFlowMode = OnlineFlowMode.None;
-                ShowHubMessage("SUCHE ABGELAUFEN // BITTE ERNEUT STARTEN");
+                ShowHubMessage(ticket.state == "declined" ? "EINLADUNG ABGELEHNT" : "SUCHE BEENDET. DU KANNST ERNEUT STARTEN.");
                 await ShowOnlineHubAsync();
             }
         }
-        catch (Exception exception)
+        catch (Exception)
         {
-            matchmakingStatusLabel.text = "VERBINDUNG WIRD WIEDERHERGESTELLT // " + exception.Message.ToUpperInvariant();
+            if (activeMatchTicket != requestedTicket) return;
+            matchmakingStatusLabel.text = "VERBINDUNG WIRD WIEDERHERGESTELLT…";
             nextMatchmakingPollUnixMs = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + 3000;
         }
         finally
@@ -1071,14 +1251,16 @@ public sealed partial class NavalGameController
     private void HandleOnlineMatchChanged(NavalPlayerMatchView view)
     {
         if (view == null) return;
+        if (onlineMatchView != null && onlineMatchView.matchId == view.matchId && view.version < onlineMatchView.version) return;
         bool refreshExistingBattle = IsActiveOnlineMatch &&
                                      onlineMatchView != null &&
-                                     onlineMatchView.matchId == view.matchId;
+                                     onlineMatchView.matchId == view.matchId &&
+                                     !battleScreen.ClassListContains("hidden");
         onlineMatchView = view;
         if (view.status == NavalMatchStatus.InProgress)
         {
             nextMatchmakingPollUnixMs = 0;
-            matchmakingStatusLabel.text = "GEGNER GEFUNDEN // MATCH " + ShortId(view.matchId);
+            matchmakingStatusLabel.text = "GEGNER GEFUNDEN";
             if (IsRankedMatchFoundSequence(view.matchId))
             {
                 return;
@@ -1098,7 +1280,8 @@ public sealed partial class NavalGameController
         }
         else if (view.status == NavalMatchStatus.Finished)
         {
-            RefreshOnlineBattle(view);
+            if (!refreshExistingBattle) EnterOnlineBattle(view);
+            else RefreshOnlineBattle(view);
         }
     }
 
@@ -1111,12 +1294,21 @@ public sealed partial class NavalGameController
                 ? "NC // ONLINE GESICHERT"
                 : "NC // OFFLINE BEREIT";
 
-        string message = onlineService.Status == NavalOnlineStatus.Error
-            ? onlineService.LastError
-            : onlineService.Status.ToString().ToUpperInvariant();
+        string message = onlineService.Status == NavalOnlineStatus.Error ? onlineService.LastError :
+            onlineService.Status == NavalOnlineStatus.Initializing ? "VERBINDEN…" :
+            onlineService.Status == NavalOnlineStatus.SigningIn ? "ANMELDUNG LÄUFT…" : string.Empty;
         loginStatusLabel.text = message;
         onlineHubStatusLabel.text = onlineService.Status == NavalOnlineStatus.Error ? "VERBINDUNGSFEHLER" : "SICHERE VERBINDUNG";
         RenderProfile();
+        SetOnlineButtonsEnabled(ageConsentToggle.value);
+        friendNameField.SetEnabled(onlineService.IsSignedIn);
+        addFriendButton.SetEnabled(onlineService.IsSignedIn && !friendRequestPending);
+        refreshFriendsButton.SetEnabled(onlineService.IsSignedIn);
+        if (!onlineService.IsSignedIn && onlineMatchView?.status == NavalMatchStatus.InProgress)
+        {
+            loginReturnTab = 2;
+            ShowOnly(onlineLoginScreen);
+        }
     }
 
     private void RenderProfile()
@@ -1124,7 +1316,13 @@ public sealed partial class NavalGameController
         if (profileNameLabel == null) return;
         NavalPlayerProfile profile = onlineService?.Profile;
         profileNameLabel.text = profile?.displayName ?? "COMMANDER";
-        profileCodeLabel.text = "CODE " + (profile?.friendCode ?? "--------");
+        string playerName = Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Initialized &&
+            Unity.Services.Authentication.AuthenticationService.Instance.IsSignedIn
+                ? Unity.Services.Authentication.AuthenticationService.Instance.PlayerName
+                : string.Empty;
+        profileCodeLabel.text = string.IsNullOrWhiteSpace(playerName)
+            ? "CODE " + (profile?.friendCode ?? "--------")
+            : "ID " + playerName + "   CODE " + (profile?.friendCode ?? "--------");
         profileRankLabel.text = (profile?.league ?? "PLATZIERUNG") + " // " + (profile?.mmr ?? NavalRankRules.InitialMmr) + " RP";
         profileStatsLabel.text = (profile?.lifetimeWins ?? 0) + " SIEGE // " +
             (profile?.lifetimeLosses ?? 0) + " NIEDERLAGEN";
@@ -1165,7 +1363,11 @@ public sealed partial class NavalGameController
 
     private void SetOnlineButtonsEnabled(bool enabled)
     {
+        enabled = enabled && !loginPending && onlineService?.Status != NavalOnlineStatus.Initializing &&
+            onlineService?.Status != NavalOnlineStatus.SigningIn;
         playerAccountLoginButton.SetEnabled(enabled);
+        webSignInButton.SetEnabled(enabled);
+        webRegisterButton.SetEnabled(enabled);
         appleLoginButton.SetEnabled(enabled);
         googleLoginButton.SetEnabled(enabled);
     }
@@ -1227,6 +1429,19 @@ public sealed partial class NavalGameController
         finally
         {
             resumeRefreshPending = false;
+        }
+    }
+
+    private void UpdateOnlineRefresh()
+    {
+        if (onlineService?.IsSignedIn != true) return;
+        long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        if (!onlineHubScreen.ClassListContains("hidden") && activeOnlineTab == 1 && now >= nextSocialRefreshUnixMs)
+            _ = RefreshSocialAsync();
+        if (onlineMatchView?.status == NavalMatchStatus.InProgress && !resumeRefreshPending && now >= nextBattleRefreshUnixMs)
+        {
+            nextBattleRefreshUnixMs = now + 2000;
+            _ = ResumeOnlineSessionAsync();
         }
     }
 }

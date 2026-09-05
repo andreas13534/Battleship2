@@ -159,6 +159,8 @@ public sealed class NavalPlayerMatchView
     public bool ownJetActive;
     public bool opponentJetActive;
     public bool ownAbilitiesJammed;
+    public int ownBonusShotsRemaining;
+    public List<NavalShipPlacement> ownShips = new List<NavalShipPlacement>();
     public List<NavalCellView> ownBoard = new List<NavalCellView>();
     public List<NavalCellView> opponentBoard = new List<NavalCellView>();
     public string lastEvent;

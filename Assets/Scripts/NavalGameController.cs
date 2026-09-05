@@ -164,6 +164,7 @@ private void ShowOnly(VisualElement target)
         {
             onlineService.StateChanged -= RefreshOnlineState;
             onlineService.MatchChanged -= HandleOnlineMatchChanged;
+            (onlineService as System.IDisposable)?.Dispose();
         }
         if (iapService != null)
         {
